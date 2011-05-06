@@ -6,8 +6,10 @@ import javax.naming.Context;
 import javax.sql.DataSource;
 
 public class DbConnection {
+	
 	private Connection conn;
-	public void CreateConn(){
+	
+	public void createConn(){
 		try{
 			Context initCtx=new javax.naming.InitialContext();
 			Context envCtx=(Context)initCtx.lookup("java:comp/env");
@@ -18,6 +20,13 @@ public class DbConnection {
 			System.out.println("failed to create a new conn");
 			e.printStackTrace();
 		}
+	}
+	
+	public Connection getConn(){
+		if(conn== null){
+			createConn();
+		}
+		return this.conn;
 	}
 
 }

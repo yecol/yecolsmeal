@@ -8,8 +8,9 @@
         <title>Hello World</title>
     </head>
     <body>
-        <q:form action="welcome-user" >
-            <q:textfield name="userName" label="User Name" />
+        <q:form action="user-acts!login" >
+            <q:textfield name="loginUserName" label="User Name" />
+             <q:textfield name="loginUserPwd" label="Password" />
             <q:submit />
         </q:form>
     </body>
