@@ -9,9 +9,7 @@ public class UserActs extends ActionSupport {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	//private String loginUserName;
-	//private String loginUserPwd;
+	private static final long serialVersionUID = 1L;	
 
 	private User user;
 	private UserService userService = new UserService();
@@ -20,10 +18,15 @@ public class UserActs extends ActionSupport {
 	public String login(){
 		System.out.println("login");
 		System.out.println(user.username+user.pwd);
-		if(userService.loginByUsername(user.username, user.pwd)!=null)
+		if(userService.loginByUsername(user.username, user.pwd)!=null){
+			System.out.println("login success");
 			return SUCCESS;
-		else 
+		}
+		else {
+			System.out.println("login failed");
 			return LOGIN;
+		}
+			
 	}
 	
 	public void setUser(User user){

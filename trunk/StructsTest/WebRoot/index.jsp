@@ -9,8 +9,8 @@
     </head>
     <body>
         <q:form action="user-acts!login" >
-            <q:textfield name="loginUserName" label="User Name" />
-             <q:textfield name="loginUserPwd" label="Password" />
+            <q:textfield name="user.username" label="User Name" />
+             <q:textfield name="user.pwd" label="Password" />
             <q:submit />
         </q:form>
     </body>
