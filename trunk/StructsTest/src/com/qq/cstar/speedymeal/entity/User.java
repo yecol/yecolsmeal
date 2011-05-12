@@ -3,8 +3,8 @@ package com.qq.cstar.speedymeal.entity;
 public class User {
 
 	private int uid;
-	public String username;
-	public String pwd;
+	private String username;
+	private String pwd;
 	private String email;
 	private String phone;
 	private int credit;

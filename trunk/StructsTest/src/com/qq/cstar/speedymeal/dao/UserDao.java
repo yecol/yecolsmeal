@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.qq.cstar.speedymeal.util.Serialize;
+import com.qq.cstar.speedymeal.entity.Location;
 import com.qq.cstar.speedymeal.entity.User;
 
 public class UserDao {
@@ -43,9 +45,12 @@ public class UserDao {
 				u.setPhone(rs.getString(5));
 				u.setCredit(rs.getInt(6));
 				u.setStatus(rs.getInt(7));
+				u.setLocation((Location)Serialize.readObject(rs.getString(8)));
 				return u;
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
@@ -66,11 +71,14 @@ public class UserDao {
 				u.setPhone(rs.getString(5));
 				u.setCredit(rs.getInt(6));
 				u.setStatus(rs.getInt(7));
-				// u.setLocation(rs.getInt(8));
+				u.setLocation((Location)Serialize.readObject(rs.getString(8)));
 				userList.add(u);
 				System.out.println(u.toString());
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return userList;

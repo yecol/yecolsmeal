@@ -16,17 +16,20 @@ public class UserActs extends ActionSupport {
 
 	
 	public String login(){
-		System.out.println("login");
-		System.out.println(user.username+user.pwd);
-		if(userService.loginByUsername(user.username, user.pwd)!=null){
-			System.out.println("login success");
+		//用户登录
+		if(userService.loginByUsername(user.getUsername(), user.getPwd())!=null){
 			return SUCCESS;
 		}
 		else {
-			System.out.println("login failed");
 			return LOGIN;
 		}
 			
+	}
+	
+	public String register(){
+		//用户注册
+		//TODO
+		return null;
 	}
 	
 	public void setUser(User user){

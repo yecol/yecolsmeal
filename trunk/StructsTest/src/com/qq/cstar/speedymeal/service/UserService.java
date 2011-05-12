@@ -19,5 +19,11 @@ public class UserService {
 		else return null;
 		//µÇÂ¼Ê§°Ü
 	}
+	
+	public User registerUser(User user){
+		//×¢²áĞÂÓÃ»§
+		//TODO
+		return null;
+	}
 
 }
