@@ -1,0 +1,67 @@
+@charset "utf-8";
+/* CSS Document */
+html,body {
+	margin:0px;
+	padding:0px;
+	height:100%;
+	font-size:12px;
+}
+/*主容器*/
+#wrapper {
+	width:100%;
+	height:100%;
+	padding-top:21px;
+	position:fixed;
+}
+#head {
+	width:100%;
+	height:20px;
+	margin:0 auto;
+	position:absolute;
+	top:0px;
+	background-color:#0C6;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #999;
+}
+#PageBody {
+	width:100%;
+	height:100%;
+}
+#sidebar {
+	width:295px;
+	height:100%;
+	float:left; /*浮动居左*/
+	_margin-right:-3px;
+	overflow:hidden; /*超出宽度部分隐藏*/
+}
+#container {
+	height:100%;
+	text-align:left;
+	overflow:hidden;
+	zIndex:991;
+}
+#sidebar #logo {
+	height: 70px;
+	width: 295px;
+	background-image: url(images/logo.jpg);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	position:absolute;
+	top:0px;
+}
+.hidden {
+	display: none;
+}
+
+#sidebar_body{
+	width:294px;
+	height:100%;
+	float:left; /*浮动居左*/
+	overflow:auto; /*超出宽度部分隐藏*/
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #999;
+	margin-top:49px;
+}
+	
