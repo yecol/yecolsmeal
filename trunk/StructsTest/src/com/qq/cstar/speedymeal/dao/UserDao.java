@@ -18,7 +18,7 @@ public class UserDao {
 	public UserDao() {
 		dbc = new DbConnection();
 	}
-	
+
 	public User insertUser(User user) {
 		String sql = "INSERT INTO user (username,pwd,email,phone,credit,status,location,address) VALUES (?,?,?,?,?,?,?,?)";
 		try {
@@ -31,10 +31,10 @@ public class UserDao {
 			ps.setInt(6, user.getStatus());
 			ps.setString(7, Serialize.writeObject(user.getLocation()));
 			ps.setString(8, user.getAddress());
-			
+
 			System.out.println(ps.toString());
 			int affectedItem = ps.executeUpdate();
-			if (affectedItem==1) {
+			if (affectedItem == 1) {
 				return user;
 			}
 		} catch (SQLException e) {
@@ -58,10 +58,10 @@ public class UserDao {
 			ps.setString(7, Serialize.writeObject(user.getLocation()));
 			ps.setString(8, user.getAddress());
 			ps.setInt(9, user.getUid());
-			
+
 			System.out.println(ps.toString());
 			int affectedItem = ps.executeUpdate();
-			if (affectedItem==1) {
+			if (affectedItem == 1) {
 				return user;
 			}
 		} catch (SQLException e) {

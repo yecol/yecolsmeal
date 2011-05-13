@@ -10,6 +10,6 @@
 	maxActive="100" 
 	maxWait="5000" 
 	driverClassName="com.mysql.jdbc.Driver" 
-	url="jdbc:mysql://localhost:3306/speedymealdb" 
+	url="jdbc:mysql://localhost:3306/speedymealdb?useUnicode=true&amp;characterEncoding=utf-8" 
 	/>
 </Context>
