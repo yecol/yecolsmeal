@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import com.qq.cstar.speedymeal.util.MD5;
 import com.qq.cstar.speedymeal.util.Serialize;
 import com.qq.cstar.speedymeal.entity.Location;
 import com.qq.cstar.speedymeal.entity.User;
@@ -17,13 +18,58 @@ public class UserDao {
 	public UserDao() {
 		dbc = new DbConnection();
 	}
-
-	public boolean insertUser(User user) {
-		return false;
+	
+	public User insertUser(User user) {
+		String sql = "INSERT INTO user (username,pwd,email,phone,credit,status,location,address) VALUES (?,?,?,?,?,?,?,?)";
+		try {
+			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
+			ps.setString(1, user.getUsername());
+			ps.setString(2, MD5.getMD5(user.getPwd()));
+			ps.setString(3, user.getEmail());
+			ps.setString(4, user.getPhone());
+			ps.setInt(5, user.getCredit());
+			ps.setInt(6, user.getStatus());
+			ps.setString(7, Serialize.writeObject(user.getLocation()));
+			ps.setString(8, user.getAddress());
+			
+			System.out.println(ps.toString());
+			int affectedItem = ps.executeUpdate();
+			if (affectedItem==1) {
+				return user;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
-	public boolean updateUser(User user) {
-		return false;
+	public User updateUser(User user) {
+		String sql = "UPDATE user SET username=?,pwd=?,email=?,phone=?,credit=?,status=?,location=?,address=? WHERE uid=?";
+		try {
+			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
+			ps.setString(1, user.getUsername());
+			ps.setString(2, MD5.getMD5(user.getPwd()));
+			ps.setString(3, user.getEmail());
+			ps.setString(4, user.getPhone());
+			ps.setInt(5, user.getCredit());
+			ps.setInt(6, user.getStatus());
+			ps.setString(7, Serialize.writeObject(user.getLocation()));
+			ps.setString(8, user.getAddress());
+			ps.setInt(9, user.getUid());
+			
+			System.out.println(ps.toString());
+			int affectedItem = ps.executeUpdate();
+			if (affectedItem==1) {
+				return user;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	public boolean deleteUser(User user) {
@@ -31,7 +77,7 @@ public class UserDao {
 	}
 
 	public User getUniqueUserByName(String username) {
-		String sql = "select * from user where username=?";
+		String sql = "SELECT * FROM user WHERE username=?";
 		try {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
 			ps.setString(1, username);
@@ -45,7 +91,8 @@ public class UserDao {
 				u.setPhone(rs.getString(5));
 				u.setCredit(rs.getInt(6));
 				u.setStatus(rs.getInt(7));
-				u.setLocation((Location)Serialize.readObject(rs.getString(8)));
+				u.setLocation((Location) Serialize.readObject(rs.getString(8)));
+				u.setAddress(rs.getString(9));
 				return u;
 			}
 		} catch (SQLException e) {
@@ -58,7 +105,7 @@ public class UserDao {
 
 	public ArrayList<User> getUsers() {
 		ArrayList<User> userList = new ArrayList<User>();
-		String sql = "select * from user";
+		String sql = "SELECT * FROM user";
 		Statement st;
 		try {
 			st = dbc.getConn().createStatement();
@@ -71,7 +118,8 @@ public class UserDao {
 				u.setPhone(rs.getString(5));
 				u.setCredit(rs.getInt(6));
 				u.setStatus(rs.getInt(7));
-				u.setLocation((Location)Serialize.readObject(rs.getString(8)));
+				u.setLocation((Location) Serialize.readObject(rs.getString(8)));
+				u.setAddress(rs.getString(9));
 				userList.add(u);
 				System.out.println(u.toString());
 			}

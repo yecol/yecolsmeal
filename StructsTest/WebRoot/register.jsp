@@ -8,9 +8,12 @@
         <title>Hello World</title>
     </head>
     <body>
-        <s:form action="user-acts!login" >
+        <s:form action="user-acts!register" >
             <s:textfield name="user.username" label="User Name" />
              <s:textfield name="user.pwd" label="Password" />
+             <s:textfield name="user.email" label="Email" />
+             <s:textfield name="user.phone" label="Phone" />
+             <s:textfield name="user.address" label="Address" />
             <s:submit />
         </s:form>
     </body>

@@ -21,9 +21,14 @@ public class UserService {
 	}
 	
 	public User registerUser(User user){
-		//注册新用户
-		//TODO
-		return null;
+		User registeredUser=userDao.insertUser(user);
+		if(registeredUser!=null){
+			registeredUser.setPwd(null);
+			return registeredUser;
+			//当注册成功，设空密码并返回对象
+		}
+		else return null;
+		//注册失败，返回空对象
 	}
 
 }
