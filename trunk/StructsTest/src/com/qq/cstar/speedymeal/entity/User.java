@@ -1,15 +1,37 @@
 package com.qq.cstar.speedymeal.entity;
 
 public class User {
+	// 用户类
 
-	private int uid;
+	private int uid;// 用户标识符
 	private String username;
 	private String pwd;
 	private String email;
 	private String phone;
 	private int credit;
-	private int status;
-	private Location location;
+	private int status;// 帐户状态
+	private Location location;// 默认坐标地址
+	private String address;// 地址
+	
+
+	public User() {
+		super();
+	}
+
+	public User(int uid, String username, String pwd, String email,
+			String phone, int credit, int status, Location location,
+			String address) {
+		super();
+		this.uid = uid;
+		this.username = username;
+		this.pwd = pwd;
+		this.email = email;
+		this.phone = phone;
+		this.credit = credit;
+		this.status = status;
+		this.location = location;
+		this.address = address;
+	}
 
 	public int getUid() {
 		return uid;
@@ -75,10 +97,20 @@ public class User {
 		this.location = location;
 	}
 
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	@Override
 	public String toString() {
-		return "User [credit=" + credit + ", email=" + email + ", location="
-				+ location + ", phone=" + phone + ", status=" + status
-				+ ", uid=" + uid + ", username=" + username + "]";
+		return "User [address=" + address + ", credit=" + credit + ", email="
+				+ email + ", location=" + location + ", phone=" + phone
+				+ ", pwd=" + pwd + ", status=" + status + ", uid=" + uid
+				+ ", username=" + username + "]";
 	}
+
 }
