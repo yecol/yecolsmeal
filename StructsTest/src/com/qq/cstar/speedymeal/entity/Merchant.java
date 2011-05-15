@@ -12,18 +12,15 @@ public class Merchant {
 	private String address;
 	private String companyName;// 公司名称
 	private int status;// 帐户状态
-	private Location location;// 商户坐标
-	private ArrayList<Location> deliveryArea;// 投递区域坐标
-	
-	
+	private int credits;// 信用积分
+	private ArrayList<Branch> branches;
 
 	public Merchant() {
 		super();
 	}
 
-	public Merchant(int mid, String username, String pwd, String email,
-			String phone, String address, String companyName, int status,
-			Location location, ArrayList<Location> deliveryArea) {
+	public Merchant(int mid, String username, String pwd, String email, String phone, String address, String companyName, int status, int credits,
+			ArrayList<Branch> branches) {
 		super();
 		this.mid = mid;
 		this.username = username;
@@ -33,8 +30,8 @@ public class Merchant {
 		this.address = address;
 		this.companyName = companyName;
 		this.status = status;
-		this.location = location;
-		this.deliveryArea = deliveryArea;
+		this.credits = credits;
+		this.branches = branches;
 	}
 
 	public int getMid() {
@@ -101,29 +98,26 @@ public class Merchant {
 		this.status = status;
 	}
 
-	public Location getLocation() {
-		return location;
+	public int getCredits() {
+		return credits;
 	}
 
-	public void setLocation(Location location) {
-		this.location = location;
+	public void setCredits(int credits) {
+		this.credits = credits;
 	}
 
-	public ArrayList<Location> getDeliveryArea() {
-		return deliveryArea;
+	public ArrayList<Branch> getBranches() {
+		return branches;
 	}
 
-	public void setDeliveryArea(ArrayList<Location> deliveryArea) {
-		this.deliveryArea = deliveryArea;
+	public void setBranches(ArrayList<Branch> branches) {
+		this.branches = branches;
 	}
 
 	@Override
 	public String toString() {
-		return "Merchant [address=" + address + ", companyName=" + companyName
-				+ ", deliveryArea=" + deliveryArea + ", email=" + email
-				+ ", location=" + location + ", mid=" + mid + ", phone="
-				+ phone + ", pwd=" + pwd + ", status=" + status + ", username="
-				+ username + "]";
+		return "Merchant [address=" + address + ", branches=" + branches + ", companyName=" + companyName + ", credits=" + credits + ", email="
+				+ email + ", mid=" + mid + ", phone=" + phone + ", pwd=" + pwd + ", status=" + status + ", username=" + username + "]";
 	}
 
 }

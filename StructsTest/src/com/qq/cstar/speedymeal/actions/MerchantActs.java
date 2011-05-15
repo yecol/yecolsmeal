@@ -13,18 +13,17 @@ public class MerchantActs extends ActionSupport{
 	private MerchantService merchantService = new MerchantService();
 
 	public String login() {
-		// 用户登录
+		// 商户登录
 		merchant = merchantService.loginByUsername(merchant.getUsername(), merchant.getPwd());
 		if (merchant != null) {
 			return SUCCESS;
 		} else {
 			return LOGIN;
 		}
-
 	}
 
 	public String register() {
-		// 用户注册
+		// 商户注册
 		merchant = merchantService.registerMerchant(merchant);
 		if (merchant != null) {
 			return "register-success";
@@ -34,7 +33,7 @@ public class MerchantActs extends ActionSupport{
 		}
 	}
 
-	public void setUser(Merchant merchant) {
+	public void setMerchant(Merchant merchant) {
 		this.merchant = merchant;
 	}
 
