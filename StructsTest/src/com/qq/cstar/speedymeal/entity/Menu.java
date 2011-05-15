@@ -11,8 +11,8 @@ public class Menu {
 		super();
 		this.meid = meid;
 		this.mid = mid;
-		menuItemName = menuItemName;
-		menuItemPrice = menuItemPrice;
+		this.menuItemName = menuItemName;
+		this.menuItemPrice = menuItemPrice;
 	}
 
 	public int getMeid() {
@@ -36,7 +36,7 @@ public class Menu {
 	}
 
 	public void setMenuItemName(String menuItemName) {
-		menuItemName = menuItemName;
+		this.menuItemName = menuItemName;
 	}
 
 	public double getMenuItemPrice() {
@@ -44,7 +44,7 @@ public class Menu {
 	}
 
 	public void setMenuItemPrice(double menuItemPrice) {
-		menuItemPrice = menuItemPrice;
+		this.menuItemPrice = menuItemPrice;
 	}
 
 	@Override

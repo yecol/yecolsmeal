@@ -14,6 +14,12 @@ public class Merchant {
 	private int status;// 帐户状态
 	private Location location;// 商户坐标
 	private ArrayList<Location> deliveryArea;// 投递区域坐标
+	
+	
+
+	public Merchant() {
+		super();
+	}
 
 	public Merchant(int mid, String username, String pwd, String email,
 			String phone, String address, String companyName, int status,

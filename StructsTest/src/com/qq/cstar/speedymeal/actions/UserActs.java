@@ -1,6 +1,5 @@
 package com.qq.cstar.speedymeal.actions;
 
-
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.qq.cstar.speedymeal.entity.User;
@@ -20,8 +19,8 @@ public class UserActs extends ActionSupport {
 		// 用户登录
 		user = userService.loginByUsername(user.getUsername(), user.getPwd());
 		if (user != null) {
-			// HttpSession session=(HttpSession) request.getSession();
-			// s.setAttribute(arg0, arg1)
+			// 将User对象写入Session
+			ActionContext.getContext().getSession().put("SpeedyMeal_Session_User", user);
 			return SUCCESS;
 		} else {
 			return LOGIN;
@@ -40,6 +39,13 @@ public class UserActs extends ActionSupport {
 			return LOGIN;
 		}
 	}
+	
+	public String update(){
+		//用户更新资料
+		return null;
+	}
+	
+	
 
 	public void setUser(User user) {
 		this.user = user;
