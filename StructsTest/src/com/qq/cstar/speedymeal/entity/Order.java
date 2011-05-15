@@ -8,7 +8,7 @@ public class Order {
 	private int oid;
 	private int uid;// 用户外键
 	private int mid;// 商户外键
-	private int status;// 商户外键
+	private int status;
 	private Date orderTime;
 	private ArrayList<OrderItem> orderItems;//包含的菜单项
 
