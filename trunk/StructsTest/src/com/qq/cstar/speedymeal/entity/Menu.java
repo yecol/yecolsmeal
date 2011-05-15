@@ -4,15 +4,15 @@ public class Menu {
 	// 菜单项类
 	private int meid;// 标识符
 	private int mid;// 所属商户ID
-	private String MenuItemName;// 菜单名
-	private double MenuItemPrice;// 价格
+	private String menuItemName;// 菜单名
+	private double menuItemPrice;// 价格
 	
 	public Menu(int meid, int mid, String menuItemName, double menuItemPrice) {
 		super();
 		this.meid = meid;
 		this.mid = mid;
-		MenuItemName = menuItemName;
-		MenuItemPrice = menuItemPrice;
+		menuItemName = menuItemName;
+		menuItemPrice = menuItemPrice;
 	}
 
 	public int getMeid() {
@@ -32,25 +32,25 @@ public class Menu {
 	}
 
 	public String getMenuItemName() {
-		return MenuItemName;
+		return menuItemName;
 	}
 
 	public void setMenuItemName(String menuItemName) {
-		MenuItemName = menuItemName;
+		menuItemName = menuItemName;
 	}
 
 	public double getMenuItemPrice() {
-		return MenuItemPrice;
+		return menuItemPrice;
 	}
 
 	public void setMenuItemPrice(double menuItemPrice) {
-		MenuItemPrice = menuItemPrice;
+		menuItemPrice = menuItemPrice;
 	}
 
 	@Override
 	public String toString() {
-		return "Menu [MenuItemName=" + MenuItemName + ", MenuItemPrice="
-				+ MenuItemPrice + ", meid=" + meid + ", mid=" + mid + "]";
+		return "Menu [MenuItemName=" + menuItemName + ", MenuItemPrice="
+				+ menuItemPrice + ", meid=" + meid + ", mid=" + mid + "]";
 	}
 	
 	
