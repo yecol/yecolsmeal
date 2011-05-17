@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Branch {
 	// 分店类
 
+	// 持久化变量
 	private int bid;// 分店标识符
 	private int mid;// 商户ID
 	private String branchName;// 分店名称
@@ -12,6 +13,9 @@ public class Branch {
 	private String branchPhone;// 分店电话
 	private Location branchLocation;// 分店坐标
 	private ArrayList<Location> branchDeliveryArea;// 外送范围
+
+	// 非持久化变量
+	private String companyName;
 
 	public int getBid() {
 		return bid;
@@ -67,6 +71,14 @@ public class Branch {
 
 	public void setBranchDeliveryArea(ArrayList<Location> branchDeliveryArea) {
 		this.branchDeliveryArea = branchDeliveryArea;
+	}
+
+	public String getCompanyName() {
+		return companyName;
+	}
+
+	public void setCompanyName(String companyName) {
+		this.companyName = companyName;
 	}
 
 	@Override

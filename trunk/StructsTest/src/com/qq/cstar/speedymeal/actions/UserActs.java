@@ -19,7 +19,6 @@ public class UserActs extends ActionSupport {
 		// 用户登录
 		user = userService.loginByUsername(user.getUsername(), user.getPwd());
 		if (user != null) {
-			// 将User对象写入Session
 			ActionContext.getContext().getSession().put("SpeedyMeal_Session_User", user);
 			return SUCCESS;
 		} else {

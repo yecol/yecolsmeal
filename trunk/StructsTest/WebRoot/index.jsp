@@ -1,17 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@taglib uri="/struts-tags" prefix="s" %>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Hello World</title>
-    </head>
-    <body>
-        <s:form action="user-acts!login" >
-            <s:textfield name="user.username" label="User Name" />
-             <s:textfield name="user.pwd" label="Password" />
-            <s:submit />
-        </s:form>
-    </body>
+	pageEncoding="utf-8"%>
+<jsp:include page="WEB-INF/INCLUDE/HTMLHead.jsp" />
+<body onload="init()">
+	<div id="wrapper">
+		<jsp:include page="WEB-INF/INCLUDE/Head.jsp" />
+		<!--head-->
+		<div id="PageBody">
+			<div id="sidebar">
+				<div id="logo"></div>
+				<div id="sidebar_body">
+					<div id="index" class="sidebar_block">
+						这是一个定餐网站，你可以在这里订餐和查询你的订餐情况。我们希望能改善你的订餐体验。这是一个定餐网站，你可以在这里订餐和查询你的订餐情况。我们希望能改善你的订餐体验。这是一个定餐网站，你可以在这里订餐和查询你的订餐情况。我们希望能改善你的订餐体验。这是一个定餐网站，你可以在这里订餐和查询你的订餐情况。我们希望能改善你的订餐体验。
+					</div>
+					<div id="index_opt1" class="sidebar_block">
+						将标记拖曳到右边告诉我们你的位置
+					</div>
+					<div id="index_opt2" class="sidebar_block">
+						或者登录（注册）你的帐户再进行后续操作
+						<br />
+						<a id="bt_signin"></a>
+					</div>
+				</div>
+				<!--sidebar_body-->
+			</div>
+			<!--Sidebar-->
+			<div id="container">
+			</div>
+			<!--Container-->
+		</div>
+		<!--PageBody-->
+	</div>
+	<!--wrapper-->
+	<div id="interactive" class="hidden">
+		地图所要读取的交互数据都放在这里
+	</div>
+</body>
 </html>
