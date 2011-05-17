@@ -9,8 +9,10 @@ public class MerchantService {
 	
 	private MerchantDao merchantDao=new MerchantDao();
 
+	//商户使用用户名登录
 	public Merchant loginByUsername(String username, String pwd) {
 		Merchant merchant=merchantDao.getUniqueUserByName(username);
+		//密码比对
 		if(merchant!=null&&merchant.getPwd().equals(MD5.getMD5(pwd))){
 			merchant.setPwd(null);
 			return merchant;
@@ -19,6 +21,7 @@ public class MerchantService {
 		else return null;
 	}
 
+	//商户注册
 	public Merchant registerMerchant(Merchant merchant) {
 		Merchant registeredMerchant=merchantDao.insertMerchant(merchant);
 		if(registeredMerchant!=null){
@@ -30,8 +33,17 @@ public class MerchantService {
 		//注册失败，返回空对象
 	}
 	
+	//得到商户的完整信息
+	public Merchant getFullInfoMerchantByMid(int mid){
+		Merchant merchant=merchantDao.getMerchantByMid(mid);
+		return merchant;
+	}
+	
+	//添加新的分店信息
 	public boolean addNewBranch(Branch branch){
-		//添加新的分店信息
+		if(branch!=null){
+			return merchantDao.InsertBranch(branch);
+		}
 		return true;
 	}
 

@@ -3,13 +3,16 @@ package com.qq.cstar.speedymeal.dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
+import com.qq.cstar.speedymeal.entity.Branch;
+import com.qq.cstar.speedymeal.entity.Location;
 import com.qq.cstar.speedymeal.entity.Merchant;
 import com.qq.cstar.speedymeal.util.MD5;
+import com.qq.cstar.speedymeal.util.Serialize;
 
 public class MerchantDao {
 
-	
 	DbConnection dbc;
 
 	public MerchantDao() {
@@ -17,7 +20,7 @@ public class MerchantDao {
 	}
 
 	public Merchant getUniqueUserByName(String username) {
-		
+
 		String sql = "SELECT * FROM merchant WHERE username=?";
 		try {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
@@ -42,13 +45,11 @@ public class MerchantDao {
 			e.printStackTrace();
 		}
 		return null;
-		
-		
+
 	}
 
-
 	public Merchant insertMerchant(Merchant merchant) {
-		
+
 		String sql = "INSERT INTO merchant (username,pwd,email,phone,address,companyName,status,credits) VALUES (?,?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
@@ -71,6 +72,90 @@ public class MerchantDao {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public Merchant getMerchantByMid(int mid) {
+
+		String sql4Merchant = "SELECT * FROM merchant WHERE mid=?";
+		String sql4Branch = "SELECT * FROM branch WHERE mid=?";
+		try {
+			PreparedStatement ps = dbc.getConn().prepareStatement(sql4Merchant);
+			ps.setInt(1, mid);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				Merchant m = new Merchant();
+				m.setMid(rs.getInt(1));
+				m.setUsername(rs.getString(2));
+				m.setPwd(rs.getString(3));
+				m.setEmail(rs.getString(4));
+				m.setPhone(rs.getString(5));
+				m.setAddress(rs.getString(6));
+				m.setCompanyName(rs.getString(7));
+				m.setStatus(rs.getInt(8));
+				m.setCredits(rs.getInt(9));
+
+				ArrayList<Branch> branches = new ArrayList<Branch>();
+				PreparedStatement ps4Branch = dbc.getConn().prepareStatement(sql4Branch);
+				ps4Branch.setInt(1, mid);
+				ResultSet rs4Branch = ps4Branch.executeQuery();
+
+				if (rs4Branch.next()) {
+					Branch b = new Branch();
+					b.setBid(rs4Branch.getInt("bid"));
+					b.setMid(rs4Branch.getInt("mid"));
+					b.setBranchName(rs4Branch.getString("branchName"));
+					b.setBranchAddress(rs4Branch.getString("branchAddress"));
+					b.setBranchPhone(rs4Branch.getString("branchPhone"));
+					b.setBranchLocation((Location) Serialize.readObject((rs4Branch.getString("branchLocation"))));
+					b.setBranchDeliveryArea((ArrayList<Location>) Serialize.readObject((rs4Branch.getString("branchDeliveryArea"))));
+					branches.add(b);
+				}
+
+				rs4Branch.close();
+				m.setBranches(branches);
+				return m;
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public boolean InsertBranch(Branch branch) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	public ArrayList<Branch> getAllBranches() {
+		
+		String sql = "SELECT M.companyName,B.* FROM merchant M,branch B where M.mid=B.mid";
+		ArrayList<Branch> allBranches = new ArrayList<Branch>();
+		try {
+			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			if (rs.next()) {
+				Branch b = new Branch();
+				b.setBid(rs.getInt("bid"));
+				b.setBranchAddress(rs.getString("branchAddress"));
+				b.setBranchDeliveryArea((ArrayList<Location>) Serialize.readObject(rs.getString("branchDeliveryArea")));
+				b.setBranchLocation((Location) Serialize.readObject(rs.getString("branchLocation")));
+				b.setBranchName(rs.getString("branchName"));
+				b.setBranchPhone(rs.getString("branchPhone"));
+				b.setMid(rs.getInt("mid"));
+				b.setCompanyName(rs.getString("companyName"));
+
+				allBranches.add(b);
+			}
+			rs.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return allBranches;
 	}
 
 }

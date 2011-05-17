@@ -1,5 +1,9 @@
 package com.qq.cstar.speedymeal.util;
 
+import java.util.ArrayList;
+
+import com.qq.cstar.speedymeal.entity.Location;
+
 public class MD5 {
 
 	public static String getMD5(String original) {
@@ -27,6 +31,6 @@ public class MD5 {
 	}
 	
 	public static void main(String[] args){
-		System.out.println(MD5.getMD5("123456")+"|");
+		System.out.println(MD5.getMD5("12345"));
 	}
 }
