@@ -130,32 +130,51 @@ public class MerchantDao {
 	}
 
 	public ArrayList<Branch> getAllBranches() {
-		
 		String sql = "SELECT M.companyName,B.* FROM merchant M,branch B where M.mid=B.mid";
-		ArrayList<Branch> allBranches = new ArrayList<Branch>();
 		try {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			if (rs.next()) {
-				Branch b = new Branch();
-				b.setBid(rs.getInt("bid"));
-				b.setBranchAddress(rs.getString("branchAddress"));
-				b.setBranchDeliveryArea((ArrayList<Location>) Serialize.readObject(rs.getString("branchDeliveryArea")));
-				b.setBranchLocation((Location) Serialize.readObject(rs.getString("branchLocation")));
-				b.setBranchName(rs.getString("branchName"));
-				b.setBranchPhone(rs.getString("branchPhone"));
-				b.setMid(rs.getInt("mid"));
-				b.setCompanyName(rs.getString("companyName"));
-
-				allBranches.add(b);
-			}
-			rs.close();
+			return FilledFromResultset(rs);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return allBranches;
+		return null;
+	}
+
+	public ArrayList<Branch> getBranchesByMid(int mid) {
+		
+		String sql = "SELECT M.companyName,B.* FROM merchant M,branch B where M.mid=B.mid AND B.mid=?";
+		try {
+			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			return FilledFromResultset(rs);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	private ArrayList<Branch> FilledFromResultset(ResultSet rs) throws SQLException, Exception{
+		ArrayList<Branch> branches = new ArrayList<Branch>();
+		if (rs.next()) {
+			Branch b = new Branch();
+			b.setBid(rs.getInt("bid"));
+			b.setBranchAddress(rs.getString("branchAddress"));
+			b.setBranchDeliveryArea((ArrayList<Location>) Serialize.readObject(rs.getString("branchDeliveryArea")));
+			b.setBranchLocation((Location) Serialize.readObject(rs.getString("branchLocation")));
+			b.setBranchName(rs.getString("branchName"));
+			b.setBranchPhone(rs.getString("branchPhone"));
+			b.setMid(rs.getInt("mid"));
+			b.setCompanyName(rs.getString("companyName"));
+			branches.add(b);
+		}
+		rs.close();
+		return branches;
 	}
 
 }

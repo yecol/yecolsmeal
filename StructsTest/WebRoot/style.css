@@ -49,6 +49,7 @@ html,body {
 	background-position: 0px 0px;
 	position:absolute;
 	top:0px;
+	left:0px;
 }
 .hidden {
 	display: none;

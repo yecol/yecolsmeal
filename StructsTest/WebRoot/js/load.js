@@ -1,6 +1,8 @@
 // JavaScript Document
 // AJAX loading controller
 $(document).ready(function() {
+    $SitePrefix="/StructsTest"; 
+	
 	// 动态加载登录框
 		$("#bt_signin").click(function() {
 			$("#sidebar_body").load("login.jsp");
@@ -8,7 +10,7 @@ $(document).ready(function() {
 		// 动态请求可用商店列表
 		$("#ListAvailables").click(function() {
 			jQuery.ajax( {
-				url : '/StructsTest/list-availables',
+				url : $SitePrefix+'/list-availables',
 				data : {
 					author : 'hello'
 				}, // 从表单中获取数据
@@ -22,5 +24,21 @@ $(document).ready(function() {
 			});
 			return false;
 		});
+		//商户的分店管理
+		/*
+		$("a#merchant_branches_mgr").click(function() {
+			jQuery.ajax( {
+				url : $SitePrefix+'/ax-branches-mgr!listBranches',
+				type : 'GET',
+				error : function(request) {
+					alert("Server Error YZEN002");
+				},
+				success : function(data) {
+					$("#sidebar_body").html(data);
+				}
+			});
+			return false;
+		});
+		*/
 
 	});
