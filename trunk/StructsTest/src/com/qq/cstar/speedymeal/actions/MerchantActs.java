@@ -1,5 +1,6 @@
 package com.qq.cstar.speedymeal.actions;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.qq.cstar.speedymeal.entity.Merchant;
 import com.qq.cstar.speedymeal.service.MerchantService;
@@ -16,6 +17,7 @@ public class MerchantActs extends ActionSupport{
 		// ÉÌ»§µÇÂ¼
 		merchant = merchantService.loginByUsername(merchant.getUsername(), merchant.getPwd());
 		if (merchant != null) {
+			ActionContext.getContext().getSession().put("SpeedyMeal_Session_Merchant", merchant);
 			return SUCCESS;
 		} else {
 			return LOGIN;

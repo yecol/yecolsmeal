@@ -16,4 +16,10 @@ public class ProcessService {
 		return branches;
 	}
 
+	public ArrayList<Branch> getAllBranches(int mid) {
+		ArrayList<Branch> branches = merchantDao.getBranchesByMid(mid);  
+		//TODO 在这里写算法使用location对branches进行筛选。
+		return branches;
+	}
+
 }
