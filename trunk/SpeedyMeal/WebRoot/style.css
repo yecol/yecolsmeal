@@ -1,0 +1,84 @@
+@charset "utf-8";
+/* CSS Document */
+html,body {
+	margin:0px;
+	padding:0px;
+	height:100%;
+	font-size:12px;
+	line-height: 160%;	
+}
+/*主容器*/
+#wrapper {
+	width:100%;
+	height:100%;
+	padding-top:29px;
+	position:fixed;
+}
+#head {
+	width:100%;
+	height:29px;
+	margin:0 auto;
+	position:absolute;
+	top:0px;
+	background-image:url(images/head_bg.gif);
+	background-repeat:repeat-x;
+	text-align: right;
+}
+#PageBody {
+	width:100%;
+	height:100%;
+}
+#sidebar {
+	width:295px;
+	height:100%;
+	float:left; /*浮动居左*/
+	_margin-right:-3px;
+	overflow:hidden; /*超出宽度部分隐藏*/
+}
+#container {
+	height:100%;
+	text-align:left;
+	overflow:hidden;
+	zIndex:991;
+}
+#sidebar #logo {
+	height: 70px;
+	width: 294px;
+	background-image: url(images/logo.png);
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+.hidden {
+	display: none;
+}
+
+#sidebar_body{
+	width:254px;
+	height:100%;
+	float:left; /*浮动居左*/
+	overflow:auto; /*超出宽度部分隐藏*/
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #999;
+	padding-top:45px;
+	padding-right: 20px;
+	padding-left: 20px;
+}
+	
+.sidebar_block {
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+#bt_signin,.smt_signin {
+	background-image: url(images/signin.jpg);
+	background-repeat: no-repeat;
+	display: block;
+	height: 37px;
+	width: 114px;
+	margin-top: 30px;
+	margin-left: 60px;
+	border:0px;
+}
