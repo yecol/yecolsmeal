@@ -49,7 +49,19 @@ public class AxBranchesMgr extends ActionSupport {
 			out.print("<td>" + branches.get(index).getBranchName() + "<td>");
 			out.print("<td>" + branches.get(index).getBranchAddress() + "<td>");
 			out.print("<div class='hidden'>" + "<div class='i_lat'>" + branches.get(index).getBranchLocation().getLatitude() + "</div>"
-					+ "<div class='i_lon'>" + branches.get(index).getBranchLocation().getLongitude() + "</div>" + "</div>");
+					+ "<div class='i_lon'>" + branches.get(index).getBranchLocation().getLongitude() + "</div>" );
+		   		
+			String areaLat=new String();
+			String areaLon=new String();
+			for(Location l:branches.get(index).getBranchDeliveryArea()){
+				areaLat=areaLat+l.getLatitude()+',';
+				areaLon=areaLon+l.getLongitude()+',';
+			}
+			
+			out.print("<div class='a_lats'>"+areaLat+"</div><div class='a_lons'>"+areaLon + "</div></div>");
+			
+			
+			
 			out.print("<td><a href='#' class='mgr_button'>¸üÐÂ</a> <a href='#' class='mgr_button'>É¾³ý</a><td>");
 		}
 		out.print("</table>");
