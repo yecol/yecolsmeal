@@ -21,4 +21,6 @@ var init = function() {
 }
 
 </script>
+
+<script language="javascript" src="js/ditu.js"></script>
 </head>
