@@ -60,12 +60,16 @@ public class MerchantActs extends ActionSupport {
 		branch.setBranchLocation(new Location(Double.parseDouble(request.getParameter("bla").trim()), Double.parseDouble(request.getParameter("blo")
 				.trim())));
 		branch.setMid(merchant.getMid());
-		branch.setAreaType(Integer.parseInt(request.getParameter("areaType").trim()));
-		String[] alas = request.getParameterValues("alas");
-		String[] alos = request.getParameterValues("alos");
+		branch.setAreaType(Integer.parseInt(request.getParameter("areaType")
+				.trim()));
+		String[] vertexs = request.getParameter("vertexs").trim()
+				.split(",");
+		// String[] alas = request.getParameterValues("alas");
+		// String[] alos = request.getParameterValues("alos");
 		ArrayList<Location> branchDeliveryArea = new ArrayList<Location>();
-		for (int i = 0; i < alas.length; i++) {
-			branchDeliveryArea.add(new Location(Double.parseDouble(alas[i]), Double.parseDouble(alos[i])));
+		for (int i = 0; i < vertexs.length; i += 2) {
+			branchDeliveryArea.add(new Location(Double.parseDouble(vertexs[i]),
+					Double.parseDouble(vertexs[i + 1])));
 		}
 		branch.setBranchDeliveryArea(branchDeliveryArea);
 
