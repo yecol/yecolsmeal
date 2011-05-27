@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <jsp:include page="WEB-INF/include/HTMLHead.jsp" />
+
+<script src="js/ditu.js"></script>
+
 <body onload="init()">
 	<div id="wrapper">
 		<jsp:include page="WEB-INF/include/Head.jsp" />
