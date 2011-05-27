@@ -26,9 +26,11 @@ public class AxBranchesMgr extends ActionSupport {
 	private Merchant merchant;
 
 	public String listBranches() {
-		merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
+		merchant = (Merchant) ActionContext.getContext().getSession().get(
+				"SpeedyMeal_Session_Merchant");
 
-		ArrayList<Branch> branches = merchantService.getAllBranches(merchant.getMid());
+		ArrayList<Branch> branches = merchantService.getAllBranches(merchant
+				.getMid());
 
 		response = ServletActionContext.getResponse();
 		response.setContentType("text/html");
@@ -40,7 +42,7 @@ public class AxBranchesMgr extends ActionSupport {
 			e.printStackTrace();
 		}
 		out.print("<table class='sidebar_mgr_table'>");
-		if(branches.size()==0){
+		if (branches.size() == 0) {
 			out.print("<tr>暂无店铺信息</tr>");
 		}
 		for (int index = 0; index < branches.size(); index++) {
@@ -48,24 +50,36 @@ public class AxBranchesMgr extends ActionSupport {
 			out.print("<td>" + (index + 1) + "<td>");
 			out.print("<td>" + branches.get(index).getBranchName() + "<td>");
 			out.print("<td>" + branches.get(index).getBranchAddress() + "<td>");
-			out.print("<div class='hidden'>" + "<div class='i_lat'>" + branches.get(index).getBranchLocation().getLatitude() + "</div>"
-					+ "<div class='i_lon'>" + branches.get(index).getBranchLocation().getLongitude() + "</div>" );
-		   		
-			String areaLat=new String();
-			String areaLon=new String();
-			for(Location l:branches.get(index).getBranchDeliveryArea()){
-				areaLat=areaLat+l.getLatitude()+',';
-				areaLon=areaLon+l.getLongitude()+',';
+			out.print("<div class='hidden' id=" + index + ">"
+					+ "<div id='i_type'>" + branches.get(index).getAreaType()
+					+ "</div>" + "<div id='" + index + "_lat'>"
+					+ branches.get(index).getBranchLocation().getLatitude()
+					+ "</div>" + "<div id='" + index + "_lon'>"
+					+ branches.get(index).getBranchLocation().getLongitude()
+					+ "</div>");
+
+			StringBuffer vertexs = new StringBuffer();
+			boolean first = true;
+			for (Location l : branches.get(index).getBranchDeliveryArea()) {
+				if (!first) {
+					vertexs.append(',');
+				} else {
+					first = false;
+				}
+				vertexs.append(l.getLatitude());
+				vertexs.append(",");
+				vertexs.append(l.getLongitude());
 			}
-			
-			out.print("<div class='a_lats'>"+areaLat+"</div><div class='a_lons'>"+areaLon + "</div></div>");
-			
-			
-			
-			out.print("<td><a href='#' class='mgr_button'>更新</a> <a href='#' class='mgr_button'>删除</a><td>");
+
+			out.print("<div id='"+index+"_dev_vertexs'>" + vertexs.toString() + "</div>");
+
+			out
+					.print("<td><a href='#' class='mgr_button'>更新</a> <a href='#' class='mgr_button'>删除</a><td>");
 		}
 		out.print("</table>");
 		out.print("<a href='/SpeedyMeal/mcAddBranch.jsp'>添加新的分店</a>");
+		out
+				.print("  <input type=\"button\" value=\"显示图形\" onClick=\"showGraph()\" >");
 		return null;
 	}
 
