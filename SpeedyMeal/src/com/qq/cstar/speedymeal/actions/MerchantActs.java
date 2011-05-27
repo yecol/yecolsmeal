@@ -15,8 +15,8 @@ import com.qq.cstar.speedymeal.entity.Location;
 import com.qq.cstar.speedymeal.entity.Merchant;
 import com.qq.cstar.speedymeal.service.MerchantService;
 
-@Results( { @Result(name = "success", location = "/WEB-INF/content/merchantMgr.jsp"), @Result(name = "register", location = "/merchantRegister.jsp"),
-		@Result(name = "login", location = "/merchantLogin.jsp"), @Result(name = "merchantMgr", location = "/WEB-INF/content/merchantMgr.jsp") })
+@Results( { @Result(name = "success", location = "/WEB-INF/content/merchantMgr.jsp"), @Result(name = "register", location = "/merRegister.jsp"),
+		@Result(name = "login", location = "/merLogin.jsp"), @Result(name = "merchantMgr", location = "/WEB-INF/content/merchantMgr.jsp") })
 public class MerchantActs extends ActionSupport {
 	/**
 	 * 
@@ -33,7 +33,7 @@ public class MerchantActs extends ActionSupport {
 			ActionContext.getContext().getSession().put("SpeedyMeal_Session_Merchant", merchant);
 			return SUCCESS;
 		} else {
-			addActionError("用户名或密码错误");
+			addActionError("用户名或密码错误!");
 			return LOGIN;
 		}
 	}

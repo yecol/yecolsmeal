@@ -4,9 +4,11 @@ $(document).ready(function() {
     $SitePrefix="/SpeedyMeal"; 
 	
 	// 动态加载登录框
+    /*
 		$("#bt_signin").click(function() {
 			$("#sidebar_body").load("login.jsp");
 		});
+		*/
 		// 动态请求可用商店列表
 		$("#ListAvailables").click(function() {
 			jQuery.ajax( {

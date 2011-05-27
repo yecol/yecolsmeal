@@ -10,16 +10,26 @@
 				<div id="logo"></div>
 				<div id="sidebar_body">
 					<div id="index" class="sidebar_block">
-						这是一个定餐网站，你可以在这里订餐和查询你的订餐情况。我们希望能改善你的订餐体验。这是一个定餐网站，你可以在这里订餐和查询你的订餐情况。我们希望能改善你的订餐体验。这是一个定餐网站，你可以在这里订餐和查询你的订餐情况。我们希望能改善你的订餐体验。这是一个定餐网站，你可以在这里订餐和查询你的订餐情况。我们希望能改善你的订餐体验。
+						<div class="gTitle">
+							网站介绍
+						</div>
+						<p>
+							SpeedyMeal是一个基于地图的餐饮外卖系统，由商家视图、客户视图、以及配送员视图（Android应用）三部分构成，旨在以B2C的运营模式和B/S构架为商家提供订餐处理和配送指派业务，从而给客户创造出便捷、透明、可跟踪的一站式订餐消费体验。将地理信息和位置服务引入传统订餐和外卖配送系统是该应用的创新点。
+						</p>
 					</div>
-					<div id="index_opt1" class="sidebar_block">
-						将标记拖曳到右边告诉我们你的位置
+					<div id="opera" class="sidebar_block">
+						<div class="gTitle">
+							如何操作
+						</div>
+						<p>
+							您可以在右边地图中点选你所处的位置。
+						</p>
+						<p>
+							或者<a href="login.jsp" class="n">登录</a>您的帐号，使用您之前登记的位置信息。还没有帐号？
+							<a href="register.jsp" class="n">注册</a>一个吧。
+						</p>
 					</div>
-					<div id="index_opt2" class="sidebar_block">
-						或者登录（注册）你的帐户再进行后续操作
-						<br />
-						<a id="bt_signin"></a>
-					</div>
+					<jsp:include page="WEB-INF/include/SideFooter.jsp" />
 				</div>
 				<!--sidebar_body-->
 			</div>
@@ -32,7 +42,7 @@
 	</div>
 	<!--wrapper-->
 	<div id="interactive" class="hidden">
-		地图所要读取的交互数据都放在这里
+		<div id="page"></div>
 	</div>
 </body>
 </html>
