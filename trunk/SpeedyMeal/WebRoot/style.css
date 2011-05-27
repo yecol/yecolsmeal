@@ -1,11 +1,11 @@
 @charset "utf-8";
 /* CSS Document */
-html,body {
+html, body {
 	margin:0px;
 	padding:0px;
 	height:100%;
 	font-size:12px;
-	line-height: 160%;	
+	line-height: 160%;
 }
 /*主容器*/
 #wrapper {
@@ -17,12 +17,18 @@ html,body {
 #head {
 	width:100%;
 	height:29px;
-	margin:0 auto;
 	position:absolute;
 	top:0px;
 	background-image:url(images/head_bg.gif);
 	background-repeat:repeat-x;
 	text-align: right;
+	font-size: 14px;
+	margin-right: auto;
+	margin-left: auto;
+}
+.headContent {
+	margin-top:5px;
+	margin-right:30px;
 }
 #PageBody {
 	width:100%;
@@ -42,20 +48,19 @@ html,body {
 	zIndex:991;
 }
 #sidebar #logo {
-	height: 70px;
-	width: 294px;
-	background-image: url(images/logo.png);
+	height: 100px;
+	width: 295px;
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
 	position:absolute;
 	top:0px;
 	left:0px;
+	background-image: url(images/logo.jpg);
 }
 .hidden {
 	display: none;
 }
-
-#sidebar_body{
+#sidebar_body {
 	width:254px;
 	height:100%;
 	float:left; /*浮动居左*/
@@ -63,22 +68,199 @@ html,body {
 	border-right-width: 1px;
 	border-right-style: solid;
 	border-right-color: #999;
-	padding-top:45px;
+	padding-top:90px;
 	padding-right: 20px;
 	padding-left: 20px;
 }
-	
+p {
+	font-family: Verdana, Geneva, sans-serif;
+	font-size: 14px;
+	line-height: 160%;
+	text-indent: 28px;
+}
+.gTitle {
+	width:88px;
+	height:27px;
+	border-right:3px solid #0c8c8d;
+	color:#ffffff;
+	font-size:14px;
+	text-align:center;
+	line-height:27px;
+	font-weight:bold;
+	background:#08bcbd;
+}
 .sidebar_block {
 	margin-top: 20px;
 	margin-bottom: 30px;
 }
-#bt_signin,.smt_signin {
+.smt_signin {
 	background-image: url(images/signin.jpg);
 	background-repeat: no-repeat;
 	display: block;
-	height: 37px;
-	width: 114px;
-	margin-top: 30px;
-	margin-left: 60px;
+	height: 30px;
+	width: 100px;
+	margin-top:5px;
 	border:0px;
+}
+.smt_register {
+	background-image:url(images/zhuce.jpg);
+	background-repeat: no-repeat;
+	display: block;
+	height: 30px;
+	width: 100px;
+	margin-top:5px;
+	border:0px;
+}
+a.n {
+	color:#08bcbd;
+	text-decoration:none;
+	font-weight: bold;
+}
+.ls_h_mer {
+	font-size: 16px;
+	font-weight: bold;
+	color:#08bcbd;
+	height: 20px;
+	margin-right: 5px;
+	display: block;
+	float: left;
+	width: auto;
+}
+.ls_h_dis {
+	color: #999;
+	float: left;
+	height: 20px;
+	margin-top: 3px;
+	width: 225px;
+}
+.ls_h_bra {
+	color: #666;
+	height: 20px;
+	display: block;
+	float: left;
+	width: auto;
+}
+.ls_head {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	padding-left: 25px;
+	background-image: url(images/geotag.jpg);
+	background-repeat: no-repeat;
+	background-position: 0px 3px;
+}
+.menus {
+	padding-left: 35px;
+	list-style-image: url(images/green_li.gif);
+	line-height: 160%;
+	margin-bottom: 10px;
+}
+.menus li {
+	height: 25px;
+	width: 200px;
+}
+.ls_m_r {
+	float: right;
+	color: #333;
+	font-size: 14px;
+}
+.ls_m_t {
+	font-size: 14px;
+	padding-right: 5px;
+}
+.buy {
+	padding-left: 5px;
+	height: 18px;
+	display: block;
+	float: right;
+	width: 55px;
+	background-image: url(images/buy.gif);
+	background-repeat: no-repeat;
+}
+.more {
+	color: #08bcbd;
+	text-decoration: none;
+	float: right;
+	height: 20px;
+	width: auto;
+	margin-right: 20px;
+}
+table#orderInfo {
+	border-collapse:collapse;
+	width:252px;
+	text-align:center;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+table#orderInfo td {
+	border:1px solid #08bcbd;
+	vertical-align:middle;
+	height:20px;
+}
+
+.tdHeadCnt {
+	background-color: #08bcbd;
+	padding: 3px;
+	height: 20px;
+	width: auto;
+	font-size: 14px;
+	color: #FFF;
+}
+
+.clear {
+	clear:both;
+}
+.trac_0 {
+	background-image: url(images/trac_h.jpg);
+	height: 51px;
+	width: 180px;
+	text-align: center;
+	background-repeat: no-repeat;
+	padding-top: 13px;
+	color:#999;
+	margin-left: 25px;
+}
+.trac_1 {
+	background-image: url(images/trac_g.jpg);
+	height: 51px;
+	width: 180px;
+	text-align: center;
+	background-repeat: no-repeat;
+	padding-top: 13px;
+	color: #08bcbd;
+	margin-left: 25px;
+}
+#trace_table {
+	margin-top: 5px;
+}
+
+#trac_b{
+	height:30px;
+}
+#footer {
+	font-size: 10px;
+	color: #999;
+	position:absolute;
+	top:0px;
+	left:0px;
+}
+.ib{
+	width:150px;
+	height:16px;
+	border:1px solid #999;
+	margin: 3px;
+}
+.ia{
+	width:180px;
+	height:32px;
+	border:1px solid #999;
+	margin: 3px;
+}
+.errorMessage{
+	color:#C00;
+	font-size:14px;
+	margin: 3px;
+	padding-top: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 20px;
 }

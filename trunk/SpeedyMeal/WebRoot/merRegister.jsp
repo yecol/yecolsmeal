@@ -11,24 +11,24 @@
 				<div id="logo"></div>
 				<div id="sidebar_body">
 					<div class="gTitle">
-						用户注册
+						商户注册
 					</div>
 					<div id="register_form" class="sidebar_block">
 						<s:actionerror />
-						<s:form action="user-acts!register">
-							<s:textfield name="user.username" label="用户名" cssClass="ib" />
-							<s:password name="user.pwd" label="密码" cssClass="ib" />
-							<s:textfield name="user.email" label="Email" cssClass="ib" />
-							<s:textfield name="user.phone" label="电话" cssClass="ib" />
-							<s:textarea name="user.address" label="地址" cssClass="ia" />						
-							<s:hidden name="r_lat" value="1234" />
-							<s:hidden name="r_lon" value="1432" />
-							<tr><td align="right"><img src="images/geotag.jpg"/></td><td>在右边地图中点击以标记您的位置</td></tr>
-														<s:submit value="" cssClass="smt_register" />
+						<s:form action="merchant-acts!register">
+							<s:textfield name="merchant.username" label="用户名" cssStyle="ib" />
+							<s:password name="merchant.pwd" label="密码" cssStyle="ib" />
+							<s:textfield name="merchant.email" label="Email" cssStyle="ib" />
+							<s:textfield name="merchant.phone" label="电话号码" cssStyle="ib" />
+							<s:textarea name="merchant.companyName" label="公司名称"
+								cssStyle="ia" />
+							<s:textarea name="merchant.companyName" label="公司地址"
+								cssStyle="ia" />
+							<s:submit value="" cssClass="smt_register" />
 						</s:form>
 						<p>
-							已经有帐号？从这里
-							<a href="login.jsp" class="n">登录</a> 。
+							已经有商户帐号？从这里
+							<a href="merLogin.jsp" class="n">登录</a> 。
 							<br />
 							或者
 							<a href="index.jsp" class="n">返回</a> 首页。
@@ -52,3 +52,5 @@
 	</div>
 </body>
 </html>
+
+
