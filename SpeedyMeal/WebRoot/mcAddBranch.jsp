@@ -21,8 +21,8 @@
 							<s:hidden name="areaType" id="br_areaType" value="0" />
 							<s:hidden name="bla" id="br_la" value="0" />
 							<s:hidden name="blo" id="br_lo" value="0" />
-							<s:hidden name="alas" cssClass="ba_las" value="0" />
-							<s:hidden name="alos" cssClass="la_los" value="0" />
+							<s:hidden name="vertexs" id="dev_vertexs" value="0" />
+						<!--  	<s:div id="dev_vertexs"></s:div> -->
 							<s:submit />
 						</s:form>
 					</div>
@@ -37,9 +37,7 @@
 		<!--PageBody-->
 	</div>
 	<!--wrapper-->
-	<div id="interactive" class="hidden">
-		地图所要读取的交互数据都放在这里
-	</div>
+	<div id="interactive" class="hidden">add</div>
 </body>
 </html>
 
