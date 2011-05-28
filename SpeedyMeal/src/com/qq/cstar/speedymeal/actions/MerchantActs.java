@@ -82,7 +82,8 @@ public class MerchantActs extends ActionSupport {
 		branch.setBranchDeliveryArea(branchDeliveryArea);
 
 		if (merchantService.addNewBranch(branch) == true) {
-			return "merchantMgr";
+			branches = merchantService.getAllBranches(merchant.getMid());
+			return SUCCESS;
 		} else {
 			addActionError("添加新的分店发生错误");
 			return "addBranch";
