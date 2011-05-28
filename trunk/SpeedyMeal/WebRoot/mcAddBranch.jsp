@@ -36,9 +36,9 @@
 								</td>
 							</tr>
 							<s:hidden name="areaType" id="br_areaType" value="0" />
-							<s:hidden name="bla" id="br_la" value="0" />
-							<s:hidden name="blo" id="br_lo" value="0" />
-							<s:hidden name="vertexs" id="dev_vertexs" value="0" />
+							<s:hidden name="bla" id="br_la" value="" />
+							<s:hidden name="blo" id="br_lo" value="" />
+							<s:hidden name="vertexs" id="dev_vertexs" value="" />
 							<!-- <s:div id="dev_vertexs"></s:div> -->
 							<s:submit value='' cssClass="smt_submit" />
 						</s:form>
