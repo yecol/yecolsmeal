@@ -15,7 +15,7 @@ import com.qq.cstar.speedymeal.entity.Location;
 import com.qq.cstar.speedymeal.entity.Merchant;
 import com.qq.cstar.speedymeal.service.MerchantService;
 
-@Results( { @Result(name = "success", location = "/WEB-INF/content/merchantMgr.jsp"), @Result(name = "register", location = "/merRegister.jsp"),
+@Results( { @Result(name = "success", location = "/mcMgr.jsp"), @Result(name = "register", location = "/merRegister.jsp"),
 		@Result(name = "login", location = "/merLogin.jsp"), @Result(name = "merchantMgr", location = "/WEB-INF/content/merchantMgr.jsp") })
 public class MerchantActs extends ActionSupport {
 	/**
