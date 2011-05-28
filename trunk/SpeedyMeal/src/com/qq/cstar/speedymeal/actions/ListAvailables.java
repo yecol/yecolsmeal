@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
@@ -20,17 +21,31 @@ public class ListAvailables extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Branch> availableBranches;
 	private ProcessService processService = new ProcessService();
+	private HttpServletRequest request;
 	private HttpServletResponse response;
 	private User user;
 
-	public String execute() {
-		availableBranches = processService.getAvailableBranches(new Location(0, 0));
+	public String unLoginList() {
+		request = ServletActionContext.getRequest();
+		double latitude=Double.parseDouble(request.getParameter("l_lat").trim());
+		double longitude=Double.parseDouble(request.getParameter("l_lon").trim());
+		
+		availableBranches = processService.getAvailableBranches(new Location(latitude, longitude));
 		response = ServletActionContext.getResponse();
 		response.setContentType("text/html");
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = null;
 		try {
 			out = response.getWriter();
+			//out.print("<div class=''>");
+			/*if(branches.size()==0){
+				out.print("<tr>‘›ŒﬁµÍ∆Ã–≈œ¢</tr>");
+			}
+			for (int index = 0; index < branches.size(); index++) {
+				out.print("<tr>");
+			*/
+			
+			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
