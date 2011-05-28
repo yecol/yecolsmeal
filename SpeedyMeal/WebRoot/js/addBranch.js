@@ -8,10 +8,15 @@ var init = function() {
 	});
 	
     var navControl = new QQMap.QNavigationControl({
-        align: QQMap.QALIGN.TOP_LEFT,
+        align: QQMap.QALIGN.TOP_RIGHT,
         margin: new QQMap.QSize(5, 15),
         map: map
+    });
 
+   var scaleControl = new QQMap.QScaleControl({
+	   align: QQMap.QALIGN.BOTTOM_RIGHT,
+	   margin: new QQMap.QSize(85, 15),
+	   map: map
     });
 
 
@@ -112,7 +117,7 @@ var init = function() {
 	var locMark = new QQMap.QMarker( {});
 	var locMarkInfo = new QQMap.QInfoWindow( {});
 	QQMap.QEvent.addListener(locMark, 'click', function() {
-	//	locMarkInfo.setMap(map);
+	// locMarkInfo.setMap(map);
 		locMarkInfo.open('The shop\'s location</div>', locMark);
 	});
 	
@@ -182,7 +187,7 @@ var init = function() {
 			
 			pgonPath[pgonPath.length-1] = latLng;
 			pgonPath.push(latLng);
-	//		pgon.setMap(map);
+	// pgon.setMap(map);
 		}
 	});
 

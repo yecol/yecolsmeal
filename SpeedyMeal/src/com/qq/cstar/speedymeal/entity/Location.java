@@ -3,41 +3,39 @@ package com.qq.cstar.speedymeal.entity;
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
-public class Location implements Serializable{
-	
-	
+public class Location implements Serializable {
+
 	/**
 	 * 
 	 */
 	private double longitude;
 	private double latitude;
-	
-	
 
-	public Location(double latitude,double longitude) {
+	public Location(double latitude, double longitude) {
 		super();
 		this.longitude = longitude;
 		this.latitude = latitude;
 	}
-	
+
 	public double getLongitude() {
 		return longitude;
 	}
+
 	public void setLongitude(double longitude) {
 		this.longitude = longitude;
 	}
+
 	public double getLatitude() {
 		return latitude;
 	}
+
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
 
 	@Override
 	public String toString() {
-		return "L [lat=" + latitude + ", lng=" + longitude
-				+ "]";
+		return latitude + "," + longitude;
 	}
-	
 
 }
