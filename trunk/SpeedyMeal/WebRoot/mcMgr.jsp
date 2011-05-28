@@ -2,7 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <jsp:include page="WEB-INF/include/HTMLHead.jsp" />
-<script src="js/ditu.js"></script>
+<script src="js/showMerchantBranches.js"></script>
 <body onload="init()">
 	<div id="wrapper">
 		<jsp:include page="WEB-INF/include/Head.jsp" />
@@ -39,14 +39,14 @@
 	<!--wrapper-->
 	<div id="interactive" class="hidden">
 		<s:iterator value="branches" id="item">
-			<div class="list_single">
-					<div class="ls_h_mer" id="<s:property value='#item.bid' />">
+			<div class="list_single" name="dev_branch">
+					<div class="ls_h_mer" id="<s:property value='#item.bid' />_ls_h_mer">
 						<s:property value='#item.branchName' />
 					</div>
-					<div class="ls_h_bra">
+					<div class="ls_h_bra" id="<s:property value='#item.bid' />_ls_h_bra">
 						<s:property value='#item.branchPhone' />
 					</div>
-					<div class="ls_h_dis">
+					<div class="ls_h_dis" id="<s:property value='#item.bid' />_ls_h_dis">
 						<s:property value='#item.branchAddress' />
 					</div>
 					<div id="<s:property value='#item.bid' />_type">

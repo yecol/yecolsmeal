@@ -7,6 +7,19 @@ var init = function() {
 		center : center,
 		zoomLevel : 13
 	});
+	
+    var navControl = new QQMap.QNavigationControl({
+        align: QQMap.QALIGN.TOP_RIGHT,
+        margin: new QQMap.QSize(5, 15),
+        map: map
+    });
+
+   var scaleControl = new QQMap.QScaleControl({
+	   align: QQMap.QALIGN.BOTTOM_RIGHT,
+	   margin: new QQMap.QSize(85, 15),
+	   map: map
+    });
+	
 	var icon = new QQMap.QMarkerImage('images/marker.png');
 	locMark = new QQMap.QMarker( {
 		icon: icon,

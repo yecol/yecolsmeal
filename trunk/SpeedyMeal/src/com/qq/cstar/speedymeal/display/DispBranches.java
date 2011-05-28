@@ -27,29 +27,30 @@ public class DispBranches {
 			System.out.println("size="+branches.size());
 			for (int index = 0; index < branches.size(); index++) {
 				out.print("<div class='list_single'><div class='ls_head'>");
-				out.print("<div class='ls_h_mer' id='" + (index) + "'>" + (index + 1) + ". " + branches.get(index).getBranchName() + "</div>");
+				out.print("<div class='ls_h_mer' >" + (index + 1) + ". " + branches.get(index).getBranchName() + "</div>");
 				out.print("<div class='ls_h_bra'>" + branches.get(index).getBranchPhone() + "</div>");
 				out.print("<div class='ls_h_dis'>" + branches.get(index).getBranchAddress() + "</div>");
 				out
 						.print("<div class='ls_h_opr'><a href='javascript:ajaxLoad(\"merchant-acts!delBranch?bid="+branches.get(index).getBid()+"\");'"+"class='mer_del_a' id='del"+index+"'>É¾³ý</a><a href='#' class='opr_a'>¸üÐÂ</a></div><div class='clear'></div></div>");
-				out.print("<div class='hidden' id=" + index + ">" + "<div id='i_type'>" + branches.get(index).getAreaType() + "</div>" + "<div id='"
-						+ index + "_lat'>" + branches.get(index).getBranchLocation().getLatitude() + "</div>" + "<div id='" + index + "_lon'>"
-						+ branches.get(index).getBranchLocation().getLongitude() + "</div>");
+				out.print("<div class='hidden' id='"+index+"'>");
+//				out.print("<div class='hidden' >" + "<div id='type'>" + branches.get(index).getAreaType() + "</div>" + "<div id='lat'>" + branches.get(index).getBranchLocation().getLatitude() + "</div>" + "<div id='lon'>"
+//						+ branches.get(index).getBranchLocation().getLongitude() + "</div>");
+//
+//				StringBuffer vertexs = new StringBuffer();
+//				boolean first = true;
+//				for (Location l : branches.get(index).getBranchDeliveryArea()) {
+//					if (!first) {
+//						vertexs.append(',');
+//					} else {
+//						first = false;
+//					}
+//					vertexs.append(l.getLatitude());
+//					vertexs.append(",");
+//					vertexs.append(l.getLongitude());
+//				}
 
-				StringBuffer vertexs = new StringBuffer();
-				boolean first = true;
-				for (Location l : branches.get(index).getBranchDeliveryArea()) {
-					if (!first) {
-						vertexs.append(',');
-					} else {
-						first = false;
-					}
-					vertexs.append(l.getLatitude());
-					vertexs.append(",");
-					vertexs.append(l.getLongitude());
-				}
-
-				out.print("<div id='" + index + "_dev_vertexs'>" + vertexs.toString() + "</div></div></div>");
+//				out.print("<div id='dev_vertexs'>" + vertexs.toString() + "</div></div></div>");
+				out.print("</div></div>");
 			}
 		}
 		
