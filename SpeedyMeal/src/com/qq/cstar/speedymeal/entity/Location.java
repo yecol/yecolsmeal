@@ -35,7 +35,7 @@ public class Location implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Location [latitude=" + latitude + ", longitude=" + longitude
+		return "L [lat=" + latitude + ", lng=" + longitude
 				+ "]";
 	}
 	

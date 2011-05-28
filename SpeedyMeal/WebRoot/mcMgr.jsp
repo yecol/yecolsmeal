@@ -18,7 +18,8 @@
 						<a href="#" class="mgr_m">商户信息更改</a>
 						<a href="#" class="mgr_m">菜单信息管理</a>
 						<a href="#" class="mgr_m">订单信息管理</a>
-						<a href="javascript:ajaxLoad('ax-branches-mgr!listBranches');" class="mgr_m">分店信息管理</a>
+						<a href="javascript:ajaxLoad('ax-branches-mgr!listBranches');"
+							class="mgr_m">分店信息管理</a>
 						<a href="index.jsp" class="mgr_m">返回首页</a>
 						<a href="#" class="mgr_m">退出登录</a>
 					</div>
@@ -37,7 +38,31 @@
 	</div>
 	<!--wrapper-->
 	<div id="interactive" class="hidden">
-		<div id="page"></div>
+		<s:iterator value="branches" id="item">
+			<div class="list_single">
+					<div class="ls_h_mer" id="<s:property value='#item.bid' />">
+						<s:property value='#item.branchName' />
+					</div>
+					<div class="ls_h_bra">
+						<s:property value='#item.branchPhone' />
+					</div>
+					<div class="ls_h_dis">
+						<s:property value='#item.branchAddress' />
+					</div>
+					<div id="<s:property value='#item.bid' />_type">
+					    <s:property value='#item.areaType' />
+					</div>
+					<div id="<s:property value='#item.bid' />_lat">
+						<s:property value='#item.branchLocation.latitude' />
+					</div>
+					<div id="<s:property value='#item.bid' />_lon">
+						<s:property value='#item.branchLocation.longitude' />
+					</div>
+					<div id="<s:property value='#item.bid' />_dev_vertexs">
+						<s:property value='#item.branchDeliveryArea.toString()' />
+					</div>
+			</div>
+		</s:iterator>
 	</div>
 </body>
 </html>
