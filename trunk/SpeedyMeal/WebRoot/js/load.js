@@ -26,21 +26,20 @@ $(document).ready(function() {
 			});
 			return false;
 		});
-		//商户的分店管理
 		
-		$("a#merchant_branches_mgr").click(function() {
-			jQuery.ajax( {
-				url : $SitePrefix+'/ax-branches-mgr!listBranches',
-				type : 'GET',
-				error : function(request) {
-					alert("Server Error YZEN002");
-				},
-				success : function(data) {
-					$("#sidebar_body").html(data);
-				}
-			});
-			return false;
-		});
-		
-
 	});
+//异步记载调用函数
+function ajaxLoad(url)
+{
+    jQuery.ajax( {
+		url : url,
+		type : 'GET',
+		error : function(request) {
+			alert("Server Error YZEN00X");
+		},
+		success : function(data) {
+			$("#sidebar_body").html(data);
+		}
+	});
+	return false;
+}

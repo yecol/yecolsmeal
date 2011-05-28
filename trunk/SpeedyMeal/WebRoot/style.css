@@ -111,6 +111,15 @@ p {
 	margin-top:5px;
 	border:0px;
 }
+.smt_submit {
+	background-image:url(images/submit.jpg);
+	background-repeat: no-repeat;
+	display: block;
+	height: 30px;
+	width: 100px;
+	margin-top:5px;
+	border:0px;
+}
 a.n {
 	color:#08bcbd;
 	text-decoration:none;
@@ -134,7 +143,7 @@ a.n {
 	width: 225px;
 }
 .ls_h_bra {
-	color: #666;
+	color: #333;
 	height: 20px;
 	display: block;
 	float: left;
@@ -281,4 +290,12 @@ table#orderInfo td {
 	margin-right: 10px;
 	margin-bottom: 10px;
 	margin-left: 10px;
+}
+.opr_a,.mer_del_a{
+	color: #C00;
+	text-decoration: none;
+	display: block;
+	margin-right: 5px;
+	margin-left: 5px;
+	float: right;
 }

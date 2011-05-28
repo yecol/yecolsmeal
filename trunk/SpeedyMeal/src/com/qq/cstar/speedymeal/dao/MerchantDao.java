@@ -199,4 +199,21 @@ public class MerchantDao {
 		return branches;
 	}
 
+	public boolean delBranch(int bid) {
+		String sql = "DELETE FROM branch WHERE bid=?";
+		try {
+			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
+			ps.setInt(1, bid);
+
+			int affectedItem = ps.executeUpdate();
+			if (affectedItem == 1) {
+				return true;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }
