@@ -22,7 +22,7 @@ public class DispBranches {
 			e.printStackTrace();
 		}
 		out
-				.print("<div class='gTitle'> 分店管理 </div><div id='branchList' class='sidebar_block'><p> <a href='mcAddBranch.jsp' class='n'>添加</a>新的分店。或者<a href='mcMgr.jsp' class='n'>返回</a>管理页。 </p>");
+				.print("<div class='gTitle'> 分店管理 </div><div id='branchList' class='sidebar_block'><p> <a href='mcAddBranch.jsp' class='n'>添加</a>新的分店。或者<a href='merchant-acts!mgr' class='n'>返回</a>管理页。 </p>");
 		if (branches.size() != 0) {
 			System.out.println("size="+branches.size());
 			for (int index = 0; index < branches.size(); index++) {
@@ -49,7 +49,7 @@ public class DispBranches {
 					vertexs.append(l.getLongitude());
 				}
 
-				out.print("<div id='" + index + "_dev_vertexs'>" + vertexs.toString() + "</div></div>");
+				out.print("<div id='" + index + "_dev_vertexs'>" + vertexs.toString() + "</div></div></div>");
 			}
 		}
 		

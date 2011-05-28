@@ -44,7 +44,7 @@
 						</s:form>
 						<p>
 							点此
-							<a href="mcMgr.jsp" class="n">返回 </a> 商户管理首页
+							<a href="merchant-acts!mgr" class="n">返回 </a> 商户管理首页
 						</p>
 					</div>
 				</div>

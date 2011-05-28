@@ -29,17 +29,26 @@ public class MerchantActs extends ActionSupport {
 	private MerchantService merchantService = new MerchantService();
 	private HttpServletRequest request;
 	private HttpServletResponse response;
+	public ArrayList<Branch> branches;
 
 	public String login() {
 		// 商户登录
 		merchant = merchantService.loginByUsername(merchant.getUsername(), merchant.getPwd());
 		if (merchant != null) {
 			ActionContext.getContext().getSession().put("SpeedyMeal_Session_Merchant", merchant);
+			branches = merchantService.getAllBranches(merchant.getMid());
 			return SUCCESS;
 		} else {
 			addActionError("用户名或密码错误!");
 			return LOGIN;
 		}
+	}
+
+	public String mgr() {
+		// 商户登录后回到管理页面
+		merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
+		branches = merchantService.getAllBranches(merchant.getMid());
+		return SUCCESS;
 	}
 
 	public String register() {
@@ -85,16 +94,16 @@ public class MerchantActs extends ActionSupport {
 		request = ServletActionContext.getRequest();
 		int bid = Integer.parseInt(request.getParameter("bid").trim());
 		boolean delSuccess = merchantService.delBranch(bid);
-		if(delSuccess=false){
+		if (delSuccess = false) {
 			addActionError("删除分店信息失败！");
 		}
-		//重新读取显示分店信息
+		// 重新读取显示分店信息
 		merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
 		ArrayList<Branch> branches = merchantService.getAllBranches(merchant.getMid());
 		response = ServletActionContext.getResponse();
-		//调用显示模块
+		// 调用显示模块
 		DispBranches.display(response, branches);
-		
+
 		return null;
 	}
 
@@ -112,5 +121,13 @@ public class MerchantActs extends ActionSupport {
 
 	public Branch getBranch() {
 		return this.branch;
+	}
+
+	public ArrayList<Branch> getBranches() {
+		return branches;
+	}
+
+	public void setBranches(ArrayList<Branch> branches) {
+		this.branches = branches;
 	}
 }

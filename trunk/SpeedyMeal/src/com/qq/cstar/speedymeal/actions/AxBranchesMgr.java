@@ -23,7 +23,6 @@ public class AxBranchesMgr extends ActionSupport {
 
 	public String listBranches() {
 		merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
-
 		ArrayList<Branch> branches = merchantService.getAllBranches(merchant.getMid());
 		response = ServletActionContext.getResponse();
 		//调用显示模块
