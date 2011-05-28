@@ -54,5 +54,3 @@
 		<div id="page"></div>
 	</div>
 </body>
-
-<jsp:include page="WEB-INF/include/HTMLTail.jsp" />
