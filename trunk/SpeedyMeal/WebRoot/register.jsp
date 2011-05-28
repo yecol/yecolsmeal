@@ -3,7 +3,7 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 <jsp:include page="WEB-INF/include/HTMLHead.jsp" />
 
-<script src="js/ditu.js"></script>
+<script src="js/register.js"></script>
 
 <body onload="init()">
 	<div id="wrapper">
@@ -18,14 +18,14 @@
 					</div>
 					<div id="register_form" class="sidebar_block">
 						<s:actionerror />
-						<s:form action="user-acts!register">
+						<s:form action="user-acts!register" onsubmit = "return isValid(this);">
 							<s:textfield name="user.username" label="用户名" cssClass="ib" />
 							<s:password name="user.pwd" label="密码" cssClass="ib" />
 							<s:textfield name="user.email" label="Email" cssClass="ib" />
 							<s:textfield name="user.phone" label="电话" cssClass="ib" />
 							<s:textarea name="user.address" label="地址" cssClass="ia" />						
-							<s:hidden name="r_lat" value="1234" />
-							<s:hidden name="r_lon" value="1432" />
+							<s:hidden name="r_lat" value="" />
+							<s:hidden name="r_lon" value="" />
 							<tr><td align="right"><img src="images/geotag.jpg"/></td><td>在右边地图中点击以标记您的位置</td></tr>
 														<s:submit value="" cssClass="smt_register" />
 						</s:form>
@@ -54,4 +54,5 @@
 		<div id="page"></div>
 	</div>
 </body>
-</html>
+
+<jsp:include page="WEB-INF/include/HTMLTail.jsp" />
