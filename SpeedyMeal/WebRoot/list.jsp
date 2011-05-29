@@ -20,7 +20,7 @@
 							<div class="list_single">
 								<div class="ls_head">
 									<div class="ls_h_mer">
-									    <s:property value='#merstat.index' />
+									    <s:property value='#merstat.index+1' />.
 										<s:property value='#item.companyName' />
 									</div>
 									<div class="ls_h_bra">
@@ -28,6 +28,10 @@
 									</div>
 									<div class="ls_h_dis">
 										距离您的位置大约有<s:property value='#item.distance' />米
+									</div>
+									<div class="hidden" id="l_<s:property value='#merstat.index+1' />">
+									<div class="location"><s:property value='#item.branchLocation' /></div>
+									<div class="deliveryArea"><s:property value='#item.branchDeliveryArea.toString()' /></div>
 									</div>
 									<div class="clear"></div>
 								</div>
