@@ -39,27 +39,27 @@
 	</div>
 	<!--wrapper-->
 	<div id="interactive" class="hidden">
-		<s:iterator value="branches" id="item">
+		<s:iterator value="branches" id="item"  status="merstat">
 			<div class="list_single" name="dev_branch">
-				<div class="ls_h_mer" id="<s:property value='#item.bid' />_ls_h_mer">
+				<div class="ls_h_mer" id="<s:property value='#merstat.index+1' />_ls_h_mer">
 					<s:property value='#item.branchName' />
 				</div>
-				<div class="ls_h_bra" id="<s:property value='#item.bid' />_ls_h_bra">
+				<div class="ls_h_bra" id="<s:property value='#merstat.index+1' />_ls_h_bra">
 					<s:property value='#item.branchPhone' />
 				</div>
-				<div class="ls_h_dis" id="<s:property value='#item.bid' />_ls_h_dis">
+				<div class="ls_h_dis" id="<s:property value='#merstat.index+1' />_ls_h_dis">
 					<s:property value='#item.branchAddress' />
 				</div>
-				<div id="<s:property value='#item.bid' />_type">
+				<div id="<s:property value='#merstat.index+1' />_type">
 					<s:property value='#item.areaType' />
 				</div>
-				<div id="<s:property value='#item.bid' />_lat">
+				<div id="<s:property value='#merstat.index+1' />_lat">
 					<s:property value='#item.branchLocation.latitude' />
 				</div>
-				<div id="<s:property value='#item.bid' />_lon">
+				<div id="<s:property value='#merstat.index+1' />_lon">
 					<s:property value='#item.branchLocation.longitude' />
 				</div>
-				<div id="<s:property value='#item.bid' />_dev_vertexs">
+				<div id="<s:property value='#merstat.index+1' />_dev_vertexs">
 					<s:property value='#item.branchDeliveryArea.toString()' />
 				</div>
 			</div>
