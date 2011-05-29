@@ -20,6 +20,8 @@ public class Branch {
 
 	// 非持久化变量
 	private String companyName;
+	private double distance;
+	private ArrayList<Menu> menus;
 
 	public int getBid() {
 		return bid;
@@ -91,6 +93,23 @@ public class Branch {
 
 	public void setAreaType(int areaType) {
 		areaType = areaType;
+	}
+	
+
+	public double getDistance() {
+		return distance;
+	}
+
+	public void setDistance(double distance) {
+		this.distance = distance;
+	}
+
+	public ArrayList<Menu> getMenus() {
+		return menus;
+	}
+
+	public void setMenus(ArrayList<Menu> menus) {
+		this.menus = menus;
 	}
 
 	@Override

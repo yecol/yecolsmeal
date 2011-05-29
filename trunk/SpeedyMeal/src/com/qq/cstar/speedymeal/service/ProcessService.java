@@ -30,6 +30,9 @@ public class ProcessService {
 			}
 
 		}
+		for(Branch b:result){
+			merchantDao.getMenusAndFilled(b);
+		}
 
 		return result;
 	}

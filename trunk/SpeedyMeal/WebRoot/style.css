@@ -158,14 +158,14 @@ a.n {
 	background-position: 0px 3px;
 }
 .menus {
-	padding-left: 35px;
+	padding-left: 20px;
 	list-style-image: url(images/green_li.gif);
 	line-height: 160%;
 	margin-bottom: 10px;
 }
 .menus li {
 	height: 25px;
-	width: 200px;
+	width: 220px;
 }
 .ls_m_r {
 	float: right;
