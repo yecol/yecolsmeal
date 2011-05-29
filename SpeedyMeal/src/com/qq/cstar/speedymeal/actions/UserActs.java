@@ -1,4 +1,4 @@
-package com.qq.cstar.speedymeal.actions;
+锘縫ackage com.qq.cstar.speedymeal.actions;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,13 +27,13 @@ public class UserActs extends ActionSupport {
 	private HttpServletRequest request;
 
 	public String login() {
-		// 用户登录
+		// 鐢ㄦ埛鐧诲綍
 		user = userService.loginByUsername(user.getUsername(), user.getPwd());
 		if (user != null) {
 			ActionContext.getContext().getSession().put("SpeedyMeal_Session_User", user);
 			return SUCCESS;
 		} else {
-			addActionError("用户名或密码错误");
+			addActionError("鐢ㄦ埛鍚嶆垨瀵嗙爜閿欒");
 			return LOGIN;
 		}
 
@@ -45,7 +45,7 @@ public class UserActs extends ActionSupport {
 	}
 
 	public String register() {
-		// 用户注册
+		// 鐢ㄦ埛娉ㄥ唽
 		request = ServletActionContext.getRequest();
 		double latitude = Double.parseDouble(request.getParameter("r_lat").trim());
 		double longitude = Double.parseDouble(request.getParameter("r_lon").trim());
@@ -56,13 +56,13 @@ public class UserActs extends ActionSupport {
 			ActionContext.getContext().getSession().put("SpeedyMeal_Session_User", user);
 			return SUCCESS;
 		} else {
-			addActionError("注册失败！请重新注册!");
+			addActionError("娉ㄥ唽澶辫触锛佽閲嶆柊娉ㄥ唽!");
 			return "register";
 		}
 	}
 
 	public String update() {
-		// 用户更新资料
+		// 鐢ㄦ埛鏇存柊璧勬枡
 		return null;
 	}
 

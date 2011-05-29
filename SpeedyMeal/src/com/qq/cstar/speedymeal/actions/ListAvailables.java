@@ -1,4 +1,4 @@
-package com.qq.cstar.speedymeal.actions;
+ï»¿package com.qq.cstar.speedymeal.actions;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -20,7 +20,7 @@ import com.qq.cstar.speedymeal.service.ProcessService;
 
 @Results( { @Result(name = "success", location = "/list.jsp")})
 public class ListAvailables extends ActionSupport {
-	// »ñµÃ¿ÉÓÃµÄÉÌÆÌĞÅÏ¢ÁĞ±í
+	// è·å¾—å¯ç”¨çš„å•†é“ºä¿¡æ¯åˆ—è¡¨
 
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Branch> availableBranches;

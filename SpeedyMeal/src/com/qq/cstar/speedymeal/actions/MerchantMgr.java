@@ -1,4 +1,4 @@
-package com.qq.cstar.speedymeal.actions;
+ï»¿package com.qq.cstar.speedymeal.actions;
 
 import java.util.ArrayList;
 
@@ -22,22 +22,22 @@ public class MerchantMgr extends ActionSupport {
 	private HttpServletResponse response;
 	private Merchant merchant;
 
-	// »ñµÃ¿ÉÓÃµÄ·ÖµêÉÌÆÌĞÅÏ¢ÁĞ±í
+	// è·å¾—å¯ç”¨çš„åˆ†åº—å•†é“ºä¿¡æ¯åˆ—è¡¨
 	public String listBranches() {
 		merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
 		ArrayList<Branch> branches = merchantService.getAllBranches(merchant.getMid());
 		response = ServletActionContext.getResponse();
-		// µ÷ÓÃÏÔÊ¾Ä£¿é
+		// è°ƒç”¨æ˜¾ç¤ºæ¨¡å—
 		DispBranches.display(response, branches);
 		return null;
 	}
 
-	// »ñµÃ²Ëµ¥ÁĞ±í
+	// è·å¾—èœå•åˆ—è¡¨
 	public String listMenus() {
 		merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
 		ArrayList<Menu> menus = merchantService.getMenus(merchant.getMid());
 		response = ServletActionContext.getResponse();
-		// µ÷ÓÃÏÔÊ¾Ä£¿é
+		// è°ƒç”¨æ˜¾ç¤ºæ¨¡å—
 		DispMenus.display(response, menus,merchant.getMid());
 		return null;
 	}

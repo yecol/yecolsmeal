@@ -1,4 +1,4 @@
-package com.qq.cstar.speedymeal.display;
+ï»¿package com.qq.cstar.speedymeal.display;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,7 +21,7 @@ public class DispBranches {
 			e.printStackTrace();
 		}
 		out
-				.print("<div class='gTitle'> ·Öµê¹ÜÀí </div><div id='branchList' class='sidebar_block'><p> <a href='mcAddBranch.jsp' class='n'>Ìí¼Ó</a>ĞÂµÄ·Öµê¡£»òÕß<a href='merchant-acts!mgr' class='n'>·µ»Ø</a>¹ÜÀíÒ³¡£ </p>");
+				.print("<div class='gTitle'> åˆ†åº—ç®¡ç† </div><div id='branchList' class='sidebar_block'><p> <a href='mcAddBranch.jsp' class='n'>æ·»åŠ </a>æ–°çš„åˆ†åº—ã€‚æˆ–è€…<a href='merchant-acts!mgr' class='n'>è¿”å›</a>ç®¡ç†é¡µã€‚ </p>");
 		if (branches.size() != 0) {
 			for (int index = 0; index < branches.size(); index++) {
 				out.print("<div class='list_single'><div class='ls_head'>");
@@ -29,7 +29,7 @@ public class DispBranches {
 				out.print("<div class='ls_h_bra'>" + branches.get(index).getBranchPhone() + "</div>");
 				out.print("<div class='ls_h_dis'>" + branches.get(index).getBranchAddress() + "</div>");
 				out
-						.print("<div class='ls_h_opr'><a href='javascript:ajaxLoad(\"merchant-acts!delBranch?bid="+branches.get(index).getBid()+"\");'"+"class='mer_del_a' id='del"+index+"'>É¾³ı</a><a href='#' class='opr_a'>¸üĞÂ</a></div><div class='clear'></div></div>");
+						.print("<div class='ls_h_opr'><a href='javascript:ajaxLoad(\"merchant-acts!delBranch?bid="+branches.get(index).getBid()+"\");'"+"class='mer_del_a' id='del"+index+"'>åˆ é™¤</a><a href='#' class='opr_a'>æ›´æ–°</a></div><div class='clear'></div></div>");
 				out.print("<div class='hidden' id='"+index+"'>");
 				out.print("</div></div>");
 			}

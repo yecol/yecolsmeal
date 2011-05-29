@@ -1,4 +1,4 @@
-package com.qq.cstar.speedymeal.service;
+ï»¿package com.qq.cstar.speedymeal.service;
 
 import java.util.ArrayList;
 
@@ -14,43 +14,43 @@ public class MerchantService {
 	private MerchantDao merchantDao = new MerchantDao();
 	private MenuDao menuDao = new MenuDao();
 
-	// ÉÌ»§Ê¹ÓÃÓÃ»§ÃûµÇÂ¼
+	// å•†æˆ·ä½¿ç”¨ç”¨æˆ·åç™»å½•
 	public Merchant loginByUsername(String username, String pwd) {
 		Merchant merchant = merchantDao.getUniqueUserByName(username);
-		// ÃÜÂë±È¶Ô
+		// å¯†ç æ¯”å¯¹
 		if (merchant != null && merchant.getPwd().equals(MD5.getMD5(pwd))) {
 			merchant.setPwd(null);
 			return merchant;
-			// µ±ÉÌ»§µÇÂ¼µÄÓÃ»§ÃûºÍÃÜÂëÕıÈ·Ê±µÇÂ¼³É¹¦£¬Éè¿ÕÃÜÂë²¢·µ»Ø¶ÔÏó
+			// å½“å•†æˆ·ç™»å½•çš„ç”¨æˆ·åå’Œå¯†ç æ­£ç¡®æ—¶ç™»å½•æˆåŠŸï¼Œè®¾ç©ºå¯†ç å¹¶è¿”å›å¯¹è±¡
 		} else
 			return null;
 	}
 
-	// ÉÌ»§×¢²á
+	// å•†æˆ·æ³¨å†Œ
 	public Merchant registerMerchant(Merchant merchant) {
 		Merchant registeredMerchant = merchantDao.insertMerchant(merchant);
 		if (registeredMerchant != null) {
 			registeredMerchant.setPwd(null);
 			return registeredMerchant;
-			// µ±×¢²á³É¹¦£¬Éè¿ÕÃÜÂë²¢·µ»Ø¶ÔÏó
+			// å½“æ³¨å†ŒæˆåŠŸï¼Œè®¾ç©ºå¯†ç å¹¶è¿”å›å¯¹è±¡
 		} else
 			return null;
-		// ×¢²áÊ§°Ü£¬·µ»Ø¿Õ¶ÔÏó
+		// æ³¨å†Œå¤±è´¥ï¼Œè¿”å›ç©ºå¯¹è±¡
 	}
 
-	// µÃµ½ÉÌ»§µÄÍêÕûĞÅÏ¢
+	// å¾—åˆ°å•†æˆ·çš„å®Œæ•´ä¿¡æ¯
 	public Merchant getFullInfoMerchantByMid(int mid) {
 		Merchant merchant = merchantDao.getMerchantByMid(mid);
 		return merchant;
 	}
 
-	// »ñµÃËùÓĞ·ÖµêĞÅÏ¢
+	// è·å¾—æ‰€æœ‰åˆ†åº—ä¿¡æ¯
 	public ArrayList<Branch> getAllBranches(int mid) {
 		ArrayList<Branch> branches = merchantDao.getBranchesByMid(mid);
 		return branches;
 	}
 
-	// Ìí¼ÓĞÂµÄ·ÖµêĞÅÏ¢
+	// æ·»åŠ æ–°çš„åˆ†åº—ä¿¡æ¯
 	public boolean addNewBranch(Branch branch) {
 		if (branch != null) {
 			return merchantDao.InsertBranch(branch);
@@ -58,12 +58,12 @@ public class MerchantService {
 			return false;
 	}
 
-	// É¾³ı·ÖµêĞÅÏ¢
+	// åˆ é™¤åˆ†åº—ä¿¡æ¯
 	public boolean delBranch(int bid) {
 		return merchantDao.delBranch(bid);
 	}
 
-	//»ñµÃ²Ëµ¥
+	//è·å¾—èœå•
 	public ArrayList<Menu> getMenus(int mid) {
 		ArrayList<Menu> menus = menuDao.getMenus(mid);
 		return menus;
