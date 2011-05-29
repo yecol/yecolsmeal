@@ -6,8 +6,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.qq.cstar.speedymeal.entity.Menu;
-import com.qq.cstar.speedymeal.util.MD5;
-import com.qq.cstar.speedymeal.util.Serialize;
 
 public class MenuDao {
 
@@ -35,8 +33,10 @@ public class MenuDao {
 			}
 			dbc.freeConn();
 		} catch (SQLException e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		}
 		return menus;
@@ -77,11 +77,15 @@ public class MenuDao {
 			int affectedItem = ps.executeUpdate();
 			dbc.freeConn();
 			if (affectedItem == 1) {
+				dbc.freeConn();
 				return true;
 			}
+			dbc.freeConn();
 		} catch (SQLException e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		}
 		return false;
