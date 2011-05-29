@@ -36,6 +36,7 @@ public class UserDao {
 			int affectedItem = ps.executeUpdate();
 			dbc.freeConn();
 			if (affectedItem == 1) {
+				dbc.freeConn();
 				return user;
 			}
 			dbc.freeConn();
