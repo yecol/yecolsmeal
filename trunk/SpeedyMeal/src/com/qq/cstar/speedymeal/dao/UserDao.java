@@ -34,12 +34,16 @@ public class UserDao {
 
 			System.out.println(ps.toString());
 			int affectedItem = ps.executeUpdate();
+			dbc.freeConn();
 			if (affectedItem == 1) {
 				return user;
 			}
+			dbc.freeConn();
 		} catch (SQLException e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		}
 		return null;
@@ -61,8 +65,10 @@ public class UserDao {
 
 			int affectedItem = ps.executeUpdate();
 			if (affectedItem == 1) {
+				dbc.freeConn();
 				return user;
 			}
+			dbc.freeConn();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -92,11 +98,15 @@ public class UserDao {
 				u.setStatus(rs.getInt(7));
 				u.setLocation((Location) Serialize.readObject(rs.getString(8)));
 				u.setAddress(rs.getString(9));
+				dbc.freeConn();
 				return u;
 			}
+			dbc.freeConn();
 		} catch (SQLException e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		}
 		return null;
@@ -122,10 +132,12 @@ public class UserDao {
 				userList.add(u);
 				System.out.println(u.toString());
 			}
+			dbc.freeConn();
 		} catch (SQLException e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			dbc.freeConn();
 			e.printStackTrace();
 		}
 		return userList;
