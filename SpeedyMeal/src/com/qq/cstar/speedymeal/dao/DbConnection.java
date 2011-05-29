@@ -27,5 +27,10 @@ public class DbConnection {
 		}
 		return this.conn;
 	}
+	
+	public void freeConn(){
+		this.conn = null;
+	}
+	
 
 }

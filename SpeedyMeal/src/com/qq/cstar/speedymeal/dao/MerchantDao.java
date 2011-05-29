@@ -38,11 +38,15 @@ public class MerchantDao {
 				m.setCompanyName(rs.getString(7));
 				m.setStatus(rs.getInt(8));
 				m.setCredits(rs.getInt(9));
+				dbc.freeConn();
 				return m;
 			}
+			dbc.freeConn();
 		} catch (SQLException e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		}
 		return null;
@@ -68,8 +72,10 @@ public class MerchantDao {
 				return merchant;
 			}
 		} catch (SQLException e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		}
 		return null;
@@ -118,8 +124,10 @@ public class MerchantDao {
 			}
 			rs.close();
 		} catch (SQLException e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		}
 		return null;
@@ -141,11 +149,15 @@ public class MerchantDao {
 
 			int affectedItem = ps.executeUpdate();
 			if (affectedItem == 1) {
+				dbc.freeConn();
 				return true;
 			}
+			dbc.freeConn();
 		} catch (SQLException e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		}
 		return false;
@@ -207,8 +219,10 @@ public class MerchantDao {
 
 			int affectedItem = ps.executeUpdate();
 			if (affectedItem == 1) {
+				dbc.freeConn();
 				return true;
 			}
+			dbc.freeConn();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
@@ -236,9 +250,12 @@ public class MerchantDao {
 			b.setMenus(menus);
 			rs.close();
 			ps.close();
+			dbc.freeConn();
 		} catch (SQLException e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		}
 		return;
