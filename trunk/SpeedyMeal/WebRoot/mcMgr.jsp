@@ -47,7 +47,7 @@
 				<div class="ls_h_bra" id="<s:property value='#merstat.index+1' />_ls_h_bra">
 					<s:property value='#item.branchPhone' />
 				</div>
-				<div class="ls_h_dis" id="<s:property value='#merstat.index+1' />_ls_h_dis">
+				<div id="<s:property value='#merstat.index+1' />_ls_h_dis">
 					<s:property value='#item.branchAddress' />
 				</div>
 				<div id="<s:property value='#merstat.index+1' />_type">
