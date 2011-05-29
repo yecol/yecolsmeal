@@ -9,19 +9,10 @@ import javax.sql.DataSource;
 public class DbConnection {
 
 	private Connection conn;
-	private Context initCtx;
-
-	public DbConnection() {
-		conn = null;
-		try {
-			initCtx = new javax.naming.InitialContext();
-		} catch (NamingException e) {
-			e.printStackTrace();
-		}
-	}
 
 	private void createConn() {
 		try {
+			Context initCtx = new javax.naming.InitialContext();
 			Context envCtx = (Context) initCtx.lookup("java:comp/env");
 			DataSource ds = (DataSource) envCtx.lookup("jdbc/speedymeal");
 			this.conn = ds.getConnection();
