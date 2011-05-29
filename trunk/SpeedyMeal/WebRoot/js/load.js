@@ -1,21 +1,21 @@
-// JavaScript Document
+ï»¿// JavaScript Document
 // AJAX loading controller
 $(document).ready(function() {
     $SitePrefix="/SpeedyMeal"; 
 	
-	// ¶¯Ì¬¼ÓÔØµÇÂ¼¿ò
+	// åŠ¨æ€åŠ è½½ç™»å½•æ¡†
     /*
 		$("#bt_signin").click(function() {
 			$("#sidebar_body").load("login.jsp");
 		});
 		*/
-		// ¶¯Ì¬ÇëÇó¿ÉÓÃÉÌµêÁĞ±í
+		// åŠ¨æ€è¯·æ±‚å¯ç”¨å•†åº—åˆ—è¡¨
 		$("#ListAvailables").click(function() {
 			jQuery.ajax( {
 				url : $SitePrefix+'/list-availables',
 				data : {
 					author : 'hello'
-				}, // ´Ó±íµ¥ÖĞ»ñÈ¡Êı¾İ
+				}, // ä»è¡¨å•ä¸­è·å–æ•°æ®
 				type : 'POST',
 				error : function(request) {
 					alert("Server Error YZEN001");
@@ -28,7 +28,7 @@ $(document).ready(function() {
 		});
 		
 	});
-//Òì²½¼ÇÔØµ÷ÓÃº¯Êı
+//å¼‚æ­¥è®°è½½è°ƒç”¨å‡½æ•°
 function ajaxLoad(url)
 {
     jQuery.ajax( {

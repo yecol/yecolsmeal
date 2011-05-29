@@ -1,4 +1,4 @@
-var init = function() {
+﻿var init = function() {
 	var map = new QQMap.QMap(document.getElementById("container"), {
 		center : new QQMap.QLatLng(39.920, 116.405),
 		zoomLevel : 13
