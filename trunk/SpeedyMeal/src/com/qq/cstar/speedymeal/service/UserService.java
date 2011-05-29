@@ -1,4 +1,4 @@
-package com.qq.cstar.speedymeal.service;
+ï»¿package com.qq.cstar.speedymeal.service;
 
 import com.qq.cstar.speedymeal.dao.UserDao;
 import com.qq.cstar.speedymeal.entity.User;
@@ -9,15 +9,15 @@ public class UserService {
 	private UserDao userDao=new UserDao();
 	
 	public User loginByUsername(String username,String pwd){
-		//µÇÂ¼
+		//ç™»å½•
 		User user=userDao.getUniqueUserByName(username);
 		if(user!=null&&user.getPwd().equals(MD5.getMD5(pwd))){
 			user.setPwd(null);
 			return user;
-			//µ±ÓÃ»§ÃûºÍÃÜÂëÕıÈ·Ê±µÇÂ¼³É¹¦£¬Éè¿ÕÃÜÂë²¢·µ»Ø¶ÔÏó
+			//å½“ç”¨æˆ·åå’Œå¯†ç æ­£ç¡®æ—¶ç™»å½•æˆåŠŸï¼Œè®¾ç©ºå¯†ç å¹¶è¿”å›å¯¹è±¡
 		}
 		else return null;
-		//µÇÂ¼Ê§°Ü
+		//ç™»å½•å¤±è´¥
 	}
 	
 	public User registerUser(User user){
@@ -25,10 +25,10 @@ public class UserService {
 		if(registeredUser!=null){
 			registeredUser.setPwd(null);
 			return registeredUser;
-			//µ±×¢²á³É¹¦£¬Éè¿ÕÃÜÂë²¢·µ»Ø¶ÔÏó
+			//å½“æ³¨å†ŒæˆåŠŸï¼Œè®¾ç©ºå¯†ç å¹¶è¿”å›å¯¹è±¡
 		}
 		else return null;
-		//×¢²áÊ§°Ü£¬·µ»Ø¿Õ¶ÔÏó
+		//æ³¨å†Œå¤±è´¥ï¼Œè¿”å›ç©ºå¯¹è±¡
 	}
 
 }

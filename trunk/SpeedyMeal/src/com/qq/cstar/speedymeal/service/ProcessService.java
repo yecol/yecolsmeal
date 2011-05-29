@@ -1,4 +1,4 @@
-package com.qq.cstar.speedymeal.service;
+锘縫ackage com.qq.cstar.speedymeal.service;
 
 import java.util.ArrayList;
 
@@ -15,11 +15,10 @@ public class ProcessService {
 
 		ArrayList<Branch> result = new ArrayList<Branch>();
 
-		// TODO 在这里写算法使用location对branches进行筛选。
 		ArrayList<Location> vertexs = null;
 		for (Branch branch : branches) {
 			vertexs = branch.getBranchDeliveryArea();
-			if (branch.getAreaType() == 0) { // circle
+			if (vertexs.size() == 1) { // circle
 				if (getDistance(branch.getBranchLocation(), location) <= getDistance(
 						branch.getBranchLocation(), vertexs.get(0))) {
 					result.add(branch);
@@ -30,15 +29,21 @@ public class ProcessService {
 			}
 
 		}
-		for(Branch b:result){
+		for (Branch b : result) {
+			// todo: b
+			b.getBranchLocation();
+			b.setDistance(0);
+			//
 			merchantDao.getMenusAndFilled(b);
 		}
 
 		return result;
 	}
 
-	private double getDistance(Location branchLocation, Location branchLocation2) {
-		return 0;
+	private double getDistance(Location loc1, Location loc2) {
+		double x = loc1.getLatitude() - loc2.getLatitude();
+		double y = loc1.getLongitude() - loc2.getLongitude();
+		return x * x + y * y;
 	}
 
 	private boolean isPointInPolygon(Location location,

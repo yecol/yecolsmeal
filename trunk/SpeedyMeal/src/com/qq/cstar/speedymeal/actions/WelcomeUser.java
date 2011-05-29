@@ -1,4 +1,4 @@
-package com.qq.cstar.speedymeal.actions;
+﻿package com.qq.cstar.speedymeal.actions;
 
 
 import com.opensymphony.xwork2.ActionSupport;

@@ -1,4 +1,4 @@
-package com.qq.cstar.speedymeal.display;
+ï»¿package com.qq.cstar.speedymeal.display;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,24 +21,24 @@ public class DispMenus {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		out.print("<p>µã´Ë<a href='merchant-acts!mgr' class='n'>·µ»Ø </a> ÉÌ»§¹ÜÀíÊ×Ò³</p>");
-		out.print("<div id='merchant_add_menu_form' class='sidebar_block'><div class='gTitle'>Ìí¼Ó²Ëµ¥</div>");
+		out.print("<p>ç‚¹æ­¤<a href='merchant-acts!mgr' class='n'>è¿”å› </a> å•†æˆ·ç®¡ç†é¦–é¡µ</p>");
+		out.print("<div id='merchant_add_menu_form' class='sidebar_block'><div class='gTitle'>æ·»åŠ èœå•</div>");
 		out
-				.print("<form id='merchant-acts' name='merchant-acts' action='/SpeedyMeal/merchant-acts!addMenu.action' method='post'><table class='wwFormTable'><tbody><tr><td class='tdLabel'><label for='merchant-acts_menu_menuItemName' class='label'>Ãû³Æ:</label></td><td><input type='text' name='menu.menuItemName' value='' id='merchant-acts_menu_menuItemName' class='ib'></td></tr><tr><td class='tdLabel'><label for='merchant-acts_menu_menuItemPrice' class='label'>µ¥¼Û:</label></td><td><input type='text' name='menu.menuItemPrice' value='' id='merchant-acts_menu_menuItemPrice' class='ib' /></td></tr><input type='hidden' name='menu.mid' value='"
+				.print("<form id='merchant-acts' name='merchant-acts' action='/SpeedyMeal/merchant-acts!addMenu.action' method='post'><table class='wwFormTable'><tbody><tr><td class='tdLabel'><label for='merchant-acts_menu_menuItemName' class='label'>åç§°:</label></td><td><input type='text' name='menu.menuItemName' value='' id='merchant-acts_menu_menuItemName' class='ib'></td></tr><tr><td class='tdLabel'><label for='merchant-acts_menu_menuItemPrice' class='label'>å•ä»·:</label></td><td><input type='text' name='menu.menuItemPrice' value='' id='merchant-acts_menu_menuItemPrice' class='ib' /></td></tr><input type='hidden' name='menu.mid' value='"
 						+ mid
 						+ "' id='merchant-acts_menu_mid'><tr><td colspan='2'><div align='right'><input type='submit' id='merchant-acts_0' value='' class='smt_submit'></div></td></tr></tbody></table></form></div>");
 
 		out
-				.print("<div id='menu' class='sidebar_block'><div class='gTitle'>ÒÑÓĞ²Ëµ¥</div><table id='orderInfo'><tr><td colspan='4'><div class='tdHeadCnt'>²Ëµ¥ĞÅÏ¢</div></td></tr>");
+				.print("<div id='menu' class='sidebar_block'><div class='gTitle'>å·²æœ‰èœå•</div><table id='orderInfo'><tr><td colspan='4'><div class='tdHeadCnt'>èœå•ä¿¡æ¯</div></td></tr>");
 		if (menus.size() != 0) {
 			for (int index = 0; index < menus.size(); index++) {
 				out.print("<tr><td colspan='2'>");
 				out.print(menus.get(index).getMenuItemName());
 				out.print("</td><td width='63'>");
-				out.print(menus.get(index).getMenuItemPrice() + "Ôª");
+				out.print(menus.get(index).getMenuItemPrice() + "å…ƒ");
 				out.print("</td><td width='63'>");
 				out.print("<a href='javascript:ajaxLoad(\"merchant-acts!delMenu?meid=" + menus.get(index).getMeid() + "\");'"
-						+ "class='menu_del_a' id='del" + index + "'>É¾³ı</a>");
+						+ "class='menu_del_a' id='del" + index + "'>åˆ é™¤</a>");
 				out.print("</td></tr>");
 			}
 		}

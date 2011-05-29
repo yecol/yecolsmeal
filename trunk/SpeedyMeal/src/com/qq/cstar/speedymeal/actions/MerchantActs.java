@@ -1,4 +1,4 @@
-package com.qq.cstar.speedymeal.actions;
+ï»¿package com.qq.cstar.speedymeal.actions;
 
 import java.util.ArrayList;
 
@@ -35,14 +35,14 @@ public class MerchantActs extends ActionSupport {
 	public ArrayList<Branch> branches;
 
 	public String login() {
-		// ÉÌ»§µÇÂ¼
+		// å•†æˆ·ç™»å½•
 		merchant = merchantService.loginByUsername(merchant.getUsername(), merchant.getPwd());
 		if (merchant != null) {
 			ActionContext.getContext().getSession().put("SpeedyMeal_Session_Merchant", merchant);
 			branches = merchantService.getAllBranches(merchant.getMid());
 			return SUCCESS;
 		} else {
-			addActionError("ÓÃ»§Ãû»òÃÜÂë´íÎó!");
+			addActionError("ç”¨æˆ·åæˆ–å¯†ç é”™è¯¯!");
 			return LOGIN;
 		}
 	}
@@ -53,20 +53,20 @@ public class MerchantActs extends ActionSupport {
 	}
 
 	public String mgr() {
-		// ÉÌ»§µÇÂ¼ºó»Øµ½¹ÜÀíÒ³Ãæ
+		// å•†æˆ·ç™»å½•åå›åˆ°ç®¡ç†é¡µé¢
 		merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
 		branches = merchantService.getAllBranches(merchant.getMid());
 		return SUCCESS;
 	}
 
 	public String register() {
-		// ÉÌ»§×¢²á
+		// å•†æˆ·æ³¨å†Œ
 		merchant = merchantService.registerMerchant(merchant);
 		if (merchant != null) {
 			ActionContext.getContext().getSession().put("SpeedyMeal_Session_Merchant", merchant);
 			return SUCCESS;
 		} else {
-			addActionError("×¢²áÊ§°Ü");
+			addActionError("æ³¨å†Œå¤±è´¥");
 			return "register";
 		}
 	}
@@ -94,7 +94,7 @@ public class MerchantActs extends ActionSupport {
 			// DispBranches.display(response, branches);
 			return SUCCESS;
 		} else {
-			addActionError("Ìí¼ÓĞÂµÄ·Öµê·¢Éú´íÎó");
+			addActionError("æ·»åŠ æ–°çš„åˆ†åº—å‘ç”Ÿé”™è¯¯");
 			return "addBranch";
 		}
 
@@ -109,7 +109,7 @@ public class MerchantActs extends ActionSupport {
 			DispMenus.display(response, menus, merchant.getMid());
 			return SUCCESS;
 		} else {
-			addActionError("Ìí¼ÓĞÂµÄ²Ëµ¥·¢Éú´íÎó");
+			addActionError("æ·»åŠ æ–°çš„èœå•å‘ç”Ÿé”™è¯¯");
 			return null;
 		}
 
@@ -120,13 +120,13 @@ public class MerchantActs extends ActionSupport {
 		int bid = Integer.parseInt(request.getParameter("bid").trim());
 		boolean delSuccess = merchantService.delBranch(bid);
 		if (delSuccess = false) {
-			addActionError("É¾³ı·ÖµêĞÅÏ¢Ê§°Ü£¡");
+			addActionError("åˆ é™¤åˆ†åº—ä¿¡æ¯å¤±è´¥ï¼");
 		}
-		// ÖØĞÂ¶ÁÈ¡ÏÔÊ¾·ÖµêĞÅÏ¢
+		// é‡æ–°è¯»å–æ˜¾ç¤ºåˆ†åº—ä¿¡æ¯
 		merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
 		ArrayList<Branch> branches = merchantService.getAllBranches(merchant.getMid());
 		response = ServletActionContext.getResponse();
-		// µ÷ÓÃÏÔÊ¾Ä£¿é
+		// è°ƒç”¨æ˜¾ç¤ºæ¨¡å—
 		DispBranches.display(response, branches);
 
 		return null;
@@ -137,13 +137,13 @@ public class MerchantActs extends ActionSupport {
 		int meid = Integer.parseInt(request.getParameter("meid").trim());
 		boolean delSuccess = merchantService.delMenu(meid);
 		if (delSuccess = false) {
-			addActionError("É¾³ı²Ëµ¥ĞÅÏ¢Ê§°Ü£¡");
+			addActionError("åˆ é™¤èœå•ä¿¡æ¯å¤±è´¥ï¼");
 		}
-		// ÖØĞÂ¶ÁÈ¡ÏÔÊ¾·ÖµêĞÅÏ¢
+		// é‡æ–°è¯»å–æ˜¾ç¤ºåˆ†åº—ä¿¡æ¯
 		merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
 		ArrayList<Menu> menus = merchantService.getMenus(merchant.getMid());
 		response = ServletActionContext.getResponse();
-		// µ÷ÓÃÏÔÊ¾Ä£¿é
+		// è°ƒç”¨æ˜¾ç¤ºæ¨¡å—
 		DispMenus.display(response, menus, merchant.getMid());
 		return null;
 	}
