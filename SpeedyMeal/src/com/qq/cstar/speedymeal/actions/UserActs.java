@@ -13,7 +13,8 @@ import com.qq.cstar.speedymeal.entity.Location;
 import com.qq.cstar.speedymeal.entity.User;
 import com.qq.cstar.speedymeal.service.UserService;
 
-@Results( { @Result(name = "login", location = "/login.jsp"),@Result(name = "register", location = "/register.jsp") })
+@Results( { @Result(name = "success", location = "/usMgr.jsp"), @Result(name = "login", location = "/login.jsp"),
+		@Result(name = "register", location = "/register.jsp"), @Result(name = "index", location = "/index.jsp") })
 public class UserActs extends ActionSupport {
 
 	/**
@@ -38,16 +39,22 @@ public class UserActs extends ActionSupport {
 
 	}
 
+	public String logout() {
+		ActionContext.getContext().getSession().put("SpeedyMeal_Session_User", null);
+		return "index";
+	}
+
 	public String register() {
 		// ÓÃ»§×¢²á
 		request = ServletActionContext.getRequest();
-		double latitude=Double.parseDouble(request.getParameter("r_lat").trim());
-		double longitude=Double.parseDouble(request.getParameter("r_lon").trim());
-		
-		user.setLocation(new Location(latitude,longitude));
+		double latitude = Double.parseDouble(request.getParameter("r_lat").trim());
+		double longitude = Double.parseDouble(request.getParameter("r_lon").trim());
+
+		user.setLocation(new Location(latitude, longitude));
 		user = userService.registerUser(user);
 		if (user != null) {
-			return "register-success";
+			ActionContext.getContext().getSession().put("SpeedyMeal_Session_User", user);
+			return SUCCESS;
 		} else {
 			addActionError("×¢²áÊ§°Ü£¡ÇëÖØÐÂ×¢²á!");
 			return "register";

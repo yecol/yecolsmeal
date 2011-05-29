@@ -25,7 +25,7 @@
 							<s:textfield name="merchant.phone" label="电话号码" cssStyle="ib" />
 							<s:textarea name="merchant.companyName" label="公司名称"
 								cssStyle="ia" />
-							<s:textarea name="merchant.companyName" label="公司地址"
+							<s:textarea name="merchant.companyAddress" label="公司地址"
 								cssStyle="ia" />
 							<s:submit value="" cssClass="smt_register" />
 						</s:form>

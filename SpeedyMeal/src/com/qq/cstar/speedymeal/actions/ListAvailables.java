@@ -8,13 +8,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
+import org.apache.struts2.convention.annotation.Result;
+import org.apache.struts2.convention.annotation.Results;
 
+import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.qq.cstar.speedymeal.entity.Branch;
 import com.qq.cstar.speedymeal.entity.Location;
 import com.qq.cstar.speedymeal.entity.User;
 import com.qq.cstar.speedymeal.service.ProcessService;
 
+@Results( { @Result(name = "success", location = "/list.jsp")})
 public class ListAvailables extends ActionSupport {
 	// 获得可用的商铺信息列表
 
@@ -24,6 +28,13 @@ public class ListAvailables extends ActionSupport {
 	private HttpServletRequest request;
 	private HttpServletResponse response;
 	private User user;
+
+	public String loginedList() {
+		user = (User) ActionContext.getContext().getSession().get("SpeedyMeal_Session_User");
+		availableBranches = processService.getAvailableBranches(user.getLocation());		
+		return SUCCESS;
+	}
+
 
 	public String unLoginList() {
 		request = ServletActionContext.getRequest();
@@ -36,15 +47,7 @@ public class ListAvailables extends ActionSupport {
 		response.setCharacterEncoding("utf-8");
 		PrintWriter out = null;
 		try {
-			out = response.getWriter();
-			//out.print("<div class=''>");
-			/*if(branches.size()==0){
-				out.print("<tr>暂无店铺信息</tr>");
-			}
-			for (int index = 0; index < branches.size(); index++) {
-				out.print("<tr>");
-			*/
-			
+			out = response.getWriter();	
 			
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -60,5 +63,15 @@ public class ListAvailables extends ActionSupport {
 
 	public User getUser() {
 		return this.user;
+	}
+	
+
+	public ArrayList<Branch> getAvailableBranches() {
+		return availableBranches;
+	}
+
+
+	public void setAvailableBranches(ArrayList<Branch> availableBranches) {
+		this.availableBranches = availableBranches;
 	}
 }

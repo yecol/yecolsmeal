@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 import com.qq.cstar.speedymeal.entity.Branch;
 import com.qq.cstar.speedymeal.entity.Location;
+import com.qq.cstar.speedymeal.entity.Menu;
 import com.qq.cstar.speedymeal.entity.Merchant;
 import com.qq.cstar.speedymeal.util.MD5;
 import com.qq.cstar.speedymeal.util.Serialize;
@@ -165,7 +166,7 @@ public class MerchantDao {
 	}
 
 	public ArrayList<Branch> getBranchesByMid(int mid) {
-		
+
 		String sql = "SELECT M.companyName,B.* FROM merchant M,branch B where M.mid=B.mid AND B.mid=?";
 		try {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
@@ -179,12 +180,10 @@ public class MerchantDao {
 		}
 		return null;
 	}
-	
-	
-	private ArrayList<Branch> FilledFromResultset(ResultSet rs) throws SQLException, Exception{
+
+	private ArrayList<Branch> FilledFromResultset(ResultSet rs) throws SQLException, Exception {
 		ArrayList<Branch> branches = new ArrayList<Branch>();
-		
-		while(rs.next()) {
+		while (rs.next()) {
 			Branch b = new Branch();
 			b.setBid(rs.getInt("bid"));
 			b.setBranchAddress(rs.getString("branchAddress"));
@@ -216,5 +215,32 @@ public class MerchantDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	public void getMenusAndFilled(Branch b) {
+		String sql = "SELECT * FROM menu WHERE mid=?";
+		try {
+			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
+			ps.setInt(1, b.getMid());
+			ResultSet rs = ps.executeQuery();
+			ArrayList<Menu> menus = new ArrayList<Menu>();
+			while (rs.next()) {
+				Menu m = new Menu();
+				m.setMeid(rs.getInt("meid"));
+				m.setMenuItemName(rs.getString("menuItemName"));
+				m.setMenuItemPrice(rs.getDouble("menuItemPrice"));
+				m.setMenuPic(rs.getString("menuPic"));
+				m.setMid(rs.getInt("mid"));
+				menus.add(m);
+			}
+			b.setMenus(menus);
+			rs.close();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return;
 	}
 }
