@@ -59,7 +59,6 @@ public class UserDao {
 			ps.setString(8, user.getAddress());
 			ps.setInt(9, user.getUid());
 
-			System.out.println(ps.toString());
 			int affectedItem = ps.executeUpdate();
 			if (affectedItem == 1) {
 				return user;

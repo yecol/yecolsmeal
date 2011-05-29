@@ -129,6 +129,7 @@ public class MerchantDao {
 		String sql = "INSERT INTO branch (mid,branchName,branchAddress,branchPhone,branchLocation,branchDeliveryArea,areaType) VALUES (?,?,?,?,?,?,?)";
 		try {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
+			System.out.println(ps.toString());
 			ps.setInt(1, branch.getMid());
 			ps.setString(2, branch.getBranchName());
 			ps.setString(3, branch.getBranchAddress());

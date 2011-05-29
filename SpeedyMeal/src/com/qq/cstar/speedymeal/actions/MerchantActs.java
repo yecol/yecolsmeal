@@ -12,13 +12,15 @@ import org.apache.struts2.convention.annotation.Results;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.qq.cstar.speedymeal.display.DispBranches;
+import com.qq.cstar.speedymeal.display.DispMenus;
 import com.qq.cstar.speedymeal.entity.Branch;
 import com.qq.cstar.speedymeal.entity.Location;
+import com.qq.cstar.speedymeal.entity.Menu;
 import com.qq.cstar.speedymeal.entity.Merchant;
 import com.qq.cstar.speedymeal.service.MerchantService;
 
 @Results( { @Result(name = "success", location = "/mcMgr.jsp"), @Result(name = "register", location = "/merRegister.jsp"),
-		@Result(name = "login", location = "/merLogin.jsp") })
+		@Result(name = "login", location = "/merLogin.jsp"), @Result(name = "addBranch", location = "/mcAddBranch.jsp"), @Result(name = "logout", location = "/index.jsp") })
 public class MerchantActs extends ActionSupport {
 	/**
 	 * 
@@ -26,6 +28,7 @@ public class MerchantActs extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 	private Merchant merchant;
 	private Branch branch;
+	private Menu menu;
 	private MerchantService merchantService = new MerchantService();
 	private HttpServletRequest request;
 	private HttpServletResponse response;
@@ -42,6 +45,11 @@ public class MerchantActs extends ActionSupport {
 			addActionError("用户名或密码错误!");
 			return LOGIN;
 		}
+	}
+	
+	public String logout(){
+		ActionContext.getContext().getSession().put("SpeedyMeal_Session_Merchant", null);
+		return "logout";
 	}
 
 	public String mgr() {
@@ -83,10 +91,26 @@ public class MerchantActs extends ActionSupport {
 
 		if (merchantService.addNewBranch(branch) == true) {
 			branches = merchantService.getAllBranches(merchant.getMid());
+			// DispBranches.display(response, branches);
 			return SUCCESS;
 		} else {
 			addActionError("添加新的分店发生错误");
 			return "addBranch";
+		}
+
+	}
+
+	public String addMenu() {
+		Merchant merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
+		ArrayList<Menu> menus;
+		if (merchantService.addNewMenu(menu) == true) {
+			menus = merchantService.getMenus(merchant.getMid());
+			response = ServletActionContext.getResponse();
+			DispMenus.display(response, menus, merchant.getMid());
+			return SUCCESS;
+		} else {
+			addActionError("添加新的菜单发生错误");
+			return null;
 		}
 
 	}
@@ -108,6 +132,22 @@ public class MerchantActs extends ActionSupport {
 		return null;
 	}
 
+	public String delMenu() {
+		request = ServletActionContext.getRequest();
+		int meid = Integer.parseInt(request.getParameter("meid").trim());
+		boolean delSuccess = merchantService.delMenu(meid);
+		if (delSuccess = false) {
+			addActionError("删除菜单信息失败！");
+		}
+		// 重新读取显示分店信息
+		merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
+		ArrayList<Menu> menus = merchantService.getMenus(merchant.getMid());
+		response = ServletActionContext.getResponse();
+		// 调用显示模块
+		DispMenus.display(response, menus, merchant.getMid());
+		return null;
+	}
+
 	public void setMerchant(Merchant merchant) {
 		this.merchant = merchant;
 	}
@@ -122,6 +162,14 @@ public class MerchantActs extends ActionSupport {
 
 	public Branch getBranch() {
 		return this.branch;
+	}
+
+	public Menu getMenu() {
+		return menu;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
 	}
 
 	public ArrayList<Branch> getBranches() {

@@ -10,10 +10,9 @@ public class Order {
 	private int mid;// 商户外键
 	private int status;
 	private Date orderTime;
-	private ArrayList<OrderItem> orderItems;//包含的菜单项
+	private ArrayList<OrderItem> orderItems;// 包含的菜单项
 
-	public Order(int oid, int uid, int mid, int status, Date orderTime,
-			ArrayList<OrderItem> orderItems) {
+	public Order(int oid, int uid, int mid, int status, Date orderTime, ArrayList<OrderItem> orderItems) {
 		super();
 		this.oid = oid;
 		this.uid = uid;
@@ -21,6 +20,10 @@ public class Order {
 		this.status = status;
 		this.orderTime = orderTime;
 		this.orderItems = orderItems;
+	}
+
+	public Order() {
+		// TODO Auto-generated constructor stub
 	}
 
 	public int getOid() {
@@ -73,10 +76,9 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [mid=" + mid + ", oid=" + oid + ", orderItems="
-				+ orderItems + ", orderTime=" + orderTime + ", status="
-				+ status + ", uid=" + uid + "]";
+		return "Order [mid=" + mid + ", oid=" + oid + ", orderItems=" + orderItems + ", orderTime=" + orderTime + ", status=" + status + ", uid="
+				+ uid + "]";
 	}
 
-	
+
 }

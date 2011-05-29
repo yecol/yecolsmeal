@@ -12,4 +12,16 @@
 	driverClassName="com.mysql.jdbc.Driver" 
 	url="jdbc:mysql://localhost:3306/speedymealdb?useUnicode=true&amp;characterEncoding=utf-8" 
 	/>
+	<parameter>
+		<name> removeAbandoned </name>
+		<value> true </value>
+	</parameter>
+	<parameter>
+		<name> removeAbandonedTimeout </name>
+		<value> 60 </value>
+	</parameter>
+	<parameter>
+		<name> logAbandoned </name>
+		<value> true </value>
+	</parameter> 
 </Context>

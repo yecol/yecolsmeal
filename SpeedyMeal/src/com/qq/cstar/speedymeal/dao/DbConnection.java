@@ -1,6 +1,7 @@
 package com.qq.cstar.speedymeal.dao;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.naming.Context;
 import javax.sql.DataSource;

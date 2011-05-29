@@ -2,6 +2,8 @@ package com.qq.cstar.speedymeal.service;
 
 import java.util.ArrayList;
 
+import com.qq.cstar.speedymeal.entity.Menu;
+import com.qq.cstar.speedymeal.dao.MenuDao;
 import com.qq.cstar.speedymeal.dao.MerchantDao;
 import com.qq.cstar.speedymeal.entity.Branch;
 import com.qq.cstar.speedymeal.entity.Merchant;
@@ -10,6 +12,7 @@ import com.qq.cstar.speedymeal.util.MD5;
 public class MerchantService {
 
 	private MerchantDao merchantDao = new MerchantDao();
+	private MenuDao menuDao = new MenuDao();
 
 	// 商户使用用户名登录
 	public Merchant loginByUsername(String username, String pwd) {
@@ -58,6 +61,20 @@ public class MerchantService {
 	// 删除分店信息
 	public boolean delBranch(int bid) {
 		return merchantDao.delBranch(bid);
+	}
+
+	//获得菜单
+	public ArrayList<Menu> getMenus(int mid) {
+		ArrayList<Menu> menus = menuDao.getMenus(mid);
+		return menus;
+	}
+
+	public boolean addNewMenu(Menu menu) {
+		return menuDao.insertMenu(menu);
+	}
+
+	public boolean delMenu(int meid) {
+		return menuDao.delMenu(meid);
 	}
 
 }
