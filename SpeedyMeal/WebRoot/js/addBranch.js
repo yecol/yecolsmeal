@@ -1,4 +1,4 @@
-var init = function() {
+﻿var init = function() {
 
 	var center = new QQMap.QLatLng(39.920, 116.405);
 
@@ -191,12 +191,12 @@ var init = function() {
 		}
 	});
 
-	// �Ҽ��˵�
+	// 右键菜单
 	var contextMenu = new QQMap.QContextMenuControl();
 	contextMenu.setMap(map);
-	contextMenu.addItem('Draw a circle!', drawCircleFunc);
+	contextMenu.addItem('绘制圆', drawCircleFunc);
 	contextMenu.addSeparator();
-	contextMenu.addItem('Draw a polygon!', drawPolygonFunc);
+	contextMenu.addItem('绘制多边形', drawPolygonFunc);
 	contextMenu.addTarget(map);
 
 	function drawCircleFunc() {
@@ -243,7 +243,7 @@ isValid = function(myForm) {
 		input = inputs[i];
 		if (input.type == "text" || input.type == "hidden") {
 			if(input.value == "") {
-				alert("Please complete the information!");
+				alert("信息填写不完整！");
 				return false;
 			}
 		}

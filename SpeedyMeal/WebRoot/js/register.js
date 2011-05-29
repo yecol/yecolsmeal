@@ -1,4 +1,4 @@
-var locMark;
+﻿var locMark;
 var init = function() {
 
 	var center = new QQMap.QLatLng(39.920, 116.405);
@@ -35,7 +35,7 @@ var init = function() {
 isValid = function(myForm) {
 	var inputs = myForm.getElementsByTagName("input");
 	if(locMark.getPosition() == null) {
-		alert("Please set you location!");
+		alert("请在地图上选定你的位置！");
 		return false;
 	}
 	else {
@@ -47,7 +47,7 @@ isValid = function(myForm) {
 		input = inputs[i];
 		if (input.type == "text" || input.type == "hidden") {
 			if(input.value == "") {
-				alert("Please complete the information!");
+				alert("信息填写不完整！");
 				return false;
 			}
 		}
