@@ -69,8 +69,10 @@ public class MerchantDao {
 
 			int affectedItem = ps.executeUpdate();
 			if (affectedItem == 1) {
+				dbc.freeConn();
 				return merchant;
 			}
+			dbc.freeConn();
 		} catch (SQLException e) {
 			dbc.freeConn();
 			e.printStackTrace();
@@ -120,6 +122,7 @@ public class MerchantDao {
 
 				rs4Branch.close();
 				m.setBranches(branches);
+				dbc.freeConn();
 				return m;
 			}
 			rs.close();
@@ -168,10 +171,13 @@ public class MerchantDao {
 		try {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
+			dbc.freeConn();
 			return FilledFromResultset(rs);
 		} catch (SQLException e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		}
 		return null;
@@ -184,10 +190,13 @@ public class MerchantDao {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
 			ps.setInt(1, mid);
 			ResultSet rs = ps.executeQuery();
+			dbc.freeConn();
 			return FilledFromResultset(rs);
 		} catch (SQLException e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
+			dbc.freeConn();
 			e.printStackTrace();
 		}
 		return null;
