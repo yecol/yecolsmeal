@@ -30,35 +30,28 @@ var init = function() {
       <div id="sidebar_body">
         <div id="menu" class="sidebar_block">
           <div class="gTitle">菜单管理</div>
-          <table id="orderInfo">
-            <tr>
-              <td colspan="4"><div class="tdHeadCnt">菜单管理</div></td>
-            </tr>
-            <tr>
-              <td colspan="2">订单ID123</td>
-              <td width="63">15元</td>
-              <td width="63">删除</td>
-            </tr>
-            <tr>
-              <td colspan="2">订单ID123</td>
-              <td width="63">15元</td>
-              <td width="63">删除</td>
-            </tr>
-            <tr>
-              <td colspan="2">订单ID123</td>
-              <td width="63">15元</td>
-              <td width="63">删除</td>
-            </tr>
-            <tr>
-              <td colspan="2">订单ID123</td>
-              <td width="63">15元</td>
-              <td width="63">删除</td>
-            </tr>
-           
-          </table>
+          <form id="merchant-acts" name="merchant-acts" action="/SpeedyMeal/merchant-acts!addMenu.action" method="post">
+            <table class="wwFormTable">
+              <tbody>
+                <tr>
+                  <td class="tdLabel"><label for="merchant-acts_menu_menuItemName" class="label">名称:</label></td>
+                  <td><input type="text" name="menu.menuItemName" value="" id="merchant-acts_menu_menuItemName" class="ib"></td>
+                </tr>
+                <tr>
+                  <td class="tdLabel"><label for="merchant-acts_menu_menuItemPrice" class="label">单价:</label></td>
+                  <td><input type="text" name="menu.menuItemPrice" value="" id="merchant-acts_menu_menuItemPrice" class="ib" /></td>
+                </tr>
+              <input type="hidden" name="menu.mid" value="1" id="merchant-acts_menu_mid">
+              <tr>
+                <td colspan="2"><div align="right">
+                    <input type="submit" id="merchant-acts_0" value="" class="smt_submit">
+                  </div></td>
+              </tr>
+                </tbody>
+            </table>
+          </form>
         </div>
         <!--menu--> 
-   
         
       </div>
       <!--sidebar_body--> 

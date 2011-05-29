@@ -299,3 +299,9 @@ table#orderInfo td {
 	margin-left: 5px;
 	float: right;
 }
+.menu_del_a{
+	color: #C00;
+	text-decoration: none;;
+	margin-right: 5px;
+	margin-left: 5px;
+}

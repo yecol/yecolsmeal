@@ -5,13 +5,19 @@ public class Menu {
 	private int meid;// 标识符
 	private int mid;// 所属商户ID
 	private String menuItemName;// 菜单名
+	private String menuPic;// 菜单图片路径
 	private double menuItemPrice;// 价格
 	
-	public Menu(int meid, int mid, String menuItemName, double menuItemPrice) {
+	public Menu() {
+		super();
+	}
+
+	public Menu(int meid, int mid, String menuItemName, String menuPic, double menuItemPrice) {
 		super();
 		this.meid = meid;
 		this.mid = mid;
 		this.menuItemName = menuItemName;
+		this.menuPic = menuPic;
 		this.menuItemPrice = menuItemPrice;
 	}
 
@@ -47,13 +53,17 @@ public class Menu {
 		this.menuItemPrice = menuItemPrice;
 	}
 
+	public String getMenuPic() {
+		return menuPic;
+	}
+
+	public void setMenuPic(String menuPic) {
+		this.menuPic = menuPic;
+	}
+
 	@Override
 	public String toString() {
-		return "Menu [MenuItemName=" + menuItemName + ", MenuItemPrice="
-				+ menuItemPrice + ", meid=" + meid + ", mid=" + mid + "]";
+		return "Menu [MenuItemName=" + menuItemName + ", MenuItemPrice=" + menuItemPrice + ", meid=" + meid + ", mid=" + mid + "]";
 	}
-	
-	
-	
 
 }
