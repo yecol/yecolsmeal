@@ -73,6 +73,8 @@
 	</div>
 	<!--wrapper-->
 	<div id="interactive" class="hidden">
+	<div id="u_lat"><s:property value='location.getLatitude()' /></div>
+	<div id="u_lng"><s:property value='location.getLongitude()' /></div>
 
 	</div>
 </body>
