@@ -305,3 +305,8 @@ table#orderInfo td {
 	margin-right: 5px;
 	margin-left: 5px;
 }
+div#detectGeo{
+	color: #C00;
+	font-size:12px;
+	padding-left:20px;
+}
