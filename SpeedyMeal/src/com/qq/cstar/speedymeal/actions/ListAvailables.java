@@ -1,11 +1,9 @@
-ï»¿package com.qq.cstar.speedymeal.actions;
+package com.qq.cstar.speedymeal.actions;
 
-import java.io.IOException;
-import java.io.PrintWriter;
+
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.convention.annotation.Result;
@@ -20,41 +18,29 @@ import com.qq.cstar.speedymeal.service.ProcessService;
 
 @Results( { @Result(name = "success", location = "/list.jsp")})
 public class ListAvailables extends ActionSupport {
-	// è·å¾—å¯ç”¨çš„å•†é“ºä¿¡æ¯åˆ—è¡¨
+	// »ñµÃ¿ÉÓÃµÄÉÌÆÌĞÅÏ¢ÁĞ±í
 
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Branch> availableBranches;
 	private ProcessService processService = new ProcessService();
 	private HttpServletRequest request;
-	private HttpServletResponse response;
 	private User user;
 
 	public String loginedList() {
+		// ÒÑµÇÂ¼ÓÃ»§µÄ¿É´ïÍâÂôĞÅÏ¢ËÑË÷
 		user = (User) ActionContext.getContext().getSession().get("SpeedyMeal_Session_User");
-		availableBranches = processService.getAvailableBranches(user.getLocation());		
+		availableBranches = processService.getAvailableBranches(user.getLocation());
 		return SUCCESS;
 	}
 
-
 	public String unLoginList() {
+		// Î´µÇÂ¼ÓÃ»§µÄ¿É´ïÍâÂôĞÅÏ¢ËÑË÷
 		request = ServletActionContext.getRequest();
-		double latitude=Double.parseDouble(request.getParameter("l_lat").trim());
-		double longitude=Double.parseDouble(request.getParameter("l_lon").trim());
-		
+		double latitude = Double.parseDouble(request.getParameter("l_lat").trim());
+		double longitude = Double.parseDouble(request.getParameter("l_lon").trim());
+
 		availableBranches = processService.getAvailableBranches(new Location(latitude, longitude));
-		response = ServletActionContext.getResponse();
-		response.setContentType("text/html");
-		response.setCharacterEncoding("utf-8");
-		PrintWriter out = null;
-		try {
-			out = response.getWriter();	
-			
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
-		out.print(availableBranches.toString());		
-		return null;
+		return SUCCESS;
 	}
 
 	public void setUser(User user) {
@@ -64,12 +50,10 @@ public class ListAvailables extends ActionSupport {
 	public User getUser() {
 		return this.user;
 	}
-	
 
 	public ArrayList<Branch> getAvailableBranches() {
 		return availableBranches;
 	}
-
 
 	public void setAvailableBranches(ArrayList<Branch> availableBranches) {
 		this.availableBranches = availableBranches;
