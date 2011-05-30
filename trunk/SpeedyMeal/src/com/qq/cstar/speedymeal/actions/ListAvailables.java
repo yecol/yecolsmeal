@@ -1,6 +1,5 @@
 package com.qq.cstar.speedymeal.actions;
 
-
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +15,7 @@ import com.qq.cstar.speedymeal.entity.Location;
 import com.qq.cstar.speedymeal.entity.User;
 import com.qq.cstar.speedymeal.service.ProcessService;
 
-@Results( { @Result(name = "success", location = "/list.jsp")})
+@Results( { @Result(name = "success", location = "/list.jsp") })
 public class ListAvailables extends ActionSupport {
 	// 获得可用的商铺信息列表
 
@@ -25,11 +24,13 @@ public class ListAvailables extends ActionSupport {
 	private ProcessService processService = new ProcessService();
 	private HttpServletRequest request;
 	private User user;
+	private Location location;
 
 	public String loginedList() {
 		// 已登录用户的可达外卖信息搜索
 		user = (User) ActionContext.getContext().getSession().get("SpeedyMeal_Session_User");
 		availableBranches = processService.getAvailableBranches(user.getLocation());
+		location = user.getLocation();
 		return SUCCESS;
 	}
 
@@ -40,6 +41,7 @@ public class ListAvailables extends ActionSupport {
 		double longitude = Double.parseDouble(request.getParameter("l_lon").trim());
 
 		availableBranches = processService.getAvailableBranches(new Location(latitude, longitude));
+		location = new Location(latitude, longitude);
 		return SUCCESS;
 	}
 
@@ -49,6 +51,14 @@ public class ListAvailables extends ActionSupport {
 
 	public User getUser() {
 		return this.user;
+	}
+	
+	public Location getLocation() {
+		return location;
+	}
+
+	public void setLocation(Location location) {
+		this.location = location;
 	}
 
 	public ArrayList<Branch> getAvailableBranches() {
