@@ -31,13 +31,14 @@ public class MenuDao {
 				menu.setMid(mid);
 				menus.add(menu);
 			}
-			dbc.freeConn();
+			rs.close();
+			ps.close();
 		} catch (SQLException e) {
-			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
-			dbc.freeConn();
 			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
 		}
 		return menus;
 	}
@@ -53,18 +54,17 @@ public class MenuDao {
 
 			System.out.println(ps.toString());
 			int affectedItem = ps.executeUpdate();
-			
+
 			if (affectedItem == 1) {
-				dbc.freeConn();
+				ps.close();
 				return true;
 			}
-			dbc.freeConn();						
 		} catch (SQLException e) {
-			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
-			dbc.freeConn();
 			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
 		}
 		return false;
 	}
@@ -75,18 +75,17 @@ public class MenuDao {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
 			ps.setInt(1, meid);
 			int affectedItem = ps.executeUpdate();
-			dbc.freeConn();
 			if (affectedItem == 1) {
-				dbc.freeConn();
+				ps.close();
 				return true;
 			}
-			dbc.freeConn();
+			ps.close();
 		} catch (SQLException e) {
-			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
-			dbc.freeConn();
 			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
 		}
 		return false;
 

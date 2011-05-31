@@ -34,18 +34,16 @@ public class UserDao {
 
 			System.out.println(ps.toString());
 			int affectedItem = ps.executeUpdate();
-			dbc.freeConn();
+			ps.close();
 			if (affectedItem == 1) {
-				dbc.freeConn();
 				return user;
 			}
-			dbc.freeConn();
 		} catch (SQLException e) {
-			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
-			dbc.freeConn();
 			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
 		}
 		return null;
 	}
@@ -63,17 +61,17 @@ public class UserDao {
 			ps.setString(7, Serialize.writeObject(user.getLocation()));
 			ps.setString(8, user.getAddress());
 			ps.setInt(9, user.getUid());
-
 			int affectedItem = ps.executeUpdate();
+			ps.close();
 			if (affectedItem == 1) {
-				dbc.freeConn();
 				return user;
 			}
-			dbc.freeConn();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
 		}
 		return null;
 	}
@@ -99,16 +97,15 @@ public class UserDao {
 				u.setStatus(rs.getInt(7));
 				u.setLocation((Location) Serialize.readObject(rs.getString(8)));
 				u.setAddress(rs.getString(9));
-				dbc.freeConn();
+				ps.close();
 				return u;
 			}
-			dbc.freeConn();
 		} catch (SQLException e) {
-			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
-			dbc.freeConn();
 			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
 		}
 		return null;
 	}
@@ -133,13 +130,13 @@ public class UserDao {
 				userList.add(u);
 				System.out.println(u.toString());
 			}
-			dbc.freeConn();
+			rs.close();
 		} catch (SQLException e) {
-			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
-			dbc.freeConn();
 			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
 		}
 		return userList;
 	}

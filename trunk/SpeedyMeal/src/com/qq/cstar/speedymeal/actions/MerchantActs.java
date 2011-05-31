@@ -19,8 +19,11 @@ import com.qq.cstar.speedymeal.entity.Menu;
 import com.qq.cstar.speedymeal.entity.Merchant;
 import com.qq.cstar.speedymeal.service.MerchantService;
 
-@Results( { @Result(name = "success", location = "/mcMgr.jsp"), @Result(name = "register", location = "/merRegister.jsp"),
-		@Result(name = "login", location = "/merLogin.jsp"), @Result(name = "addBranch", location = "/mcAddBranch.jsp"), @Result(name = "logout", location = "/index.jsp") })
+@Results( { @Result(name = "success", location = "/mcMgr.jsp"),
+		@Result(name = "register", location = "/merRegister.jsp"),
+		@Result(name = "login", location = "/merLogin.jsp"),
+		@Result(name = "addBranch", location = "/mcAddBranch.jsp"),
+		@Result(name = "logout", location = "/index.jsp") })
 public class MerchantActs extends ActionSupport {
 	/**
 	 * 
@@ -35,10 +38,17 @@ public class MerchantActs extends ActionSupport {
 	public ArrayList<Branch> branches;
 
 	public String login() {
+		if (merchant == null) {
+			System.out.println("debug info: merchant == null");
+			return null;
+		}
+
 		// 商户登录
-		merchant = merchantService.loginByUsername(merchant.getUsername(), merchant.getPwd());
+		merchant = merchantService.loginByUsername(merchant.getUsername(),
+				merchant.getPwd());
 		if (merchant != null) {
-			ActionContext.getContext().getSession().put("SpeedyMeal_Session_Merchant", merchant);
+			ActionContext.getContext().getSession().put(
+					"SpeedyMeal_Session_Merchant", merchant);
 			branches = merchantService.getAllBranches(merchant.getMid());
 			return SUCCESS;
 		} else {
@@ -46,15 +56,17 @@ public class MerchantActs extends ActionSupport {
 			return LOGIN;
 		}
 	}
-	
-	public String logout(){
-		ActionContext.getContext().getSession().put("SpeedyMeal_Session_Merchant", null);
+
+	public String logout() {
+		ActionContext.getContext().getSession().put(
+				"SpeedyMeal_Session_Merchant", null);
 		return "logout";
 	}
 
 	public String mgr() {
 		// 商户登录后回到管理页面
-		merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
+		merchant = (Merchant) ActionContext.getContext().getSession().get(
+				"SpeedyMeal_Session_Merchant");
 		branches = merchantService.getAllBranches(merchant.getMid());
 		return SUCCESS;
 	}
@@ -63,7 +75,8 @@ public class MerchantActs extends ActionSupport {
 		// 商户注册
 		merchant = merchantService.registerMerchant(merchant);
 		if (merchant != null) {
-			ActionContext.getContext().getSession().put("SpeedyMeal_Session_Merchant", merchant);
+			ActionContext.getContext().getSession().put(
+					"SpeedyMeal_Session_Merchant", merchant);
 			return SUCCESS;
 		} else {
 			addActionError("注册失败");
@@ -72,20 +85,28 @@ public class MerchantActs extends ActionSupport {
 	}
 
 	public String addBranch() {
-		Merchant merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
+		Merchant merchant = (Merchant) ActionContext.getContext().getSession()
+				.get("SpeedyMeal_Session_Merchant");
 		HttpServletRequest request = ServletActionContext.getRequest();
+		if (request == null) {
+			System.out.println("Debug info: request == null");
+			return null;
+		}
 		branch = new Branch();
 		branch.setBranchName(request.getParameter("branchName").trim());
 		branch.setBranchAddress(request.getParameter("branchAddress").trim());
 		branch.setBranchPhone(request.getParameter("branchPhone").trim());
-		branch.setBranchLocation(new Location(Double.parseDouble(request.getParameter("bla").trim()), Double.parseDouble(request.getParameter("blo")
-				.trim())));
+		branch.setBranchLocation(new Location(Double.parseDouble(request
+				.getParameter("bla").trim()), Double.parseDouble(request
+				.getParameter("blo").trim())));
 		branch.setMid(merchant.getMid());
-		branch.setAreaType(Integer.parseInt(request.getParameter("areaType").trim()));
+		branch.setAreaType(Integer.parseInt(request.getParameter("areaType")
+				.trim()));
 		String[] vertexs = request.getParameter("vertexs").trim().split(",");
 		ArrayList<Location> branchDeliveryArea = new ArrayList<Location>();
 		for (int i = 0; i < vertexs.length; i += 2) {
-			branchDeliveryArea.add(new Location(Double.parseDouble(vertexs[i]), Double.parseDouble(vertexs[i + 1])));
+			branchDeliveryArea.add(new Location(Double.parseDouble(vertexs[i]),
+					Double.parseDouble(vertexs[i + 1])));
 		}
 		branch.setBranchDeliveryArea(branchDeliveryArea);
 
@@ -101,7 +122,12 @@ public class MerchantActs extends ActionSupport {
 	}
 
 	public String addMenu() {
-		Merchant merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
+		if (menu == null) {
+			System.out.println("Debug info: menu == null");
+			return null;
+		}
+		Merchant merchant = (Merchant) ActionContext.getContext().getSession()
+				.get("SpeedyMeal_Session_Merchant");
 		ArrayList<Menu> menus;
 		if (merchantService.addNewMenu(menu) == true) {
 			menus = merchantService.getMenus(merchant.getMid());
@@ -117,14 +143,20 @@ public class MerchantActs extends ActionSupport {
 
 	public String delBranch() {
 		request = ServletActionContext.getRequest();
+		if (request == null) {
+			System.out.println("Debug info: request == null");
+			return null;
+		}
 		int bid = Integer.parseInt(request.getParameter("bid").trim());
 		boolean delSuccess = merchantService.delBranch(bid);
 		if (delSuccess = false) {
 			addActionError("删除分店信息失败！");
 		}
 		// 重新读取显示分店信息
-		merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
-		ArrayList<Branch> branches = merchantService.getAllBranches(merchant.getMid());
+		merchant = (Merchant) ActionContext.getContext().getSession().get(
+				"SpeedyMeal_Session_Merchant");
+		ArrayList<Branch> branches = merchantService.getAllBranches(merchant
+				.getMid());
 		response = ServletActionContext.getResponse();
 		// 调用显示模块
 		DispBranches.display(response, branches);
@@ -140,7 +172,8 @@ public class MerchantActs extends ActionSupport {
 			addActionError("删除菜单信息失败！");
 		}
 		// 重新读取显示分店信息
-		merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
+		merchant = (Merchant) ActionContext.getContext().getSession().get(
+				"SpeedyMeal_Session_Merchant");
 		ArrayList<Menu> menus = merchantService.getMenus(merchant.getMid());
 		response = ServletActionContext.getResponse();
 		// 调用显示模块

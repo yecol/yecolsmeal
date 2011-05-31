@@ -13,8 +13,10 @@ import com.qq.cstar.speedymeal.entity.Location;
 import com.qq.cstar.speedymeal.entity.User;
 import com.qq.cstar.speedymeal.service.UserService;
 
-@Results( { @Result(name = "success", location = "/usMgr.jsp"), @Result(name = "login", location = "/login.jsp"),
-		@Result(name = "register", location = "/register.jsp"), @Result(name = "index", location = "/index.jsp") })
+@Results( { @Result(name = "success", location = "/usMgr.jsp"),
+		@Result(name = "login", location = "/login.jsp"),
+		@Result(name = "register", location = "/register.jsp"),
+		@Result(name = "index", location = "/index.jsp") })
 public class UserActs extends ActionSupport {
 
 	/**
@@ -27,10 +29,17 @@ public class UserActs extends ActionSupport {
 	private HttpServletRequest request;
 
 	public String login() {
+		if (user == null) {
+			System.out.println("debug info: user == null");
+			return null;
+		}
 		// 用户登录
 		user = userService.loginByUsername(user.getUsername(), user.getPwd());
 		if (user != null) {
-			ActionContext.getContext().getSession().put("SpeedyMeal_Session_User", user);
+
+			ActionContext.getContext().getSession().put(
+					"SpeedyMeal_Session_User", user);
+			System.out.println("return SUCCESS!");
 			return SUCCESS;
 		} else {
 			addActionError("用户名或密码错误");
@@ -40,20 +49,28 @@ public class UserActs extends ActionSupport {
 	}
 
 	public String logout() {
-		ActionContext.getContext().getSession().put("SpeedyMeal_Session_User", null);
+		ActionContext.getContext().getSession().put("SpeedyMeal_Session_User",
+				null);
 		return "index";
 	}
 
 	public String register() {
+		if (request == null) {
+			System.out.println("Debug info: request == null");
+			return null;
+		}
 		// 用户注册
 		request = ServletActionContext.getRequest();
-		double latitude = Double.parseDouble(request.getParameter("r_lat").trim());
-		double longitude = Double.parseDouble(request.getParameter("r_lon").trim());
+		double latitude = Double.parseDouble(request.getParameter("r_lat")
+				.trim());
+		double longitude = Double.parseDouble(request.getParameter("r_lon")
+				.trim());
 
 		user.setLocation(new Location(latitude, longitude));
 		user = userService.registerUser(user);
 		if (user != null) {
-			ActionContext.getContext().getSession().put("SpeedyMeal_Session_User", user);
+			ActionContext.getContext().getSession().put(
+					"SpeedyMeal_Session_User", user);
 			return SUCCESS;
 		} else {
 			addActionError("注册失败！请重新注册!");

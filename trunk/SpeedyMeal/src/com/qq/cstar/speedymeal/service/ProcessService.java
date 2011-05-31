@@ -14,6 +14,9 @@ public class ProcessService {
 		ArrayList<Branch> branches = merchantDao.getAllBranches();
 
 		ArrayList<Branch> result = new ArrayList<Branch>();
+		if (branches == null) {
+			return result;
+		}
 
 		ArrayList<Location> vertexs = null;
 		for (Branch branch : branches) {

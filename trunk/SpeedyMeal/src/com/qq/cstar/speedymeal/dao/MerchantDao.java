@@ -11,6 +11,7 @@ import com.qq.cstar.speedymeal.entity.Menu;
 import com.qq.cstar.speedymeal.entity.Merchant;
 import com.qq.cstar.speedymeal.util.MD5;
 import com.qq.cstar.speedymeal.util.Serialize;
+import com.sun.org.apache.regexp.internal.RE;
 
 public class MerchantDao {
 
@@ -38,19 +39,20 @@ public class MerchantDao {
 				m.setCompanyName(rs.getString(7));
 				m.setStatus(rs.getInt(8));
 				m.setCredits(rs.getInt(9));
-				dbc.freeConn();
+				rs.close();
+				ps.close();
 				return m;
 			}
-			dbc.freeConn();
+			rs.close();
+			ps.close();
 		} catch (SQLException e) {
-			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
-			dbc.freeConn();
 			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
 		}
 		return null;
-
 	}
 
 	public Merchant insertMerchant(Merchant merchant) {
@@ -68,17 +70,16 @@ public class MerchantDao {
 			ps.setInt(8, merchant.getCredits());
 
 			int affectedItem = ps.executeUpdate();
+			ps.close();
 			if (affectedItem == 1) {
-				dbc.freeConn();
 				return merchant;
 			}
-			dbc.freeConn();
 		} catch (SQLException e) {
-			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
-			dbc.freeConn();
 			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
 		}
 		return null;
 	}
@@ -104,7 +105,8 @@ public class MerchantDao {
 				m.setCredits(rs.getInt(9));
 
 				ArrayList<Branch> branches = new ArrayList<Branch>();
-				PreparedStatement ps4Branch = dbc.getConn().prepareStatement(sql4Branch);
+				PreparedStatement ps4Branch = dbc.getConn().prepareStatement(
+						sql4Branch);
 				ps4Branch.setInt(1, mid);
 				ResultSet rs4Branch = ps4Branch.executeQuery();
 
@@ -115,23 +117,29 @@ public class MerchantDao {
 					b.setBranchName(rs4Branch.getString("branchName"));
 					b.setBranchAddress(rs4Branch.getString("branchAddress"));
 					b.setBranchPhone(rs4Branch.getString("branchPhone"));
-					b.setBranchLocation((Location) Serialize.readObject((rs4Branch.getString("branchLocation"))));
-					b.setBranchDeliveryArea((ArrayList<Location>) Serialize.readObject((rs4Branch.getString("branchDeliveryArea"))));
+					b
+							.setBranchLocation((Location) Serialize
+									.readObject((rs4Branch
+											.getString("branchLocation"))));
+					b.setBranchDeliveryArea((ArrayList<Location>) Serialize
+							.readObject((rs4Branch
+									.getString("branchDeliveryArea"))));
 					branches.add(b);
 				}
-
 				rs4Branch.close();
 				m.setBranches(branches);
-				dbc.freeConn();
+				rs.close();
+				ps.close();
 				return m;
 			}
 			rs.close();
+			ps.close();
 		} catch (SQLException e) {
-			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
-			dbc.freeConn();
 			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
 		}
 		return null;
 	}
@@ -147,21 +155,22 @@ public class MerchantDao {
 			ps.setString(3, branch.getBranchAddress());
 			ps.setString(4, branch.getBranchPhone());
 			ps.setString(5, Serialize.writeObject(branch.getBranchLocation()));
-			ps.setString(6, Serialize.writeObject(branch.getBranchDeliveryArea()));
+			ps.setString(6, Serialize.writeObject(branch
+					.getBranchDeliveryArea()));
 			ps.setInt(7, branch.getAreaType());
 
 			int affectedItem = ps.executeUpdate();
 			if (affectedItem == 1) {
-				dbc.freeConn();
+				ps.close();
 				return true;
 			}
-			dbc.freeConn();
+
 		} catch (SQLException e) {
-			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
-			dbc.freeConn();
 			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
 		}
 		return false;
 	}
@@ -171,14 +180,16 @@ public class MerchantDao {
 		try {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
-			dbc.freeConn();
-			return FilledFromResultset(rs);
+			ArrayList<Branch> result = FilledFromResultset(rs);
+			rs.close();
+			ps.close();
+			return result;
 		} catch (SQLException e) {
-			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
-			dbc.freeConn();
 			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
 		}
 		return null;
 	}
@@ -190,26 +201,31 @@ public class MerchantDao {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
 			ps.setInt(1, mid);
 			ResultSet rs = ps.executeQuery();
-			dbc.freeConn();
-			return FilledFromResultset(rs);
+			ArrayList<Branch> result = FilledFromResultset(rs);
+			rs.close();
+			ps.close();
+			return result;
 		} catch (SQLException e) {
-			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
-			dbc.freeConn();
 			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
 		}
 		return null;
 	}
 
-	private ArrayList<Branch> FilledFromResultset(ResultSet rs) throws SQLException, Exception {
+	private ArrayList<Branch> FilledFromResultset(ResultSet rs)
+			throws SQLException, Exception {
 		ArrayList<Branch> branches = new ArrayList<Branch>();
 		while (rs.next()) {
 			Branch b = new Branch();
 			b.setBid(rs.getInt("bid"));
 			b.setBranchAddress(rs.getString("branchAddress"));
-			b.setBranchDeliveryArea((ArrayList<Location>) Serialize.readObject(rs.getString("branchDeliveryArea")));
-			b.setBranchLocation((Location) Serialize.readObject(rs.getString("branchLocation")));
+			b.setBranchDeliveryArea((ArrayList<Location>) Serialize
+					.readObject(rs.getString("branchDeliveryArea")));
+			b.setBranchLocation((Location) Serialize.readObject(rs
+					.getString("branchLocation")));
 			b.setBranchName(rs.getString("branchName"));
 			b.setBranchPhone(rs.getString("branchPhone"));
 			b.setMid(rs.getInt("mid"));
@@ -228,14 +244,15 @@ public class MerchantDao {
 
 			int affectedItem = ps.executeUpdate();
 			if (affectedItem == 1) {
-				dbc.freeConn();
+				ps.close();
 				return true;
 			}
-			dbc.freeConn();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (Exception e) {
 			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
 		}
 		return false;
 	}
@@ -259,13 +276,12 @@ public class MerchantDao {
 			b.setMenus(menus);
 			rs.close();
 			ps.close();
-			dbc.freeConn();
 		} catch (SQLException e) {
-			dbc.freeConn();
 			e.printStackTrace();
 		} catch (Exception e) {
-			dbc.freeConn();
 			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
 		}
 		return;
 	}

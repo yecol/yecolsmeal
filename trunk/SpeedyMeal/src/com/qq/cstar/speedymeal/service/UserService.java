@@ -13,11 +13,16 @@ public class UserService {
 		User user=userDao.getUniqueUserByName(username);
 		if(user!=null&&user.getPwd().equals(MD5.getMD5(pwd))){
 			user.setPwd(null);
+			System.out.println("登录成功");
 			return user;
 			//当用户名和密码正确时登录成功，设空密码并返回对象
 		}
-		else return null;
-		//登录失败
+		else {
+			System.out.println("登录失败");
+			//登录失败
+			return null;
+		}
+		
 	}
 	
 	public User registerUser(User user){

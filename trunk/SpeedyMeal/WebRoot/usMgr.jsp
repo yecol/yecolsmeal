@@ -2,7 +2,7 @@
 	pageEncoding="utf-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
 <jsp:include page="WEB-INF/include/HTMLHead.jsp" />
-<script src="js/showMerchantBranches.js"></script>
+<script src="js/ditu.js"></script>
 <body onload="init()">
 	<div id="wrapper">
 		<jsp:include page="WEB-INF/include/Head.jsp" />

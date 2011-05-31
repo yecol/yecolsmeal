@@ -12,7 +12,7 @@
 	});
 
 	var scaleControl = new QQMap.QScaleControl( {
-		align : QQMap.QALIGN.BOTTOM_RIGHT,
+		align : QQMap.QALIGN.BOTTOM_LEFT,
 		margin : new QQMap.QSize(85, 15),
 		map : map
 	});
@@ -30,18 +30,19 @@
 
 	if (document.getElementById("u_lat")) {
 		var u_loc = new QQMap.QLatLng(
-				document.getElementById("u_lat").innerHTML, 
-				document.getElementById("u_lng").innerHTML);
+				document.getElementById("u_lat").innerHTML, document
+						.getElementById("u_lng").innerHTML);
 		var icon = new QQMap.QMarkerImage('images/marker.png');
 		var locMark = new QQMap.QMarker( {
 			position : u_loc,
-			icon: icon,
-			map: map
-		});		
+			icon : icon,
+			map : map
+		});
 	}
 
 	var latLngBounds = new QQMap.QLatLngBounds(); // 显示最佳比例
 	for ( var i = 1;; i = i + 1) {
+
 		if (document.getElementById(i + "_ls_h_mer")) {
 
 			vertexs_str = document.getElementById(i + "_dev_vertexs").innerHTML;
@@ -150,6 +151,8 @@
 			}
 
 		} else {
+			if (i == 1)
+				return;
 			break;
 		}
 	}
