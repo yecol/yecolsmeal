@@ -23,12 +23,11 @@
 	var str = "";
 	var vertexs_arr = new Array();
 	var vertexs_str;
-//	var marker;
-	var markers = new Array();
-//	var info;
-	var infos = new Array();
+
+	var info = new QQMap.QInfoWindow( {
+		map : map
+	});
 	for ( var i = 1;; i = i + 1) {
-		// alert(i);
 		if (document.getElementById(i + "_ls_h_mer")) {
 
 			vertexs_str = document.getElementById(i + "_dev_vertexs").innerHTML;
@@ -36,7 +35,7 @@
 			if (vertexs_str == "")
 				continue;
 			vertexs_str = vertexs_str.substring(1, vertexs_str.length - 1); // delete
-																			// '[]'
+			// '[]'
 			if (vertexs_str == "")
 				continue;
 
@@ -45,30 +44,50 @@
 
 			var center;
 			if (document.getElementById(i + "_location")) {
-				var location_arr = document.getElementById(i + "_location").innerHTML.trim().split(",");
+				var location_arr = document.getElementById(i + "_location").innerHTML
+						.trim().split(",");
 				center = new QQMap.QLatLng(location_arr[0], location_arr[1]);
+				
+				(function(pos, mer, bra, dis) {  // 闭包
+					var marker = new QQMap.QMarker( {
+						position : pos,
+						map : map
+					});
+					
+					QQMap.QEvent.addListener(marker, 'click', function() {
+				//		info.setAnimation(QQMap.QAnimation.POP);
+						info.open('<div>' + mer + '</div>'
+								+'<div>' + bra + '</div>'
+								+'<div>' + dis + '</div>', marker);
+					});
+				})(center, document.getElementById(i+"_ls_h_mer").innerHTML,
+						document.getElementById(i+"_ls_h_bra").innerHTML,
+						document.getElementById(i+"_ls_h_dis").innerHTML);
+				
+				
 			} else {
-				center = new QQMap.QLatLng(document.getElementById(i
-						+ "_lat").innerHTML.trim(), document.getElementById(i
-						+ "_lon").innerHTML.trim());
+				center = new QQMap.QLatLng(
+						document.getElementById(i + "_lat").innerHTML.trim(),
+						document.getElementById(i + "_lon").innerHTML.trim());
+				
+				(function(pos, mer, bra, dis) {  // 闭包
+					var marker = new QQMap.QMarker( {
+						position : pos,
+						map : map
+					});
+					
+					QQMap.QEvent.addListener(marker, 'click', function() {
+				//		info.setAnimation(QQMap.QAnimation.POP);
+						info.open('<div>' + mer + '</div>'
+								+'<div>' + bra + '</div>'
+								+'<div>' + dis + '</div>', marker);
+					});
+				})(center, document.getElementById(i+"_ls_h_mer").innerHTML,
+						document.getElementById(i+"_ls_h_bra").innerHTML,
+						document.getElementById(i+"_ls_h_dis").innerHTML);
 			}
 
-			var marker = new QQMap.QMarker( {
-				position : center,
-				map : map
-			});
-		//	markers.push(marker);
-			var info = new QQMap.QInfoWindow({
-				  position : center,
-	              map: map
-	          });
-	//		infos.push(info);
-//	        QQMap.QEvent.addListener(marker, 'click', function() {
-//	            info.open('<div>标记信息</div>',
-//	            		  marker); 
-//	        });
-
-
+			
 			// var type = document.getElementById(i + "_type").innerHTML.trim();
 			if (vertexs_arr.length == 2) {
 				var radius = map.getDistance(center, new QQMap.QLatLng(
@@ -80,6 +99,7 @@
 					map : map
 				});
 			} else {
+		//		alert(vertexs_arr);
 				var pgonPath = new Array();
 				for ( var j = 0; j < vertexs_arr.length; j = j + 2) {
 					pgonPath.push(new QQMap.QLatLng(vertexs_arr[j].trim(),
