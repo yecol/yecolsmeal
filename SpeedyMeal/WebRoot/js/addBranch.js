@@ -194,9 +194,9 @@
 	// 右键菜单
 	var contextMenu = new QQMap.QContextMenuControl();
 	contextMenu.setMap(map);
-	contextMenu.addItem('绘制圆', drawCircleFunc);
+	contextMenu.addItem('绘制圆形区域', drawCircleFunc);
 	contextMenu.addSeparator();
-	contextMenu.addItem('绘制多边形', drawPolygonFunc);
+	contextMenu.addItem('绘制多边形区域', drawPolygonFunc);
 	contextMenu.addTarget(map);
 
 	function drawCircleFunc() {
