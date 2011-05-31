@@ -28,6 +28,18 @@
 		map : map
 	});
 
+	if (document.getElementById("u_lat")) {
+		var u_loc = new QQMap.QLatLng(
+				document.getElementById("u_lat").innerHTML, 
+				document.getElementById("u_lng").innerHTML);
+		var icon = new QQMap.QMarkerImage('images/marker.png');
+		var locMark = new QQMap.QMarker( {
+			position : u_loc,
+			icon: icon,
+			map: map
+		});		
+	}
+
 	var latLngBounds = new QQMap.QLatLngBounds(); // 显示最佳比例
 	for ( var i = 1;; i = i + 1) {
 		if (document.getElementById(i + "_ls_h_mer")) {
@@ -49,10 +61,7 @@
 				var location_arr = document.getElementById(i + "_location").innerHTML
 						.trim().split(",");
 				center = new QQMap.QLatLng(location_arr[0], location_arr[1]);
-				
-				var u_loc = new QQMap.QLatLng(
-						document.getElementById("u_lat").innerHTML, document
-								.getElementById("u_lng").innerHTML);
+
 				document.getElementById(i + "_ls_h_dis").innerHTML = "距离您的位置大约有"
 						+ map.getDistance(u_loc, center).toFixed(0) + "米";
 
@@ -68,9 +77,11 @@
 									+ '</div>' + '<div>' + dis + '</div>',
 									marker);
 						});
-				})(center, document.getElementById(i + "_ls_h_mer").innerHTML.trim(),
-						document.getElementById(i + "_ls_h_bra").innerHTML.trim(),
-						document.getElementById(i + "_ls_h_dis").innerHTML.trim());
+				})(center, document.getElementById(i + "_ls_h_mer").innerHTML
+						.trim(),
+						document.getElementById(i + "_ls_h_bra").innerHTML
+								.trim(), document.getElementById(i
+								+ "_ls_h_dis").innerHTML.trim());
 
 			} else {
 				center = new QQMap.QLatLng(
@@ -89,20 +100,27 @@
 									+ '</div>' + '<div>' + dis + '</div>',
 									marker);
 						});
-				})(center, document.getElementById(i + "_ls_h_mer").innerHTML.trim(),
-						document.getElementById(i + "_ls_h_bra").innerHTML.trim(),
-						document.getElementById(i + "_ls_h_dis").innerHTML.trim());
+				})(center, document.getElementById(i + "_ls_h_mer").innerHTML
+						.trim(),
+						document.getElementById(i + "_ls_h_bra").innerHTML
+								.trim(), document.getElementById(i
+								+ "_ls_h_dis").innerHTML.trim());
 			}
 
 			// var type = document.getElementById(i + "_type").innerHTML.trim();
 			if (vertexs_arr.length == 2) {
-				var tude_radius = Math.sqrt(Math.pow(vertexs_arr[0].trim()-center.getLat(), 2)
-						+ Math.pow(vertexs_arr[1].trim()-center.getLng(), 2));
-				latLngBounds.extend(new QQMap.QLatLng(center.getLat()+tude_radius,center.getLng()+tude_radius)); // 加四个对称点
-				latLngBounds.extend(new QQMap.QLatLng(center.getLat()+tude_radius,center.getLng()-tude_radius));
-				latLngBounds.extend(new QQMap.QLatLng(center.getLat()-tude_radius,center.getLng()+tude_radius));
-				latLngBounds.extend(new QQMap.QLatLng(center.getLat()-tude_radius,center.getLng()-tude_radius));
-				
+				var tude_radius = Math.sqrt(Math.pow(vertexs_arr[0].trim()
+						- center.getLat(), 2)
+						+ Math.pow(vertexs_arr[1].trim() - center.getLng(), 2));
+				latLngBounds.extend(new QQMap.QLatLng(center.getLat()
+						+ tude_radius, center.getLng() + tude_radius)); // 加四个对称点
+				latLngBounds.extend(new QQMap.QLatLng(center.getLat()
+						+ tude_radius, center.getLng() - tude_radius));
+				latLngBounds.extend(new QQMap.QLatLng(center.getLat()
+						- tude_radius, center.getLng() + tude_radius));
+				latLngBounds.extend(new QQMap.QLatLng(center.getLat()
+						- tude_radius, center.getLng() - tude_radius));
+
 				var radius = map.getDistance(center, new QQMap.QLatLng(
 						vertexs_arr[0].trim(), vertexs_arr[1].trim()));
 
