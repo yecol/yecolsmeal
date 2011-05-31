@@ -27,6 +27,8 @@
 	var info = new QQMap.QInfoWindow( {
 		map : map
 	});
+
+	var latLngBounds = new QQMap.QLatLngBounds(); // 显示最佳比例
 	for ( var i = 1;; i = i + 1) {
 		if (document.getElementById(i + "_ls_h_mer")) {
 
@@ -48,48 +50,55 @@
 						.trim().split(",");
 				center = new QQMap.QLatLng(location_arr[0], location_arr[1]);
 				
-				(function(pos, mer, bra, dis) {  // 闭包
+				var u_loc = new QQMap.QLatLng(
+						document.getElementById("u_lat").innerHTML, document
+								.getElementById("u_lng").innerHTML);
+				document.getElementById(i + "_ls_h_dis").innerHTML = "距离您的位置大约有"
+						+ map.getDistance(u_loc, center).toFixed(0) + "米";
+
+				(function(pos, mer, bra, dis) { // 闭包
 					var marker = new QQMap.QMarker( {
 						position : pos,
 						map : map
 					});
-					
+
 					QQMap.QEvent.addListener(marker, 'click', function() {
-				//		info.setAnimation(QQMap.QAnimation.POP);
-						info.open('<div>' + mer + '</div>'
-								+'<div>' + bra + '</div>'
-								+'<div>' + dis + '</div>', marker);
-					});
-				})(center, document.getElementById(i+"_ls_h_mer").innerHTML,
-						document.getElementById(i+"_ls_h_bra").innerHTML,
-						document.getElementById(i+"_ls_h_dis").innerHTML);
-				
-				
+						// info.setAnimation(QQMap.QAnimation.POP);
+							info.open('<div>' + mer + '</div>' + '<div>' + bra
+									+ '</div>' + '<div>' + dis + '</div>',
+									marker);
+						});
+				})(center, document.getElementById(i + "_ls_h_mer").innerHTML.trim(),
+						document.getElementById(i + "_ls_h_bra").innerHTML.trim(),
+						document.getElementById(i + "_ls_h_dis").innerHTML.trim());
+
 			} else {
 				center = new QQMap.QLatLng(
 						document.getElementById(i + "_lat").innerHTML.trim(),
 						document.getElementById(i + "_lon").innerHTML.trim());
-				
-				(function(pos, mer, bra, dis) {  // 闭包
+
+				(function(pos, mer, bra, dis) { // 闭包
 					var marker = new QQMap.QMarker( {
 						position : pos,
 						map : map
 					});
-					
+
 					QQMap.QEvent.addListener(marker, 'click', function() {
-				//		info.setAnimation(QQMap.QAnimation.POP);
-						info.open('<div>' + mer + '</div>'
-								+'<div>' + bra + '</div>'
-								+'<div>' + dis + '</div>', marker);
-					});
-				})(center, document.getElementById(i+"_ls_h_mer").innerHTML,
-						document.getElementById(i+"_ls_h_bra").innerHTML,
-						document.getElementById(i+"_ls_h_dis").innerHTML);
+						// info.setAnimation(QQMap.QAnimation.POP);
+							info.open('<div>' + mer + '</div>' + '<div>' + bra
+									+ '</div>' + '<div>' + dis + '</div>',
+									marker);
+						});
+				})(center, document.getElementById(i + "_ls_h_mer").innerHTML.trim(),
+						document.getElementById(i + "_ls_h_bra").innerHTML.trim(),
+						document.getElementById(i + "_ls_h_dis").innerHTML.trim());
 			}
 
-			
 			// var type = document.getElementById(i + "_type").innerHTML.trim();
 			if (vertexs_arr.length == 2) {
+				latLngBounds.extend(new QQMap.QLatLng(vertexs_arr[0].trim(),
+						vertexs_arr[1].trim())); // 还得加几个对称点
+
 				var radius = map.getDistance(center, new QQMap.QLatLng(
 						vertexs_arr[0].trim(), vertexs_arr[1].trim()));
 
@@ -99,9 +108,12 @@
 					map : map
 				});
 			} else {
-		//		alert(vertexs_arr);
+				// alert(vertexs_arr);
 				var pgonPath = new Array();
 				for ( var j = 0; j < vertexs_arr.length; j = j + 2) {
+					latLngBounds.extend(new QQMap.QLatLng(
+							vertexs_arr[j].trim(), vertexs_arr[j + 1].trim()));
+
 					pgonPath.push(new QQMap.QLatLng(vertexs_arr[j].trim(),
 							vertexs_arr[j + 1].trim()));
 				}
@@ -119,6 +131,7 @@
 			break;
 		}
 	}
+	map.fitBounds(latLngBounds)
 
 }
 
