@@ -96,9 +96,13 @@
 
 			// var type = document.getElementById(i + "_type").innerHTML.trim();
 			if (vertexs_arr.length == 2) {
-				latLngBounds.extend(new QQMap.QLatLng(vertexs_arr[0].trim(),
-						vertexs_arr[1].trim())); // 还得加几个对称点
-
+				var tude_radius = Math.sqrt(Math.pow(vertexs_arr[0].trim()-center.getLat(), 2)
+						+ Math.pow(vertexs_arr[1].trim()-center.getLng(), 2));
+				latLngBounds.extend(new QQMap.QLatLng(center.getLat()+tude_radius,center.getLng()+tude_radius)); // 加四个对称点
+				latLngBounds.extend(new QQMap.QLatLng(center.getLat()+tude_radius,center.getLng()-tude_radius));
+				latLngBounds.extend(new QQMap.QLatLng(center.getLat()-tude_radius,center.getLng()+tude_radius));
+				latLngBounds.extend(new QQMap.QLatLng(center.getLat()-tude_radius,center.getLng()-tude_radius));
+				
 				var radius = map.getDistance(center, new QQMap.QLatLng(
 						vertexs_arr[0].trim(), vertexs_arr[1].trim()));
 
