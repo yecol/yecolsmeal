@@ -317,12 +317,18 @@ div#detectGeo{
 .info_single {
 	height: 100px;
 	width: 250px;
-	padding: 15px;
+	padding: 5px;
 }
-.info_single .ls_head .info_h_dis {
+.info_h_dis {
 	color: #000;
 	float: left;
 	height: 20px;
 	margin-top: 3px;
 	width: 225px;
+}
+.info_h_gre{
+	color: #000;
+	float: left;
+	margin-top: 3px;
+	width: 245px;
 }
