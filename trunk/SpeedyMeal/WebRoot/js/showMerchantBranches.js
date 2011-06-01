@@ -1,4 +1,8 @@
-﻿var init = function() {
+﻿var color_size = 3;
+var color = new Array('#FF0000','#00FF00','#0000FF');
+
+
+var init = function() {
 
 	var map = new QQMap.QMap(document.getElementById("container"), {
 		center : new QQMap.QLatLng(39.920, 116.405),
@@ -40,6 +44,7 @@
 		});
 	}
 
+	var c_index = 0;
 	var latLngBounds = new QQMap.QLatLngBounds(); // 显示最佳比例
 	for ( var i = 1;; i = i + 1) {
 
@@ -74,8 +79,8 @@
 
 					QQMap.QEvent.addListener(marker, 'click', function() {
 						// info.setAnimation(QQMap.QAnimation.POP);
-							info.open('<div>' + mer + '</div>' + '<div>' + bra
-									+ '</div>' + '<div>' + dis + '</div>',
+							info.open('<div class="info_title">' + mer + '</div>' + '<div class="info_tel">' + bra
+									+ '</div>' + '<div class="info_addr">' + dis + '</div>',
 									marker);
 						});
 				})(center, document.getElementById(i + "_ls_h_mer").innerHTML
@@ -97,7 +102,7 @@
 
 					QQMap.QEvent.addListener(marker, 'click', function() {
 						// info.setAnimation(QQMap.QAnimation.POP);
-							info.open('<div>' + mer + '</div>' + '<div>' + bra
+							info.open('<div>' + mer + '</div>' + '<div class="">' + bra
 									+ '</div>' + '<div>' + dis + '</div>',
 									marker);
 						});
@@ -125,11 +130,13 @@
 				var radius = map.getDistance(center, new QQMap.QLatLng(
 						vertexs_arr[0].trim(), vertexs_arr[1].trim()));
 
-				var cirle = new QQMap.QCircle( {
+				var circle = new QQMap.QCircle( {
 					center : center,
 					radius : radius,
 					map : map
 				});
+				circle.setStrokeColor(color[c_index]);
+				circle.setFillColor(color[c_index]);
 			} else {
 				// alert(vertexs_arr);
 				var pgonPath = new Array();
@@ -142,12 +149,19 @@
 				}
 
 				var pgon = new QQMap.QPolygon( {
-					strokeColor : '#0000FF',
+				//	strokeColor : '#0000FF',
 					strokeOpacity : 0.5,
 					strokeWeight : 1,
 					path : pgonPath,
 					map : map
 				});
+				pgon.setStrokeColor(color[c_index]);
+				pgon.setFillColor(color[c_index]);
+			}
+			
+			c_index++;
+			if(c_index == color_size){
+				c_index -= color_size;
 			}
 
 		} else {
