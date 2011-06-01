@@ -67,8 +67,9 @@ var init = function() {
 						.trim().split(",");
 				center = new QQMap.QLatLng(location_arr[0], location_arr[1]);
 
-				document.getElementById(i + "_ls_h_dis").innerHTML = "距离您的位置大约有"
-						+ map.getDistance(u_loc, center).toFixed(0) + "米";
+				var distan = map.getDistance(u_loc, center).toFixed(0);
+				document.getElementById(i + "_ls_h_dis").innerHTML = "该商家距你约有"
+						+ distan + "米";
 
 				(function(pos, mer, bra, addr, phone, dis) { // 闭包
 					var marker = new QQMap.QMarker( {
@@ -78,13 +79,12 @@ var init = function() {
 
 					QQMap.QEvent.addListener(marker, 'click', function() {
 						// info.setAnimation(QQMap.QAnimation.POP);
-							info.open('<div class="info_title">' + mer
-									+ '</div>' + '<div class="info_bra">' + bra
-									+ '</div>' + '<div class="info_addr">'
-									+ addr + '</div>'
-									+ '<div class="info_tel">' + phone
-									+ '</div>' + '<div class="info_dis">' + dis
-									+ '</div>', marker);
+							info.open("<div class='info_single'><div class='ls_head'>"+
+							    "<div class='ls_h_mer'>"+mer+"</div>"+
+							    "<div class='ls_h_bra'>"+bra+"</div>"+
+							    "<div class='ls_h_dis'>"+addr+"</div>"+
+							    "<div class='ls_h_dis'>"+phone+"</div>"+
+							    "<div class='info_h_dis'>该商家距你约有<span style='color:#C00'>"+dis+"</span>米&nbsp;&nbsp;&nbsp;<a href='#' class='r'>查看菜单</a></div><div class='clear'></div></div></div>", marker);
 						});
 				})(center, document.getElementById(i + "_ls_h_mer").innerHTML
 						.trim(),
@@ -92,8 +92,7 @@ var init = function() {
 								.trim(), document.getElementById(i
 								+ "_ls_h_addr").innerHTML.trim(), document
 								.getElementById(i + "_ls_h_phone").innerHTML
-								.trim(), document.getElementById(i
-								+ "_ls_h_dis").innerHTML.trim());
+								.trim(), distan);
 
 			} else {
 				center = new QQMap.QLatLng(
