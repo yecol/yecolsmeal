@@ -46,6 +46,7 @@ var init = function() {
 	var c_index = 0;
 	var latLngBounds = new QQMap.QLatLngBounds(); // 显示最佳比例
 
+	var m_icon = new QQMap.QMarkerImage('images/mMarker.png');
 	for ( var i = 1;; i = i + 1) {
 
 		if (document.getElementById(i + "_ls_h_mer")) {
@@ -74,7 +75,6 @@ var init = function() {
 
 				(function(pos, mer, bra, addr, phone, dis) { // 闭包
 
-					var m_icon = new QQMap.QMarkerImage('images/mMarker.png');
 					var marker = new QQMap.QMarker( {
 						icon : m_icon,
 						position : pos,
@@ -89,31 +89,30 @@ var init = function() {
 					});
 
 					QQMap.QEvent
-							.addListener(
-									marker,
+							.addListener(marker,
 									'click',
 									function() {
-										info.setAnimation(QQMap.QAnimation.POP);
-										info
-												.open(
-														"<div class='info_single'><div class='ls_head'>"
-																+ "<div class='ls_h_mer'>"
-																+ mer
-																+ "</div>"
-																+ "<div class='ls_h_bra'>"
-																+ bra
-																+ "</div>"
-																+ "<div class='ls_h_dis'>"
-																+ addr
-																+ "</div>"
-																+ "<div class='ls_h_dis'>"
-																+ phone
-																+ "</div>"
-																+ "<div class='info_h_dis'>该商家距你约有<span style='color:#C00'>"
-																+ dis
-																+ "</span>米&nbsp;&nbsp;&nbsp;<a href='#' class='r'>查看菜单</a></div><div class='clear'></div></div></div>",
-														marker.getPosition());
-									});
+										// info.setAnimation(QQMap.QAnimation.POP);
+									info
+											.open(
+													"<div class='info_single'><div class='ls_head'>"
+															+ "<div class='ls_h_mer'>"
+															+ mer
+															+ "</div>"
+															+ "<div class='ls_h_bra'>"
+															+ bra
+															+ "</div>"
+															+ "<div class='ls_h_dis'>"
+															+ addr
+															+ "</div>"
+															+ "<div class='ls_h_dis'>"
+															+ phone
+															+ "</div>"
+															+ "<div class='info_h_dis'>该商家距你约有<span style='color:#C00'>"
+															+ dis
+															+ "</span>米&nbsp;&nbsp;&nbsp;<a href='#' class='r'>查看菜单</a></div><div class='clear'></div></div></div>",
+													marker.getPosition());
+								});
 				})(center, document.getElementById(i + "_ls_h_mer").innerHTML
 						.trim(),
 						document.getElementById(i + "_ls_h_bra").innerHTML
@@ -128,17 +127,32 @@ var init = function() {
 						document.getElementById(i + "_lon").innerHTML.trim());
 
 				(function(pos, mer, bra, dis) { // 闭包
+
 					var marker = new QQMap.QMarker( {
+						icon : m_icon,
 						position : pos,
 						map : map
 					});
 
+					var decor = new QQMap.QMarkerDecoration( {
+						content : i.toString(),
+						margin : new QQMap.QSize(0, -4),
+						align : QQMap.QALIGN.CENTER,
+						marker : marker
+					});
+
 					QQMap.QEvent.addListener(marker, 'click', function() {
 						// info.setAnimation(QQMap.QAnimation.POP);
-							info.open('<div>' + mer + '</div>'
-									+ '<div class="">' + bra + '</div>'
-									+ '<div>' + dis + '</div>', marker);
+							info.open(
+									"<div class='info_single'><div class='ls_head'>"
+											+ "<div class='ls_h_mer'>" + mer
+											+ "</div>"
+											+ "<div class='ls_h_bra'>" + bra
+											+ "</div>"
+											+ "<div class='ls_h_dis'>" + dis
+											+ "</div>", marker.getPosition());
 						});
+
 				})(center, document.getElementById(i + "_ls_h_mer").innerHTML
 						.trim(),
 						document.getElementById(i + "_ls_h_bra").innerHTML
@@ -165,11 +179,15 @@ var init = function() {
 
 				var circle = new QQMap.QCircle( {
 					center : center,
+					// strokeOpacity: 0.2,
+					// strokeWeight: 5,
 					radius : radius,
 					map : map
 				});
+				// alert(circle.getFillOpacity());
 				circle.setStrokeColor(color[c_index]);
 				circle.setFillColor(color[c_index]);
+
 			} else {
 				// alert(vertexs_arr);
 				var pgonPath = new Array();
@@ -182,14 +200,15 @@ var init = function() {
 				}
 
 				var pgon = new QQMap.QPolygon( {
-					// strokeColor : '#0000FF',
-					strokeOpacity : 0.5,
-					strokeWeight : 1,
 					path : pgonPath,
+					// strokeOpacity: 0.5,
+					// strokeWeight: 5,
 					map : map
 				});
+				// alert(pgon.getStrokeWeight());
 				pgon.setStrokeColor(color[c_index]);
 				pgon.setFillColor(color[c_index]);
+
 			}
 
 			c_index++;
