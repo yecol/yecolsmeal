@@ -52,9 +52,9 @@
 	// add a circle
 	var circle = new QQMap.QCircle( {});
 
-    var anchor = new QQMap.QPoint(6, 6),
-    size = new QQMap.QSize(24, 24),
-    icon = new QQMap.QMarkerImage('images/pgonSrcMarker.gif', size, anchor);
+    var anchor = new QQMap.QPoint(12, 12),
+  //  size = new QQMap.QSize(24, 24),
+    icon = new QQMap.QMarkerImage('images/pgonSrcMarker.gif', null, anchor);
 	var pgonSrcMark = new QQMap.QMarker( {icon: icon});
 	QQMap.QEvent.addListener(pgonSrcMark, 'click', function() {
 		pgonPath.shift();
@@ -114,7 +114,8 @@
 	});
 
 	// add a marker and marker's click event
-	var loc_icon = new QQMap.QMarkerImage('images/mMarker.png');
+	var loc_anchor = new QQMap.QPoint(11, 39);
+	var loc_icon = new QQMap.QMarkerImage('images/mMarker.png',null,loc_anchor);
 	var locMark = new QQMap.QMarker( {icon: loc_icon});
 	var locMarkInfo = new QQMap.QInfoWindow( {});
 	QQMap.QEvent.addListener(locMark, 'click', function() {
