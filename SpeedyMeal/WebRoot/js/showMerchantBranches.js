@@ -1,6 +1,5 @@
 ﻿var color_size = 3;
-var color = new Array('#FF0000','#00FF00','#0000FF');
-
+var color = new Array('#FF0000', '#00FF00', '#0000FF');
 
 var init = function() {
 
@@ -71,7 +70,7 @@ var init = function() {
 				document.getElementById(i + "_ls_h_dis").innerHTML = "距离您的位置大约有"
 						+ map.getDistance(u_loc, center).toFixed(0) + "米";
 
-				(function(pos, mer, bra, dis) { // 闭包
+				(function(pos, mer, bra, addr, phone, dis) { // 闭包
 					var marker = new QQMap.QMarker( {
 						position : pos,
 						map : map
@@ -79,13 +78,20 @@ var init = function() {
 
 					QQMap.QEvent.addListener(marker, 'click', function() {
 						// info.setAnimation(QQMap.QAnimation.POP);
-							info.open('<div class="info_title">' + mer + '</div>' + '<div class="info_tel">' + bra
-									+ '</div>' + '<div class="info_addr">' + dis + '</div>',
-									marker);
+							info.open('<div class="info_title">' + mer
+									+ '</div>' + '<div class="info_bra">' + bra
+									+ '</div>' + '<div class="info_addr">'
+									+ addr + '</div>'
+									+ '<div class="info_tel">' + phone
+									+ '</div>' + '<div class="info_dis">' + dis
+									+ '</div>', marker);
 						});
 				})(center, document.getElementById(i + "_ls_h_mer").innerHTML
 						.trim(),
 						document.getElementById(i + "_ls_h_bra").innerHTML
+								.trim(), document.getElementById(i
+								+ "_ls_h_addr").innerHTML.trim(), document
+								.getElementById(i + "_ls_h_phone").innerHTML
 								.trim(), document.getElementById(i
 								+ "_ls_h_dis").innerHTML.trim());
 
@@ -102,9 +108,9 @@ var init = function() {
 
 					QQMap.QEvent.addListener(marker, 'click', function() {
 						// info.setAnimation(QQMap.QAnimation.POP);
-							info.open('<div>' + mer + '</div>' + '<div class="">' + bra
-									+ '</div>' + '<div>' + dis + '</div>',
-									marker);
+							info.open('<div>' + mer + '</div>'
+									+ '<div class="">' + bra + '</div>'
+									+ '<div>' + dis + '</div>', marker);
 						});
 				})(center, document.getElementById(i + "_ls_h_mer").innerHTML
 						.trim(),
@@ -149,7 +155,7 @@ var init = function() {
 				}
 
 				var pgon = new QQMap.QPolygon( {
-				//	strokeColor : '#0000FF',
+					// strokeColor : '#0000FF',
 					strokeOpacity : 0.5,
 					strokeWeight : 1,
 					path : pgonPath,
@@ -158,9 +164,9 @@ var init = function() {
 				pgon.setStrokeColor(color[c_index]);
 				pgon.setFillColor(color[c_index]);
 			}
-			
+
 			c_index++;
-			if(c_index == color_size){
+			if (c_index == color_size) {
 				c_index -= color_size;
 			}
 
