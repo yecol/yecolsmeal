@@ -1,5 +1,5 @@
-﻿var color_size = 3;
-var color = new Array('#FF0000', '#00FF00', '#0000FF');
+﻿var color_size = 6;
+var color = new Array('#0085a6','#785e00' , '#009c7a', '#6735b8', '#f7df00', '#ff0000');
 
 var init = function() {
 
@@ -102,10 +102,10 @@ var init = function() {
 															+ "<div class='ls_h_bra'>"
 															+ bra
 															+ "</div>"
-															+ "<div class='ls_h_dis'>"
+															+ "<div class='info_h_gre'>"
 															+ addr
 															+ "</div>"
-															+ "<div class='ls_h_dis'>"
+															+ "<div class='info_h_gre'>"
 															+ phone
 															+ "</div>"
 															+ "<div class='info_h_dis'>该商家距你约有<span style='color:#C00'>"
