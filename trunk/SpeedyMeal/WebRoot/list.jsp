@@ -26,6 +26,9 @@
 									<div class="ls_h_bra" id="<s:property value='#merstat.index+1' />_ls_h_bra">
 										<s:property value='#item.branchName' />
 									</div>
+									<div class="ls_h_dis" id="<s:property value='#merstat.index+1' />_ls_h_phone">
+										电话  <s:property value='#item.branchPhone' />
+									</div>
 									<div class="ls_h_dis" id="<s:property value='#merstat.index+1' />_ls_h_dis">
 										距离您的位置大约有<s:property value='#item.distance' />米
 									</div>
@@ -35,6 +38,9 @@
 								    	</div>
 								    	<div class="deliveryArea" id="<s:property value='#merstat.index+1' />_dev_vertexs">
 								     	    <s:property value='#item.branchDeliveryArea.toString()' />
+								    	</div>
+								    	<div id="<s:property value='#merstat.index+1' />_ls_h_addr">
+								     	    <s:property value='#item.branchAddress' />
 								    	</div>
 									</div>
 									<div class="clear"></div>
@@ -50,7 +56,7 @@
 									</s:if>
 									</s:iterator>
 									
-									<a href="#" class="more">全部菜单</a>
+									<a href="#" class="more" id="<s:property value='#merstat.index+1' />_ls_h_menu">全部菜单</a>
 									<div class="clear"></div>
 								</div>
 							</div>

@@ -299,6 +299,10 @@ table#orderInfo td {
 	margin-left: 5px;
 	float: right;
 }
+a.r,a.r:hover,a.r:active{
+	color: #C00;
+	text-decoration: none;;
+}
 .menu_del_a{
 	color: #C00;
 	text-decoration: none;;
@@ -309,4 +313,16 @@ div#detectGeo{
 	color: #C00;
 	font-size:12px;
 	padding-left:20px;
+}
+.info_single {
+	height: 100px;
+	width: 250px;
+	padding: 15px;
+}
+.info_single .ls_head .info_h_dis {
+	color: #000;
+	float: left;
+	height: 20px;
+	margin-top: 3px;
+	width: 225px;
 }
