@@ -114,7 +114,8 @@
 	});
 
 	// add a marker and marker's click event
-	var locMark = new QQMap.QMarker( {});
+	var loc_icon = new QQMap.QMarkerImage('images/mMarker.png');
+	var locMark = new QQMap.QMarker( {icon: loc_icon});
 	var locMarkInfo = new QQMap.QInfoWindow( {});
 	QQMap.QEvent.addListener(locMark, 'click', function() {
 	// locMarkInfo.setMap(map);
