@@ -1,5 +1,6 @@
 ﻿var color_size = 6;
-var color = new Array( '#009c7a', '#6735b8', '#f7df00', '#ff0000','#0085a6','#785e00');
+var color = new Array('#009c7a', '#6735b8', '#f7df00', '#ff0000', '#0085a6',
+		'#785e00');
 
 var init = function() {
 
@@ -27,9 +28,44 @@ var init = function() {
 	var vertexs_arr = new Array();
 	var vertexs_str;
 
+	var style = {
+		// url : 'images/infobox.png',
+		url : "http://cstar.qq.com/qqmapapi/img/infowindow.png",
+		top_left : [ 8, 11, 13, 13 ],
+		bottom_right : [ 620, 451, 14, 14 ],
+		margin : [ 20, 10 ],
+		width_range : [ 200, 600 ],
+		height_range : [ 80, 500 ],
+		offset : [ -2, 5 ],
+		stem : {
+			x : [ 38, 64, 17 ],
+			y : 503,
+			align : QQMap.QALIGN.CENTER, // 'left', 'center', 'right'
+			offset : 0
+		},
+		close : {
+			url : 'http://cstar.qq.com/qqmapapi/img/close.png',
+			coordinate : [ 0, 0, 30, 30 ],
+			align : QQMap.QALIGN.TOP_RIGHT,
+			margin : [ -8, -8 ]
+		},
+		shadow : {
+			url : 'http://cstar.qq.com/qqmapapi/img/shadow.png',
+			top_left : [ 354, 156 ],
+			bottom_right : [ 657, 472 ],
+			stem : {
+				x : [ 60, 90, 16 ],
+				y : 503,
+				offset : [ -4, -4 ],
+				blur : 5
+			}
+		}
+	};
+
 	var info = new QQMap.QInfoWindow( {
-		map : map
-	});
+		// style: style,
+			map : map
+		});
 
 	if (document.getElementById("u_lat")) {
 		var u_loc = new QQMap.QLatLng(
@@ -45,8 +81,8 @@ var init = function() {
 
 	var c_index = 0;
 	var latLngBounds = new QQMap.QLatLngBounds(); // 显示最佳比例
+	var m_icon = new QQMap.QMarkerImage('images/mMarker.png',null,new QQMap.QPoint(11, 0));
 
-	var m_icon = new QQMap.QMarkerImage('images/mMarker.png');
 	for ( var i = 1;; i = i + 1) {
 
 		if (document.getElementById(i + "_ls_h_mer")) {
@@ -73,23 +109,23 @@ var init = function() {
 				document.getElementById(i + "_ls_h_dis").innerHTML = "该商家距你约有"
 						+ distan + "米";
 
-				(function(pos, mer, bra, addr, phone, dis) { // 闭包
+				var marker = new QQMap.QMarker( {
+					icon : m_icon,
+					position : center,
+					map : map
+				});
 
-					var marker = new QQMap.QMarker( {
-						icon : m_icon,
-						position : pos,
-						map : map
-					});
+				var decor = new QQMap.QMarkerDecoration( {
+					content : i.toString(),
+					margin : new QQMap.QSize(0, -4),
+					align : QQMap.QALIGN.CENTER,
+					marker : marker
+				});
 
-					var decor = new QQMap.QMarkerDecoration( {
-						content : i.toString(),
-						margin : new QQMap.QSize(0, -4),
-						align : QQMap.QALIGN.CENTER,
-						marker : marker
-					});
+				(function(info_marker, mer, bra, addr, phone, dis) { // 闭包
 
 					QQMap.QEvent
-							.addListener(marker,
+							.addListener(info_marker,
 									'click',
 									function() {
 										// info.setAnimation(QQMap.QAnimation.POP);
@@ -111,9 +147,9 @@ var init = function() {
 															+ "<div class='info_h_dis'>该商家距你约有<span style='color:#C00'>"
 															+ dis
 															+ "</span>米&nbsp;&nbsp;&nbsp;<a href='#' class='r'>查看菜单</a></div><div class='clear'></div></div></div>",
-													marker.getPosition());
+													info_marker.getPosition());
 								});
-				})(center, document.getElementById(i + "_ls_h_mer").innerHTML
+				})(marker, document.getElementById(i + "_ls_h_mer").innerHTML
 						.trim(),
 						document.getElementById(i + "_ls_h_bra").innerHTML
 								.trim(), document.getElementById(i
@@ -126,22 +162,22 @@ var init = function() {
 						document.getElementById(i + "_lat").innerHTML.trim(),
 						document.getElementById(i + "_lon").innerHTML.trim());
 
-				(function(pos, mer, bra, dis) { // 闭包
+				var marker = new QQMap.QMarker( {
+					icon : m_icon,
+					position : center,
+					map : map
+				});
 
-					var marker = new QQMap.QMarker( {
-						icon : m_icon,
-						position : pos,
-						map : map
-					});
+				var decor = new QQMap.QMarkerDecoration( {
+					content : i.toString(),
+					margin : new QQMap.QSize(0, -4),
+					align : QQMap.QALIGN.CENTER,
+					marker : marker
+				});
 
-					var decor = new QQMap.QMarkerDecoration( {
-						content : i.toString(),
-						margin : new QQMap.QSize(0, -4),
-						align : QQMap.QALIGN.CENTER,
-						marker : marker
-					});
+				(function(info_marker, mer, bra, dis) { // 闭包
 
-					QQMap.QEvent.addListener(marker, 'click', function() {
+					QQMap.QEvent.addListener(info_marker, 'click', function() {
 						// info.setAnimation(QQMap.QAnimation.POP);
 							info.open(
 									"<div class='info_single'><div class='ls_head'>"
@@ -150,10 +186,10 @@ var init = function() {
 											+ "<div class='ls_h_bra'>" + bra
 											+ "</div>"
 											+ "<div class='ls_h_dis'>" + dis
-											+ "</div>", marker.getPosition());
+											+ "</div>", info_marker.getPosition());
 						});
 
-				})(center, document.getElementById(i + "_ls_h_mer").innerHTML
+				})(marker, document.getElementById(i + "_ls_h_mer").innerHTML
 						.trim(),
 						document.getElementById(i + "_ls_h_bra").innerHTML
 								.trim(), document.getElementById(i
@@ -179,7 +215,7 @@ var init = function() {
 
 				var circle = new QQMap.QCircle( {
 					center : center,
-					// strokeOpacity: 0.2,
+					strokeOpacity : 0.5,
 					// strokeWeight: 5,
 					radius : radius,
 					map : map
@@ -201,7 +237,7 @@ var init = function() {
 
 				var pgon = new QQMap.QPolygon( {
 					path : pgonPath,
-					// strokeOpacity: 0.5,
+					strokeOpacity : 0.5,
 					// strokeWeight: 5,
 					map : map
 				});
