@@ -1,6 +1,5 @@
 ﻿var color_size = 6;
-var color = new Array('#009c7a', '#6735b8', '#f7df00', '#ff0000', '#0085a6',
-		'#785e00');
+var color = new Array('#ff0000', '#785e00', '#6735b8','#785e00', '#6735b8','#006699', '#0085a6');
 
 var init = function() {
 
