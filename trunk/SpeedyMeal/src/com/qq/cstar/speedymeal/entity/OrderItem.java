@@ -29,6 +29,14 @@ public class OrderItem implements Serializable {
 		this.pieces = pieces;
 	}
 
+	public void addPieces() {
+		this.pieces = this.pieces + 1;
+	}
+
+	public double getTotalCost() {
+		return this.menu.getMenuItemPrice() * this.pieces;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderItem [menu=" + menu + ", pieces=" + pieces + "]";

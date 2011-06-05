@@ -1,6 +1,8 @@
 package com.qq.cstar.speedymeal.entity;
 
-public class Menu {
+import java.io.Serializable;
+
+public class Menu implements Serializable{
 	// 菜单项类
 	private int meid;// 标识符
 	private int mid;// 所属商户ID
