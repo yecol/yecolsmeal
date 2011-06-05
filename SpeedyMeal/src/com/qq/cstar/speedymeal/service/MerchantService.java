@@ -68,6 +68,7 @@ public class MerchantService {
 		ArrayList<Menu> menus = menuDao.getMenus(mid);
 		return menus;
 	}
+	
 
 	public boolean addNewMenu(Menu menu) {
 		return menuDao.insertMenu(menu);

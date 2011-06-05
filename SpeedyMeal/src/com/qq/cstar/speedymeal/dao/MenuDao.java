@@ -91,4 +91,30 @@ public class MenuDao {
 
 	}
 
+	public Menu getMenu(int meid) {
+		String sql = "SELECT * FROM menu WHERE meid=?";
+		Menu menu = new Menu();
+		try {
+			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
+			ps.setInt(1, meid);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				menu.setMeid(rs.getInt("meid"));
+				menu.setMenuItemName(rs.getString("menuItemName"));
+				menu.setMenuItemPrice(rs.getDouble("menuItemPrice"));
+				menu.setMenuPic(rs.getString("menuPic"));
+				menu.setMid(rs.getInt("mid"));
+			}
+			rs.close();
+			ps.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
+		}
+		return menu;
+	}
+
 }

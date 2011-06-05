@@ -105,8 +105,7 @@ public class MerchantDao {
 				m.setCredits(rs.getInt(9));
 
 				ArrayList<Branch> branches = new ArrayList<Branch>();
-				PreparedStatement ps4Branch = dbc.getConn().prepareStatement(
-						sql4Branch);
+				PreparedStatement ps4Branch = dbc.getConn().prepareStatement(sql4Branch);
 				ps4Branch.setInt(1, mid);
 				ResultSet rs4Branch = ps4Branch.executeQuery();
 
@@ -117,13 +116,8 @@ public class MerchantDao {
 					b.setBranchName(rs4Branch.getString("branchName"));
 					b.setBranchAddress(rs4Branch.getString("branchAddress"));
 					b.setBranchPhone(rs4Branch.getString("branchPhone"));
-					b
-							.setBranchLocation((Location) Serialize
-									.readObject((rs4Branch
-											.getString("branchLocation"))));
-					b.setBranchDeliveryArea((ArrayList<Location>) Serialize
-							.readObject((rs4Branch
-									.getString("branchDeliveryArea"))));
+					b.setBranchLocation((Location) Serialize.readObject((rs4Branch.getString("branchLocation"))));
+					b.setBranchDeliveryArea((ArrayList<Location>) Serialize.readObject((rs4Branch.getString("branchDeliveryArea"))));
 					branches.add(b);
 				}
 				rs4Branch.close();
@@ -155,8 +149,7 @@ public class MerchantDao {
 			ps.setString(3, branch.getBranchAddress());
 			ps.setString(4, branch.getBranchPhone());
 			ps.setString(5, Serialize.writeObject(branch.getBranchLocation()));
-			ps.setString(6, Serialize.writeObject(branch
-					.getBranchDeliveryArea()));
+			ps.setString(6, Serialize.writeObject(branch.getBranchDeliveryArea()));
 			ps.setInt(7, branch.getAreaType());
 
 			int affectedItem = ps.executeUpdate();
@@ -215,17 +208,45 @@ public class MerchantDao {
 		return null;
 	}
 
-	private ArrayList<Branch> FilledFromResultset(ResultSet rs)
-			throws SQLException, Exception {
+	public Branch getBranchByBid(int bid) {
+		String sql = "SELECT M.companyName,B.* FROM merchant M,branch B where M.mid=B.mid AND B.bid=?";
+		try {
+			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
+			ps.setInt(1, bid);
+			ResultSet rs = ps.executeQuery();
+			Branch b = new Branch();
+			while (rs.next()) {
+				b.setBid(rs.getInt("bid"));
+				b.setBranchAddress(rs.getString("branchAddress"));
+				b.setBranchDeliveryArea((ArrayList<Location>) Serialize.readObject(rs.getString("branchDeliveryArea")));
+				b.setBranchLocation((Location) Serialize.readObject(rs.getString("branchLocation")));
+				b.setBranchName(rs.getString("branchName"));
+				b.setBranchPhone(rs.getString("branchPhone"));
+				b.setMid(rs.getInt("mid"));
+				b.setCompanyName(rs.getString("companyName"));
+			}
+			rs.close();
+			ps.close();
+			return b;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			dbc.freeConn();
+		}
+		return null;
+
+	}
+
+	private ArrayList<Branch> FilledFromResultset(ResultSet rs) throws SQLException, Exception {
 		ArrayList<Branch> branches = new ArrayList<Branch>();
 		while (rs.next()) {
 			Branch b = new Branch();
 			b.setBid(rs.getInt("bid"));
 			b.setBranchAddress(rs.getString("branchAddress"));
-			b.setBranchDeliveryArea((ArrayList<Location>) Serialize
-					.readObject(rs.getString("branchDeliveryArea")));
-			b.setBranchLocation((Location) Serialize.readObject(rs
-					.getString("branchLocation")));
+			b.setBranchDeliveryArea((ArrayList<Location>) Serialize.readObject(rs.getString("branchDeliveryArea")));
+			b.setBranchLocation((Location) Serialize.readObject(rs.getString("branchLocation")));
 			b.setBranchName(rs.getString("branchName"));
 			b.setBranchPhone(rs.getString("branchPhone"));
 			b.setMid(rs.getInt("mid"));

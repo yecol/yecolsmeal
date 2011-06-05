@@ -2,6 +2,7 @@
 
 import java.util.ArrayList;
 
+import com.qq.cstar.speedymeal.entity.Merchant;
 import com.qq.cstar.speedymeal.dao.MerchantDao;
 import com.qq.cstar.speedymeal.entity.Branch;
 import com.qq.cstar.speedymeal.entity.Location;
@@ -10,6 +11,10 @@ public class ProcessService {
 
 	private MerchantDao merchantDao = new MerchantDao();
 
+	public Branch getBranchByBid(int bid) {
+		return merchantDao.getBranchByBid(bid);
+	}
+	
 	public ArrayList<Branch> getAvailableBranches(Location location) {
 		ArrayList<Branch> branches = merchantDao.getAllBranches();
 
@@ -130,4 +135,5 @@ public class ProcessService {
 		}
 		return flag;
 	}
+
 }

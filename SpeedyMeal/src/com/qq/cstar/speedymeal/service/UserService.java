@@ -1,12 +1,20 @@
 ﻿package com.qq.cstar.speedymeal.service;
 
+import java.util.ArrayList;
+
+import com.qq.cstar.speedymeal.dao.MenuDao;
+import com.qq.cstar.speedymeal.dao.OrderDao;
 import com.qq.cstar.speedymeal.dao.UserDao;
+import com.qq.cstar.speedymeal.entity.Menu;
+import com.qq.cstar.speedymeal.entity.ShoppingCart;
 import com.qq.cstar.speedymeal.entity.User;
 import com.qq.cstar.speedymeal.util.MD5;
 
 public class UserService {
 	
 	private UserDao userDao=new UserDao();
+	private MenuDao menuDao=new MenuDao();
+	private OrderDao orderDao=new OrderDao();
 	
 	public User loginByUsername(String username,String pwd){
 		//登录
@@ -35,5 +43,19 @@ public class UserService {
 		else return null;
 		//注册失败，返回空对象
 	}
+	
+	//获得菜单
+	public Menu getMenu(int meid) {
+		Menu menu = menuDao.getMenu(meid);
+		return menu;
+	}
+
+	public void addToOrder(ShoppingCart cart, User user) {
+		// TODO Auto-generated method stub
+		
+		orderDao.addOrder(user.getUid(),cart.getBranch().getMid(),cart.getBranch().getBid(),cart.getOrderedItems());
+	}
+	
+
 
 }
