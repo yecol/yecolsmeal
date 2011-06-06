@@ -39,14 +39,14 @@ html, body {
 	width:295px;
 	height:100%;
 	float:left; /*浮动居左*/
-	_margin-right:-3px;
 	overflow:hidden; /*超出宽度部分隐藏*/
+	margin-top:70px;
 }
 #container {
 	height:100%;
 	text-align:left;
 	overflow:hidden;
-	zIndex:991;
+	z-Index:991;
 }
 #sidebar #logo {
 	height: 100px;
@@ -69,7 +69,7 @@ html, body {
 	border-right-width: 1px;
 	border-right-style: solid;
 	border-right-color: #999;
-	padding-top:90px;
+	padding-top:5px;
 	padding-right: 20px;
 	padding-left: 20px;
 }
@@ -211,7 +211,6 @@ table#orderInfo {
 }
 table#orderInfo td {
 	border:1px solid #08bcbd;
-	vertical-align:middle;
 	height:20px;
 }
 
@@ -310,11 +309,11 @@ table#orderInfo td {
 }
 a.r,a.r:hover,a.r:active{
 	color: #C00;
-	text-decoration: none;;
+	text-decoration: none;
 }
 .menu_del_a{
 	color: #C00;
-	text-decoration: none;;
+	text-decoration: none;
 	margin-right: 5px;
 	margin-left: 5px;
 }

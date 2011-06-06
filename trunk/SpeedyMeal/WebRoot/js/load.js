@@ -2,6 +2,11 @@
 // AJAX loading controller
 $(document).ready(function() {
 	$SitePrefix = "/SpeedyMeal";
+	
+	//alert($(document).height());
+	//alert($('#sidebar').css('height'));
+	
+	 $('#sidebar').css('height',$(document).height()-100+'px');
 
 	// 动态加载登录框
 		/*
