@@ -21,7 +21,7 @@ public class DispBranches {
 			e.printStackTrace();
 		}
 		out
-				.print("<div class='gTitle'> 分店管理 </div><div id='branchList' class='sidebar_block'><p> <a href='mcAddBranch.jsp' class='n'>添加</a>新的分店。或者<a href='merchant-acts!mgr' class='n'>返回</a>管理页。 </p>");
+				.print("<div class='gTitle'> 分店管理 </div><div id='branchList' class='sidebar_block'><p> <a href='MerchantNavi!branch' class='n'>添加</a>新的分店。或者<a href='MerchantNavi!manage' class='n'>返回</a>管理页。 </p>");
 		if (branches.size() != 0) {
 			for (int index = 0; index < branches.size(); index++) {
 				out.print("<div class='list_single'><div class='ls_head'>");
@@ -29,7 +29,7 @@ public class DispBranches {
 				out.print("<div class='ls_h_bra'>" + branches.get(index).getBranchPhone() + "</div>");
 				out.print("<div class='ls_h_dis'>" + branches.get(index).getBranchAddress() + "</div>");
 				out
-						.print("<div class='ls_h_opr'><a href='javascript:ajaxLoad(\"merchant-acts!delBranch?bid="+branches.get(index).getBid()+"\");'"+"class='mer_del_a' id='del"+index+"'>删除</a><a href='#' class='opr_a'>更新</a></div><div class='clear'></div></div>");
+						.print("<div class='ls_h_opr'><a href='javascript:ajaxLoad(\"MerchantAction!delBranch?bid="+branches.get(index).getBid()+"\");'"+"class='mer_del_a' id='del"+index+"'>删除</a><a href='#' class='opr_a'>更新</a></div><div class='clear'></div></div>");
 				out.print("<div class='hidden' id='"+index+"'>");
 				out.print("</div></div>");
 			}

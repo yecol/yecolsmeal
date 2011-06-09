@@ -21,7 +21,7 @@
 					<div id="merchant_add_branch_form" class="sidebar_block">
 
 						<s:actionerror />
-						<s:form action="merchant-acts!addBranch" onsubmit="return isValid(this);">
+						<s:form action="MerchantAction!addBranch" onsubmit="return isValid(this);">
 							<s:textfield name="branchName" label="分店名称" cssStyle="ib" />
 							<s:textfield name="branchAddress" label="分店地址" cssStyle="ib" />
 							<s:textfield name="branchPhone" label="电话号码" cssStyle="ib" />
@@ -44,7 +44,7 @@
 						</s:form>
 						<p>
 							点此
-							<a href="merchant-acts!mgr" class="n">返回 </a> 商户管理首页
+							<a href="MerchantNavi!manage" class="n">返回 </a> 商户管理首页
 						</p>
 					</div>
 				</div>
