@@ -20,11 +20,20 @@
 		<default-action-ref name="NoAction" />
 		<global-results>
 			<result name="login">/login.jsp</result>
+			<result name="register">/register.jsp</result>
+			<result name="cart">/cart.jsp</result>
+			<result name="index">/index.jsp</result>
+			<result name="success">/WEB-INF/content/userMgr.jsp</result>
 		</global-results>
 		<action name="UserNavi" class="com.qq.cstar.speedymeal.actions.UserRedirect">    
 			<interceptor-ref name="mydefault" />
 			<result name="managePage">/WEB-INF/content/userMgr.jsp</result>
 			<result name="orderPage">/WEB-INF/content/userOrder.jsp</result>
+		</action>
+		<action name="UserAction" class="com.qq.cstar.speedymeal.actions.UserActions">    
+		</action>
+		<action name="SearchAction" class="com.qq.cstar.speedymeal.actions.SearchActions">
+		<result name="success">/list.jsp</result>  
 		</action>
 	</package>
 		
@@ -45,12 +54,18 @@
 
 		<global-results>
 			<result name="login">/merLogin.jsp</result>
+			<result name="register">/merRegister.jsp</result>
+			<result name="index">/index.jsp</result>
 		</global-results>
 		<action name="MerchantNavi" class="com.qq.cstar.speedymeal.actions.MerchantRedirect">    
 			<interceptor-ref name="merdefault" />
 			<result name="managePage">/WEB-INF/content/merchantMgr.jsp</result>
 			<result name="menuPage">/WEB-INF/content/merchantMenu.jsp</result>		
-			<result name="branchPage">/WEB-INF/content/merchantOrder.jsp</result>
+			<result name="branchPage">/WEB-INF/content/merchantBranch.jsp</result>
 		</action>
+		<action name="MerchantAction" class="com.qq.cstar.speedymeal.actions.MerchantActions">
+		    <result name="success">/WEB-INF/content/merchantMgr.jsp</result>
+		    <result name="addBranch">/WEB-INF/content/merchantBranch.jsp</result>
+		</action>		
 	</package>
 </struts>  

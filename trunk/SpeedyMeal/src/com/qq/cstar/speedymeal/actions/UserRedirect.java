@@ -9,7 +9,7 @@ public class UserRedirect extends ActionSupport {
 	private static final long serialVersionUID = 1L;
 
 	public String manage() {
-		return "managePage";
+		return SUCCESS;
 	}
 	
 	public String order(){

@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.convention.annotation.Results;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -15,8 +13,7 @@ import com.qq.cstar.speedymeal.entity.Location;
 import com.qq.cstar.speedymeal.entity.User;
 import com.qq.cstar.speedymeal.service.ProcessService;
 
-@Results( { @Result(name = "success",location = "/list.jsp") })
-public class ListAvailables extends ActionSupport {
+public class SearchActions extends ActionSupport {
 	// 获得可用的商铺信息列表
 
 	private static final long serialVersionUID = 1L;

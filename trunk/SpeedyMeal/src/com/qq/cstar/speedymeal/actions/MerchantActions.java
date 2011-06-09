@@ -19,12 +19,8 @@ import com.qq.cstar.speedymeal.entity.Menu;
 import com.qq.cstar.speedymeal.entity.Merchant;
 import com.qq.cstar.speedymeal.service.MerchantService;
 
-@Results( { @Result(name = "success", location = "/mcMgr.jsp"),
-		@Result(name = "register", location = "/merRegister.jsp"),
-		@Result(name = "login", location = "/merLogin.jsp"),
-		@Result(name = "addBranch", location = "/mcAddBranch.jsp"),
-		@Result(name = "logout", location = "/index.jsp") })
-public class MerchantActs extends ActionSupport {
+
+public class MerchantActions extends ActionSupport {
 	/**
 	 * 
 	 */
@@ -139,6 +135,26 @@ public class MerchantActs extends ActionSupport {
 			return null;
 		}
 
+	}
+	
+	// 获得可用的分店商铺信息列表
+	public String listBranches() {
+		merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
+		ArrayList<Branch> branches = merchantService.getAllBranches(merchant.getMid());
+		response = ServletActionContext.getResponse();
+		// 调用显示模块
+		DispBranches.display(response, branches);
+		return null;
+	}
+
+	// 获得菜单列表
+	public String listMenus() {
+		merchant = (Merchant) ActionContext.getContext().getSession().get("SpeedyMeal_Session_Merchant");
+		ArrayList<Menu> menus = merchantService.getMenus(merchant.getMid());
+		response = ServletActionContext.getResponse();
+		// 调用显示模块
+		DispMenus.display(response, menus,merchant.getMid());
+		return null;
 	}
 
 	public String delBranch() {

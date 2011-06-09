@@ -18,7 +18,7 @@
 					</div>
 					<div id="register_form" class="sidebar_block">
 						<s:actionerror />
-						<s:form action="user-acts!register" onsubmit = "return isValid(this);">
+						<s:form action="UserAction!register" onsubmit = "return isValid(this);">
 							<s:textfield name="user.username" label="用户名" cssClass="ib" />
 							<s:password name="user.pwd" label="密码" cssClass="ib" />
 							<s:textfield name="user.email" label="Email" cssClass="ib" />

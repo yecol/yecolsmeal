@@ -18,7 +18,7 @@
 					</div>
 					<div id="login_form" class="sidebar_block">
 						<s:actionerror />
-						<s:form action="merchant-acts!login">
+						<s:form action="MerchantAction!login">
 							<s:textfield name="merchant.username" label="用户名" cssClass="ib" />
 							<s:password name="merchant.pwd" label="密码" cssClass="ib" />
 							<s:submit value="" cssClass="smt_signin" />

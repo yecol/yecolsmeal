@@ -107,7 +107,7 @@
 									<%=oi.getMenu().getMenuItemPrice()%>
 								</td>
 								<td width="63">
-									<form action="user-acts!addToCart" method="post">
+									<form action="UserAction!addToCart" method="post">
 										<INPUT TYPE="HIDDEN" NAME="bid"
 											VALUE="<%=cart.getBranch().getBid()%>" />
 										<INPUT TYPE="HIDDEN" NAME="meid"
@@ -144,7 +144,7 @@
 							<a href="list-avalialbes!loginedList" class="n">继续在该店订餐</a>
 						</p>
 						<p class="navP">
-							<a href="usOrder.jsp" class="n">提交订单</a>
+							<a href="UserNavi!order" class="n">提交订单</a>
 						</p>
 					</div>
 					<!--order_info-->
