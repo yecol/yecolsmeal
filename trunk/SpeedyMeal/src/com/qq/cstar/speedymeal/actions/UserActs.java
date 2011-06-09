@@ -19,13 +19,12 @@ import com.qq.cstar.speedymeal.entity.User;
 import com.qq.cstar.speedymeal.service.ProcessService;
 import com.qq.cstar.speedymeal.service.UserService;
 
-@Results( {
-		@Result(name = "success", type = "redirect", location = "/usMgr.jsp"),
+@Results( { @Result(name = "success", location = "/usMgr.jsp"),
 		@Result(name = "login", location = "/login.jsp"),
-		@Result(name = "register", type = "redirect", location = "/register.jsp"),
+		@Result(name = "register", location = "/register.jsp"),
 		@Result(name = "cart", location = "/cart.jsp"),
-		@Result(name = "index", type = "redirect", location = "/index.jsp") })
-/* @InterceptorRef(value="token") */
+		@Result(name = "index", location = "/index.jsp") })
+
 public class UserActs extends ActionSupport {
 
 	/**
@@ -157,9 +156,17 @@ public class UserActs extends ActionSupport {
 		User user = (User) session.get("SpeedyMeal_Session_User");
 		userService.addToOrder(cart, user);
 		// 清空购物车
+
+		ActionContext.getContext().getSession().put("shoppingCart", null);
+		ActionContext.getContext().getSession().put("shoppingCart_totalPrice",
+				null);
+		ActionContext.getContext().getSession().put("shoppingCart_totalLength",
+				null);
+
 		session.put("shoppingCart", null);
 		session.put("shoppingCart_totalPrice", null);
 		session.put("shoppingCart_totalLength", null);
+
 		return SUCCESS;
 	}
 
