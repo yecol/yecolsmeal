@@ -56,7 +56,7 @@ public class MerchantActions extends ActionSupport {
 	public String logout() {
 		ActionContext.getContext().getSession().put(
 				"SpeedyMeal_Session_Merchant", null);
-		return "logout";
+		return "index";
 	}
 
 	public String mgr() {
