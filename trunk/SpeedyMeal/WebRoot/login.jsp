@@ -19,17 +19,17 @@
 					<div id="login_form" class="sidebar_block">
 						<s:actionerror />
 						<s:form action="user-acts!login">
+							<s:token />
 							<s:textfield name="user.username" label="用户名" cssClass="ib" />
 							<s:password name="user.pwd" label="密码" cssClass="ib" />
 							<s:submit value="" cssClass="smt_signin" />
 						</s:form>
 						<p>
 							没有帐号？现在
-							<a href="register.jsp" class="n">注册</a>
-							一个。<br />
+							<a href="register.jsp" class="n">注册</a> 一个。
+							<br />
 							或者
-							<a href="index.jsp" class="n">返回</a>
-							首页。
+							<a href="index.jsp" class="n">返回</a> 首页。
 						</p>
 
 					</div>

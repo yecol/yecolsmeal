@@ -1,5 +1,6 @@
 ﻿package com.qq.cstar.speedymeal.actions;
 
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,9 +19,13 @@ import com.qq.cstar.speedymeal.entity.User;
 import com.qq.cstar.speedymeal.service.ProcessService;
 import com.qq.cstar.speedymeal.service.UserService;
 
-@Results( { @Result(name = "success", location = "/usMgr.jsp"), @Result(name = "login", location = "/login.jsp"),
-		@Result(name = "register", location = "/register.jsp"), @Result(name = "cart", location = "/cart.jsp"),
-		@Result(name = "index", location = "/index.jsp") })
+@Results( {
+		@Result(name = "success", type = "redirect", location = "/usMgr.jsp"),
+		@Result(name = "login", location = "/login.jsp"),
+		@Result(name = "register", type = "redirect", location = "/register.jsp"),
+		@Result(name = "cart", location = "/cart.jsp"),
+		@Result(name = "index", type = "redirect", location = "/index.jsp") })
+/* @InterceptorRef(value="token") */
 public class UserActs extends ActionSupport {
 
 	/**
@@ -34,6 +39,7 @@ public class UserActs extends ActionSupport {
 	private HttpServletRequest request;
 
 	public String login() {
+		System.out.println("time+1:" + new Date());
 		if (user == null) {
 			System.out.println("debug info: user == null");
 			return null;
@@ -42,23 +48,26 @@ public class UserActs extends ActionSupport {
 		user = userService.loginByUsername(user.getUsername(), user.getPwd());
 		if (user != null) {
 
-			ActionContext.getContext().getSession().put("SpeedyMeal_Session_User", user);
+			ActionContext.getContext().getSession().put(
+					"SpeedyMeal_Session_User", user);
 			System.out.println("return SUCCESS!");
 			return SUCCESS;
 		} else {
 			addActionError("用户名或密码错误");
 			return LOGIN;
 		}
-
 	}
 
 	public String logout() {
-		ActionContext.getContext().getSession().put("SpeedyMeal_Session_User", null);
+		ActionContext.getContext().getSession().put("SpeedyMeal_Session_User",
+				null);
 
 		// Is it logical?
 		ActionContext.getContext().getSession().put("shoppingCart", null);
-		ActionContext.getContext().getSession().put("shoppingCart_totalPrice", null);
-		ActionContext.getContext().getSession().put("shoppingCart_totalLength", null);
+		ActionContext.getContext().getSession().put("shoppingCart_totalPrice",
+				null);
+		ActionContext.getContext().getSession().put("shoppingCart_totalLength",
+				null);
 		//
 		return "index";
 	}
@@ -70,13 +79,16 @@ public class UserActs extends ActionSupport {
 		}
 		// 用户注册
 		request = ServletActionContext.getRequest();
-		double latitude = Double.parseDouble(request.getParameter("r_lat").trim());
-		double longitude = Double.parseDouble(request.getParameter("r_lon").trim());
+		double latitude = Double.parseDouble(request.getParameter("r_lat")
+				.trim());
+		double longitude = Double.parseDouble(request.getParameter("r_lon")
+				.trim());
 
 		user.setLocation(new Location(latitude, longitude));
 		user = userService.registerUser(user);
 		if (user != null) {
-			ActionContext.getContext().getSession().put("SpeedyMeal_Session_User", user);
+			ActionContext.getContext().getSession().put(
+					"SpeedyMeal_Session_User", user);
 			return SUCCESS;
 		} else {
 			addActionError("注册失败！请重新注册!");
@@ -138,16 +150,16 @@ public class UserActs extends ActionSupport {
 		}
 		return "cart";
 	}
-	
-	public String cartToOrder(){
+
+	public String cartToOrder() {
 		Map session = ActionContext.getContext().getSession();
-		ShoppingCart cart=(ShoppingCart) session.get("shoppingCart");
-		User user=(User)session.get("SpeedyMeal_Session_User");
-		userService.addToOrder(cart,user);
+		ShoppingCart cart = (ShoppingCart) session.get("shoppingCart");
+		User user = (User) session.get("SpeedyMeal_Session_User");
+		userService.addToOrder(cart, user);
 		// 清空购物车
-		ActionContext.getContext().getSession().put("shoppingCart", null);
-		ActionContext.getContext().getSession().put("shoppingCart_totalPrice", null);
-		ActionContext.getContext().getSession().put("shoppingCart_totalLength", null);
+		session.put("shoppingCart", null);
+		session.put("shoppingCart_totalPrice", null);
+		session.put("shoppingCart_totalLength", null);
 		return SUCCESS;
 	}
 
