@@ -6,8 +6,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.struts2.ServletActionContext;
-import org.apache.struts2.convention.annotation.Result;
-import org.apache.struts2.convention.annotation.Results;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -19,13 +17,8 @@ import com.qq.cstar.speedymeal.entity.User;
 import com.qq.cstar.speedymeal.service.ProcessService;
 import com.qq.cstar.speedymeal.service.UserService;
 
-@Results( { @Result(name = "success", location = "/usMgr.jsp"),
-		@Result(name = "login", location = "/login.jsp"),
-		@Result(name = "register", location = "/register.jsp"),
-		@Result(name = "cart", location = "/cart.jsp"),
-		@Result(name = "index", location = "/index.jsp") })
 
-public class UserActs extends ActionSupport {
+public class UserActions extends ActionSupport {
 
 	/**
 	 * 

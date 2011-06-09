@@ -22,7 +22,7 @@
 						<a href="javascript:ajaxLoad('merchant-mgr!listBranches');"
 							class="mgr_m">分店信息管理</a>
 						<a href="index.jsp" class="mgr_m">返回首页</a>
-						<a href="merchant-acts!logout" class="mgr_m">退出登录</a>
+						<a href="MerchantAction!logout" class="mgr_m">退出登录</a>
 					</div>
 					<!--mer_mgr-->
 

@@ -18,7 +18,7 @@
 					</div>
 					<div id="register_form" class="sidebar_block">
 						<s:actionerror />
-						<s:form action="merchant-acts!register">
+						<s:form action="MerchantAction!register">
 							<s:textfield name="merchant.username" label="用户名" cssStyle="ib" />
 							<s:password name="merchant.pwd" label="密码" cssStyle="ib" />
 							<s:textfield name="merchant.email" label="Email" cssStyle="ib" />

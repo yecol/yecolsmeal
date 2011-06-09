@@ -9,7 +9,7 @@
 		欢迎您
 		<% User user = (User)sm_session.getAttribute("SpeedyMeal_Session_User"); %>
 		<%=user.getUsername() %>
-		<a href="usMgr.jsp" class="h">管理首页</a>
+		<a href="UserNavi!manage" class="h">管理首页</a>
 		<a href="#" class="h">完善我的资料</a>
 
 		<%
@@ -23,14 +23,14 @@
 		<%
 			}
 		%>
-		<a href="user-acts!logout" class="h">退出</a>
+		<a href="UserAction!logout" class="h">退出</a>
 		<%
 			} else if (sm_session != null && sm_session.getAttribute("SpeedyMeal_Session_Merchant") != null) {
 		%>
 		欢迎您
 		<s:property value="merchant.username" />
-		<a href="merchant-acts!mgr" class="n">管理首页</a>
-		<a href="merchant-acts!logout" class="n">退出</a>
+		<a href="MerchantAction!manage" class="n">管理首页</a>
+		<a href="MerchantAction!logout" class="n">退出</a>
 		<%
 			}
 

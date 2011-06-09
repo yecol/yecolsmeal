@@ -51,7 +51,7 @@
 								    <s:if test="#stat.index<3">
 									<li>
 										<span class="ls_m_t"><s:property value='#menu.menuItemName' /></span><span class="ls_m_r"><a
-											href="user-acts!addToCart?bid=<s:property value='#item.bid' />&meid=<s:property value='#menu.meid' />" class="buy"></a><span>￥<s:property value='#menu.menuItemPrice' /></span> </span>
+											href="UserAction!addToCart?bid=<s:property value='#item.bid' />&meid=<s:property value='#menu.meid' />" class="buy"></a><span>￥<s:property value='#menu.menuItemPrice' /></span> </span>
 									</li>
 									</s:if>
 									</s:iterator>
