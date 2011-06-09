@@ -15,7 +15,7 @@ import com.qq.cstar.speedymeal.entity.Location;
 import com.qq.cstar.speedymeal.entity.User;
 import com.qq.cstar.speedymeal.service.ProcessService;
 
-@Results( { @Result(name = "success", location = "/list.jsp") })
+@Results( { @Result(name = "success",location = "/list.jsp") })
 public class ListAvailables extends ActionSupport {
 	// 获得可用的商铺信息列表
 
