@@ -18,7 +18,7 @@
 						<a href="SearchAction!loginedList" class="mgr_m">查找快餐</a>
 						<a href="javascript:ajaxLoad('MerchantAction!listMenus');"
 							class="mgr_m">订单跟踪</a>
-						<a href="#" class="mgr_m">资料管理</a>
+						<a href="index.jsp" class="mgr_m">资料管理</a>
 						<a href="UserAction!logout" class="mgr_m">退出登录</a>
 					</div>
 					<!--mer_mgr-->

@@ -15,11 +15,11 @@
 						<div class="gTitle">
 							商家管理
 						</div>
-						<a href="#" class="mgr_m">商户信息更改</a>
-						<a href="javascript:ajaxLoad('merchant-mgr!listMenus');"
+						<a href="index.jsp" class="mgr_m">商户信息更改</a>
+						<a href="javascript:ajaxLoad('MerchantAction!listMenus');"
 							class="mgr_m">菜单信息管理</a>
-						<a href="#" class="mgr_m">订单信息管理</a>
-						<a href="javascript:ajaxLoad('merchant-mgr!listBranches');"
+						<a href="index.jsp" class="mgr_m">订单信息管理</a>
+						<a href="javascript:ajaxLoad('MerchantAction!listBranches');"
 							class="mgr_m">分店信息管理</a>
 						<a href="index.jsp" class="mgr_m">返回首页</a>
 						<a href="MerchantAction!logout" class="mgr_m">退出登录</a>

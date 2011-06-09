@@ -138,10 +138,10 @@
 						%>
 
 						<p class="navP">
-							<a href="list-availables!loginedList" class="n">重新选择商家</a>
+							<a href="SearchAction!loginedList" class="n">重新选择商家</a>
 						</p>
 						<p class="navP">
-							<a href="list-avalialbes!loginedList" class="n">继续在该店订餐</a>
+							<a href="SearchAction!loginedList" class="n">继续在该店订餐</a>
 						</p>
 						<p class="navP">
 							<a href="UserNavi!order" class="n">提交订单</a>
