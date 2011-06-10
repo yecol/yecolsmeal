@@ -65,7 +65,7 @@ public class MerchantService {
 
 	//获得菜单
 	public ArrayList<Menu> getMenus(int mid) {
-		ArrayList<Menu> menus = menuDao.getMenus(mid);
+		ArrayList<Menu> menus = menuDao.getMenusByMid(mid);
 		return menus;
 	}
 	

@@ -65,7 +65,11 @@ public class Menu implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Menu [MenuItemName=" + menuItemName + ", MenuItemPrice=" + menuItemPrice + ", meid=" + meid + ", mid=" + mid + "]";
+		return "Menu [meid=" + meid + ", menuItemName=" + menuItemName
+				+ ", menuItemPrice=" + menuItemPrice + ", menuPic=" + menuPic
+				+ ", mid=" + mid + "]";
 	}
+
+
 
 }

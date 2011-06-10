@@ -14,7 +14,7 @@ public class ProcessService {
 	public Branch getBranchByBid(int bid) {
 		return merchantDao.getBranchByBid(bid);
 	}
-	
+
 	public ArrayList<Branch> getAvailableBranches(Location location) {
 		ArrayList<Branch> branches = merchantDao.getAllBranches();
 
@@ -134,6 +134,15 @@ public class ProcessService {
 			}
 		}
 		return flag;
+	}
+
+	public Branch getBranch(int bid) {
+		Branch branch = merchantDao.getBranchByBid(bid);
+		merchantDao.getMenusAndFilled(branch);
+		System.out.println(branch.toString());
+		System.out.println(branch.getMenus().toString());
+		return branch;
+
 	}
 
 }

@@ -162,6 +162,7 @@ public class UserActions extends ActionSupport {
 
 		return SUCCESS;
 	}
+	
 
 	public String update() {
 		// 用户更新资料

@@ -14,13 +14,15 @@ public class Merchant {
 	private int status;// 帐户状态
 	private int credits;// 信用积分
 	private ArrayList<Branch> branches;
+	private String pic;
 
 	public Merchant() {
 		super();
 	}
 
-	public Merchant(int mid, String username, String pwd, String email, String phone, String address, String companyName, int status, int credits,
-			ArrayList<Branch> branches) {
+	public Merchant(int mid, String username, String pwd, String email,
+			String phone, String address, String companyName, int status,
+			int credits, ArrayList<Branch> branches, String pic) {
 		super();
 		this.mid = mid;
 		this.username = username;
@@ -32,6 +34,15 @@ public class Merchant {
 		this.status = status;
 		this.credits = credits;
 		this.branches = branches;
+		this.pic = pic;
+	}
+
+	public String getPic() {
+		return pic;
+	}
+
+	public void setPic(String pic) {
+		this.pic = pic;
 	}
 
 	public int getMid() {

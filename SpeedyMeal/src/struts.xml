@@ -19,10 +19,10 @@
 		</interceptors>
 		<default-action-ref name="NoAction" />
 		<global-results>
-			<result name="login">/login.jsp</result>
+		    <result name="index">/index.jsp</result>
+		 	<result name="login">/login.jsp</result>
 			<result name="register">/register.jsp</result>
-			<result name="cart">/cart.jsp</result>
-			<result name="index">/index.jsp</result>
+			<result name="cart">/WEB-INF/content/cart.jsp</result>
 			<result name="success">/WEB-INF/content/userMgr.jsp</result>
 		</global-results>
 		<action name="UserNavi" class="com.qq.cstar.speedymeal.actions.UserRedirect">    
@@ -33,7 +33,8 @@
 		<action name="UserAction" class="com.qq.cstar.speedymeal.actions.UserActions">    
 		</action>
 		<action name="SearchAction" class="com.qq.cstar.speedymeal.actions.SearchActions">
-		<result name="success">/list.jsp</result>  
+		<result name="success">/WEB-INF/content/list.jsp</result>
+		<result name="singlelist">/WEB-INF/content/singleList.jsp</result>    
 		</action>
 	</package>
 		

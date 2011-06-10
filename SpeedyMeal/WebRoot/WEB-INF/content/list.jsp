@@ -1,11 +1,11 @@
 ﻿<%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@taglib uri="/struts-tags" prefix="s"%>
-<jsp:include page="WEB-INF/include/HTMLHead.jsp" />
+<jsp:include page="../include/HTMLHead.jsp" />
 <script src="js/showMerchantBranches.js"></script>
 <body onload="init()">
 	<div id="wrapper">
-		<jsp:include page="WEB-INF/include/Head.jsp" />
+		<jsp:include page="../include/Head.jsp" />
 		<!--head-->
 		<div id="PageBody">
 			<div id="sidebar">
@@ -51,12 +51,12 @@
 								    <s:if test="#stat.index<3">
 									<li>
 										<span class="ls_m_t"><s:property value='#menu.menuItemName' /></span><span class="ls_m_r"><a
-											href="UserAction!addToCart?bid=<s:property value='#item.bid' />&meid=<s:property value='#menu.meid' />" class="buy"></a><span>￥<s:property value='#menu.menuItemPrice' /></span> </span>
+											href="UserAction!addToCart.action?bid=<s:property value='#item.bid' />&meid=<s:property value='#menu.meid' />" class="buy"></a><span>￥<s:property value='#menu.menuItemPrice' /></span> </span>
 									</li>
 									</s:if>
 									</s:iterator>
 									
-									<a href="#" class="more" id="<s:property value='#merstat.index+1' />_ls_h_menu">全部菜单</a>
+									<a href="SearchAction!singleList.action?bid=<s:property value='#item.bid' />" class="more" id="<s:property value='#merstat.index+1' />_ls_h_menu">全部菜单</a>
 									<div class="clear"></div>
 								</div>
 							</div>
@@ -65,7 +65,7 @@
 						</s:iterator>
 
 
-						<jsp:include page="WEB-INF/include/SideFooter.jsp" />
+						<jsp:include page="../include/SideFooter.jsp" />
 					</div>
 				</div>
 				<!--sidebar_body-->

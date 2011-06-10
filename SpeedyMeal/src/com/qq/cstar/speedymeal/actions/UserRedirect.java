@@ -15,4 +15,8 @@ public class UserRedirect extends ActionSupport {
 	public String order(){
 		return "orderPage";
 	}
+	
+	public String cart(){
+		return "cart";
+	}
 }

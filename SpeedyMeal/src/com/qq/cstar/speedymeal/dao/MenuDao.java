@@ -15,7 +15,7 @@ public class MenuDao {
 		dbc = new DbConnection();
 	}
 
-	public ArrayList<Menu> getMenus(int mid) {
+	public ArrayList<Menu> getMenusByMid(int mid) {
 		String sql = "SELECT * FROM menu WHERE mid=?";
 		ArrayList<Menu> menus = new ArrayList<Menu>();
 		try {
