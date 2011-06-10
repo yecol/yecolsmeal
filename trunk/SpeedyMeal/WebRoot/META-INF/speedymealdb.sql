@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jun 09, 2011 at 02:14 ����
+-- Generation Time: Jun 10, 2011 at 09:16 ����
 -- Server version: 5.1.41
 -- PHP Version: 5.3.1
 
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `branch` (
   `areaType` int(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`bid`),
   KEY `branch_merchant` (`mid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=145 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=147 ;
 
 --
 -- Dumping data for table `branch`
@@ -168,14 +168,15 @@ CREATE TABLE IF NOT EXISTS `invoice` (
   PRIMARY KEY (`oid`),
   KEY `order_merchant` (`mid`),
   KEY `order_user` (`uid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `invoice`
 --
 
 INSERT INTO `invoice` (`oid`, `uid`, `mid`, `bid`, `status`, `orderTime`, `orderItems`) VALUES
-(7, 13, 7, 27, 0, '2011-06-05 07:52:27', 'rO0ABXNyABNqYXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0DAAFJAARzaXpleHAAAAABdwQAAAAK\r\nc3IAKGNvbS5xcS5jc3Rhci5zcGVlZHltZWFsLmVudGl0eS5PcmRlckl0ZW3e0pbxz/rA1AIAAkkA\r\nBnBpZWNlc0wABG1lbnV0ACVMY29tL3FxL2NzdGFyL3NwZWVkeW1lYWwvZW50aXR5L01lbnU7eHAA\r\nAAABc3IAI2NvbS5xcS5jc3Rhci5zcGVlZHltZWFsLmVudGl0eS5NZW51lSdoPkrDZ+cCAAVJAARt\r\nZWlkRAANbWVudUl0ZW1QcmljZUkAA21pZEwADG1lbnVJdGVtTmFtZXQAEkxqYXZhL2xhbmcvU3Ry\r\naW5nO0wAB21lbnVQaWNxAH4ABnhwAAAAD0AqAAAAAAAAAAAAB3QAD+WKsuiEhum4oeiFv+WgoXB4\r\n');
+(7, 13, 7, 27, 0, '2011-06-05 07:52:27', 'rO0ABXNyABNqYXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0DAAFJAARzaXpleHAAAAABdwQAAAAK\r\nc3IAKGNvbS5xcS5jc3Rhci5zcGVlZHltZWFsLmVudGl0eS5PcmRlckl0ZW3e0pbxz/rA1AIAAkkA\r\nBnBpZWNlc0wABG1lbnV0ACVMY29tL3FxL2NzdGFyL3NwZWVkeW1lYWwvZW50aXR5L01lbnU7eHAA\r\nAAABc3IAI2NvbS5xcS5jc3Rhci5zcGVlZHltZWFsLmVudGl0eS5NZW51lSdoPkrDZ+cCAAVJAARt\r\nZWlkRAANbWVudUl0ZW1QcmljZUkAA21pZEwADG1lbnVJdGVtTmFtZXQAEkxqYXZhL2xhbmcvU3Ry\r\naW5nO0wAB21lbnVQaWNxAH4ABnhwAAAAD0AqAAAAAAAAAAAAB3QAD+WKsuiEhum4oeiFv+WgoXB4\r\n'),
+(8, 13, 10, 45, 0, '2011-06-09 14:24:20', 'rO0ABXNyABNqYXZhLnV0aWwuQXJyYXlMaXN0eIHSHZnHYZ0DAAFJAARzaXpleHAAAAACdwQAAAAK\r\nc3IAKGNvbS5xcS5jc3Rhci5zcGVlZHltZWFsLmVudGl0eS5PcmRlckl0ZW3e0pbxz/rA1AIAAkkA\r\nBnBpZWNlc0wABG1lbnV0ACVMY29tL3FxL2NzdGFyL3NwZWVkeW1lYWwvZW50aXR5L01lbnU7eHAA\r\nAAACc3IAI2NvbS5xcS5jc3Rhci5zcGVlZHltZWFsLmVudGl0eS5NZW51lSdoPkrDZ+cCAAVJAARt\r\nZWlkRAANbWVudUl0ZW1QcmljZUkAA21pZEwADG1lbnVJdGVtTmFtZXQAEkxqYXZhL2xhbmcvU3Ry\r\naW5nO0wAB21lbnVQaWNxAH4ABnhwAAAAJEBKAAAAAAAAAAAACnQAD+i2hee6p+iHs+Wwii85J3Bz\r\ncQB+AAIAAAAEc3EAfgAFAAAAI0BDgAAAAAAAAAAACnQAFemynOmmmeWfueagueavlOiQqC85J3B4\r\n');
 
 -- --------------------------------------------------------
 
@@ -193,14 +194,14 @@ CREATE TABLE IF NOT EXISTS `menu` (
   `md_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`meid`),
   KEY `menu_merchant` (`mid`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=45 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
 
 --
 -- Dumping data for table `menu`
 --
 
 INSERT INTO `menu` (`meid`, `mid`, `menuItemName`, `menuItemPrice`, `menuPic`, `md_timestamp`) VALUES
-(14, 7, '香辣鸡腿堡', 13.00, NULL, '2011-05-29 06:26:42'),
+(14, 7, '香辣鸡腿堡', 13.00, 'this.jpeg', '2011-06-10 08:49:02'),
 (15, 7, '劲脆鸡腿堡', 13.00, NULL, '2011-05-29 06:26:56'),
 (16, 7, '奥尔良烤鸡腿堡', 14.00, NULL, '2011-05-29 11:49:49'),
 (17, 7, '田园脆鸡堡', 8.50, NULL, '2011-05-29 06:28:30'),
@@ -242,6 +243,7 @@ CREATE TABLE IF NOT EXISTS `merchant` (
   `status` int(10) DEFAULT NULL,
   `credits` int(10) DEFAULT NULL,
   `cr_timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `pic` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`mid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
@@ -249,13 +251,13 @@ CREATE TABLE IF NOT EXISTS `merchant` (
 -- Dumping data for table `merchant`
 --
 
-INSERT INTO `merchant` (`mid`, `username`, `pwd`, `email`, `phone`, `address`, `companyName`, `status`, `credits`, `cr_timestamp`) VALUES
-(7, 'kfc', 'e10adc3949ba59abbe56e057f20f883e', 'kfc@gmail.com', '4008823823', '北京市', '肯德基（KFC）', 0, 0, '2011-05-29 10:55:35'),
-(9, 'sgg', 'e10adc3949ba59abbe56e057f20f883e', 'admin@51guigui.com', '010-81828000', '海淀区知春路29号大运村公寓7号楼底', '爽！桂桂', 0, 0, '2011-05-29 10:55:48'),
-(10, 'bsk', 'e10adc3949ba59abbe56e057f20f883e', 'bsk@gmail.com', '010-12345678', NULL, '必胜客', 0, 0, '2011-05-29 13:32:21'),
-(11, 'jiyejia', 'e10adc3949ba59abbe56e057f20f883e', 'jiyejia@jyj.com', '010-670285388', NULL, '吉野家Yoshinoya', 0, 0, '2011-06-05 03:32:03'),
-(12, 'yhdw', 'e10adc3949ba59abbe56e057f20f883e', 'yhdw@gmail.com', '010-67085388', NULL, '永和大王', 0, 0, '2011-06-07 07:33:13'),
-(13, 'mcdonalds', 'e10adc3949ba59abbe56e057f20f883e', 'admin@mcdonalds.com.cn', '010-67085388', NULL, '麦当劳', 0, 0, '2011-06-08 10:48:59');
+INSERT INTO `merchant` (`mid`, `username`, `pwd`, `email`, `phone`, `address`, `companyName`, `status`, `credits`, `cr_timestamp`, `pic`) VALUES
+(7, 'kfc', 'e10adc3949ba59abbe56e057f20f883e', 'kfc@gmail.com', '4008823823', '北京市', '肯德基（KFC）', 0, 0, '2011-06-10 08:48:35', 'hello.jpeg'),
+(9, 'sgg', 'e10adc3949ba59abbe56e057f20f883e', 'admin@51guigui.com', '010-81828000', '海淀区知春路29号大运村公寓7号楼底', '爽！桂桂', 0, 0, '2011-05-29 10:55:48', NULL),
+(10, 'bsk', 'e10adc3949ba59abbe56e057f20f883e', 'bsk@gmail.com', '010-12345678', NULL, '必胜客', 0, 0, '2011-05-29 13:32:21', NULL),
+(11, 'jiyejia', 'e10adc3949ba59abbe56e057f20f883e', 'jiyejia@jyj.com', '010-670285388', NULL, '吉野家Yoshinoya', 0, 0, '2011-06-05 03:32:03', NULL),
+(12, 'yhdw', 'e10adc3949ba59abbe56e057f20f883e', 'yhdw@gmail.com', '010-67085388', NULL, '永和大王', 0, 0, '2011-06-07 07:33:13', NULL),
+(13, 'mcdonalds', 'e10adc3949ba59abbe56e057f20f883e', 'admin@mcdonalds.com.cn', '010-67085388', NULL, '麦当劳', 0, 0, '2011-06-08 10:48:59', NULL);
 
 -- --------------------------------------------------------
 
