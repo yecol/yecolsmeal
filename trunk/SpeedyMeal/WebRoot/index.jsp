@@ -27,6 +27,7 @@
 						<p>
 							您可以等待浏览器检测您的位置，或者手动在右边地图上点选。
 							<div id="detectGeo">正在检测您的位置…</div>
+							<div id="searchBotton" class="hidden"><a href="SearchAction" id="indexSearchA"></a></div>
 						</p>
 						<p>
 							或者<a href="login.jsp" class="n">登录</a>您的帐号，使用您之前登记的位置信息。还没有帐号？

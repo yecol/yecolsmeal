@@ -48,7 +48,11 @@
 								<div class="menus"> 
 								    <s:iterator value="branch.menus" id="menu" status="stat">
 									<li>
-										<span class="ls_m_t"><s:property value='#menu.menuItemName' /></span><span class="ls_m_r"><a
+										<span class="ls_m_t"><s:property value='#menu.menuItemName' />
+										<s:if test="#menu.menuPic!=null&&#menu.menuPic.length()>0">
+										<a class="mag" href="uploads/menu/<s:property value='#menu.menuPic' />" ><img src="images/magnifier.gif" border="0"/></a>
+										</s:if>
+										</span><span class="ls_m_r"><a
 											href="UserAction!addToCart.action?bid=<s:property value='branch.bid' />&meid=<s:property value='#menu.meid' />" class="buy"></a><span>￥<s:property value='#menu.menuItemPrice' /></span> </span>
 									</li>
 									</s:iterator>
@@ -63,7 +67,7 @@
                         if (sm_session != null && sm_session.getAttribute("SpeedyMeal_Session_User") != null){ %>
                         <p>返回<a href="SearchAction!loginedList.action" class="n">全部列表</a>页面</p>
                         <%}else {%>
-                        <p>返回<a href="index.html" class="n">首页</a>重新搜索</p>           
+                        <p>返回<a href="index.jsp" class="n">首页</a>重新搜索</p>           
                         <%} %>
 						<jsp:include page="../include/SideFooter.jsp" />
 					</div>

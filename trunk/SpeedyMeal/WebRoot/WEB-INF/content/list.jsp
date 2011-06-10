@@ -50,7 +50,11 @@
 								    <s:iterator value="#item.menus" id="menu" status="stat">
 								    <s:if test="#stat.index<3">
 									<li>
-										<span class="ls_m_t"><s:property value='#menu.menuItemName' /></span><span class="ls_m_r"><a
+										<span class="ls_m_t"><s:property value='#menu.menuItemName' /> 
+										<s:if test="#menu.menuPic!=null&&#menu.menuPic.length()>0">
+										<a class="mag" href="uploads/menu/<s:property value='#menu.menuPic' />" ><img src="images/magnifier.gif" border="0"/></a>
+										</s:if>
+										</span><span class="ls_m_r"><a
 											href="UserAction!addToCart.action?bid=<s:property value='#item.bid' />&meid=<s:property value='#menu.meid' />" class="buy"></a><span>￥<s:property value='#menu.menuItemPrice' /></span> </span>
 									</li>
 									</s:if>
