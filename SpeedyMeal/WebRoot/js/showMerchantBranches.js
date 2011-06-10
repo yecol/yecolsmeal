@@ -80,8 +80,10 @@ var init = function() {
 
 	var c_index = 0;
 	var latLngBounds = new QQMap.QLatLngBounds(); // 显示最佳比例
-	var m_icon = new QQMap.QMarkerImage('images/mMarker.png',null,new QQMap.QPoint(11, 0));
+	var m_icon = new QQMap.QMarkerImage('images/mMarker.png',null,new QQMap.QPoint(11, 39));
+	var m_icon_tmp = new QQMap.QMarkerImage('images/mMarker.png',null,new QQMap.QPoint(11, 0));
 
+	//alert("test");
 	for ( var i = 1;; i = i + 1) {
 
 		if (document.getElementById(i + "_ls_h_mer")) {
@@ -113,6 +115,12 @@ var init = function() {
 					position : center,
 					map : map
 				});
+				
+				var marker_tmp = new QQMap.QMarker( {
+						icon : m_icon_tmp,
+						position : center,
+					//	map : map
+					});
 
 				var decor = new QQMap.QMarkerDecoration( {
 					content : i.toString(),
@@ -121,7 +129,7 @@ var init = function() {
 					marker : marker
 				});
 
-				(function(info_marker, mer, bra, addr, phone, dis) { // 闭包
+				(function(info_marker,info_marker_tmp, mer, bra, addr, phone, dis) { // 闭包
 
 					QQMap.QEvent
 							.addListener(info_marker,
@@ -140,13 +148,14 @@ var init = function() {
 															+ "<div class='info_h_gre'>"
 															+ addr
 															+ "</div>"
-															+ "<div class='info_h_gre'>"
+															+ "<div c" +
+																	"lass='info_h_gre'>"
 															+ phone
 															+ "</div>"
 															+ "<div class='info_h_dis'>该商家距你约有<span style='color:#C00'>"
 															+ dis
 															+ "</span>米&nbsp;&nbsp;&nbsp;<a href='#' class='r'>查看菜单</a></div><div class='clear'></div></div></div>",
-													info_marker.getPosition());
+													info_marker.getPosition);
 								});
 				})(marker, document.getElementById(i + "_ls_h_mer").innerHTML
 						.trim(),
