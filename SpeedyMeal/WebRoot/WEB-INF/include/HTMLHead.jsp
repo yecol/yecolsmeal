@@ -9,6 +9,7 @@
 
 
 <script language="javascript" src="js/jquery14.js"></script>
+<script language="javascript" src="js/imgpreview.js"></script>
 <script language="javascript" src="js/load.js"></script>
 
 <script charset="utf-8" src="http://s.map.qq.com/api/js/beta/v2.1/QQMapAPI.js">

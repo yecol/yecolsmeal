@@ -39,7 +39,7 @@ public class SearchActions extends ActionSupport {
 		request = ServletActionContext.getRequest();
 		double latitude = Double.parseDouble(request.getParameter("l_lat")
 				.trim());
-		double longitude = Double.parseDouble(request.getParameter("l_lon")
+		double longitude = Double.parseDouble(request.getParameter("l_lng")
 				.trim());
 
 		availableBranches = processService.getAvailableBranches(new Location(

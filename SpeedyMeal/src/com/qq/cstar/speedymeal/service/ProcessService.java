@@ -140,7 +140,6 @@ public class ProcessService {
 		Branch branch = merchantDao.getBranchByBid(bid);
 		merchantDao.getMenusAndFilled(branch);
 		System.out.println(branch.toString());
-		System.out.println(branch.getMenus().toString());
 		return branch;
 
 	}

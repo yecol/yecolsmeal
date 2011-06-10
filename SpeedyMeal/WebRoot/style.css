@@ -167,14 +167,14 @@ a.h:hover,a.h:active {
 	background-position: 0px 3px;
 }
 .menus {
-	padding-left: 20px;
+	padding-left: 5px;
 	list-style-image: url(images/green_li.gif);
 	line-height: 160%;
 	margin-bottom: 10px;
 }
 .menus li {
 	height: 25px;
-	width: 220px;
+	width: 240px;
 }
 .ls_m_r {
 	float: right;
@@ -318,7 +318,7 @@ a.r,a.r:hover,a.r:active{
 div#detectGeo{
 	color: #C00;
 	font-size:12px;
-	padding-left:20px;
+	padding-left:10px;
 }
 .info_single {
 	height: 100px;
@@ -337,4 +337,19 @@ div#detectGeo{
 	float: left;
 	margin-top: 3px;
 	width: 245px;
+}
+#imgPreviewWithStyles{
+	border: solid #666 1px;
+}
+#indexSearchA {
+	background-image: url(images/search.jpg);
+	height: 30px;
+	width: 100px;
+	display: block;
+}
+#searchBotton {
+	height: 30px;
+	width: 100px;
+	margin-top: 15px;
+	margin-left: 80px;
 }

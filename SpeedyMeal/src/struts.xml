@@ -19,7 +19,7 @@
 		</interceptors>
 		<default-action-ref name="NoAction" />
 		<global-results>
-		    <result name="index">/index.jsp</result>
+		    <result name="index" type="redirect">/index.jsp</result>
 		 	<result name="login">/login.jsp</result>
 			<result name="register">/register.jsp</result>
 			<result name="cart">/WEB-INF/content/cart.jsp</result>
@@ -53,10 +53,10 @@
 		</interceptors>
 		<default-action-ref name="NoAction" />
 
-		<global-results>
+		<global-results>	
+			<result name="index" type="redirect">/index.jsp</result>
 			<result name="login">/merLogin.jsp</result>
 			<result name="register">/merRegister.jsp</result>
-			<result name="index">/index.jsp</result>
 		</global-results>
 		<action name="MerchantNavi" class="com.qq.cstar.speedymeal.actions.MerchantRedirect">    
 			<interceptor-ref name="merdefault" />
