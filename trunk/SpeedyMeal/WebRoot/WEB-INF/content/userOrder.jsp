@@ -162,7 +162,7 @@
 							}
 						%>
 
-                    <p class="navP"><a href="SearchAction!loginedList" class="n">重新订餐</a><a href="UserAction!cartToOrder">提交订单</a></p>
+                    <p class="navP"><a href="SearchAction!loginedList" class="n">重新订餐</a><a href="UserAction!cartToOrder.action">提交订单</a></p>
 					</div>
 					<!--order_info-->
 					<jsp:include page="../include/SideFooter.jsp" />

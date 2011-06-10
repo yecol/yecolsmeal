@@ -22,11 +22,14 @@ public class SearchActions extends ActionSupport {
 	private HttpServletRequest request;
 	private User user;
 	private Location location;
+	private Branch branch;
 
 	public String loginedList() {
 		// 已登录用户的可达外卖信息搜索
-		user = (User) ActionContext.getContext().getSession().get("SpeedyMeal_Session_User");
-		availableBranches = processService.getAvailableBranches(user.getLocation());
+		user = (User) ActionContext.getContext().getSession().get(
+				"SpeedyMeal_Session_User");
+		availableBranches = processService.getAvailableBranches(user
+				.getLocation());
 		location = user.getLocation();
 		return SUCCESS;
 	}
@@ -34,12 +37,23 @@ public class SearchActions extends ActionSupport {
 	public String unLoginList() {
 		// 未登录用户的可达外卖信息搜索
 		request = ServletActionContext.getRequest();
-		double latitude = Double.parseDouble(request.getParameter("l_lat").trim());
-		double longitude = Double.parseDouble(request.getParameter("l_lon").trim());
+		double latitude = Double.parseDouble(request.getParameter("l_lat")
+				.trim());
+		double longitude = Double.parseDouble(request.getParameter("l_lon")
+				.trim());
 
-		availableBranches = processService.getAvailableBranches(new Location(latitude, longitude));
+		availableBranches = processService.getAvailableBranches(new Location(
+				latitude, longitude));
 		location = new Location(latitude, longitude);
 		return SUCCESS;
+	}
+
+	public String singleList() {
+		request = ServletActionContext.getRequest();
+		String branchIdString = request.getParameter("bid");
+		int bid = Integer.parseInt(branchIdString.trim());
+		branch = processService.getBranch(bid);
+		return "singlelist";
 	}
 
 	public void setUser(User user) {
@@ -49,7 +63,15 @@ public class SearchActions extends ActionSupport {
 	public User getUser() {
 		return this.user;
 	}
-	
+
+	public Branch getBranch() {
+		return branch;
+	}
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
+	}
+
 	public Location getLocation() {
 		return location;
 	}

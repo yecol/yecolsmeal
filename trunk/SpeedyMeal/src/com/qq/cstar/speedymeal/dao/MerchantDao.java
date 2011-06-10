@@ -30,15 +30,16 @@ public class MerchantDao {
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				Merchant m = new Merchant();
-				m.setMid(rs.getInt(1));
-				m.setUsername(rs.getString(2));
-				m.setPwd(rs.getString(3));
-				m.setEmail(rs.getString(4));
-				m.setPhone(rs.getString(5));
-				m.setAddress(rs.getString(6));
-				m.setCompanyName(rs.getString(7));
-				m.setStatus(rs.getInt(8));
-				m.setCredits(rs.getInt(9));
+				m.setMid(rs.getInt("mid"));
+				m.setUsername(rs.getString("username"));
+				m.setPwd(rs.getString("pwd"));
+				m.setEmail(rs.getString("email"));
+				m.setPhone(rs.getString("phone"));
+				m.setAddress(rs.getString("address"));
+				m.setCompanyName(rs.getString("companyName"));
+				m.setStatus(rs.getInt("status"));
+				m.setCredits(rs.getInt("credits"));
+				m.setPic(rs.getString("pic"));
 				rs.close();
 				ps.close();
 				return m;
@@ -94,15 +95,16 @@ public class MerchantDao {
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
 				Merchant m = new Merchant();
-				m.setMid(rs.getInt(1));
-				m.setUsername(rs.getString(2));
-				m.setPwd(rs.getString(3));
-				m.setEmail(rs.getString(4));
-				m.setPhone(rs.getString(5));
-				m.setAddress(rs.getString(6));
-				m.setCompanyName(rs.getString(7));
-				m.setStatus(rs.getInt(8));
-				m.setCredits(rs.getInt(9));
+				m.setMid(rs.getInt("mid"));
+				m.setUsername(rs.getString("username"));
+				m.setPwd(rs.getString("pwd"));
+				m.setEmail(rs.getString("email"));
+				m.setPhone(rs.getString("phone"));
+				m.setAddress(rs.getString("address"));
+				m.setCompanyName(rs.getString("companyName"));
+				m.setStatus(rs.getInt("status"));
+				m.setCredits(rs.getInt("credits"));
+				m.setPic(rs.getString("pic"));
 
 				ArrayList<Branch> branches = new ArrayList<Branch>();
 				PreparedStatement ps4Branch = dbc.getConn().prepareStatement(sql4Branch);
@@ -169,7 +171,7 @@ public class MerchantDao {
 	}
 
 	public ArrayList<Branch> getAllBranches() {
-		String sql = "SELECT M.companyName,B.* FROM merchant M,branch B where M.mid=B.mid";
+		String sql = "SELECT M.companyName,M.pic,B.* FROM merchant M,branch B where M.mid=B.mid";
 		try {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -189,7 +191,7 @@ public class MerchantDao {
 
 	public ArrayList<Branch> getBranchesByMid(int mid) {
 
-		String sql = "SELECT M.companyName,B.* FROM merchant M,branch B where M.mid=B.mid AND B.mid=?";
+		String sql = "SELECT M.companyName,M.pic,B.* FROM merchant M,branch B where M.mid=B.mid AND B.mid=?";
 		try {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
 			ps.setInt(1, mid);
@@ -209,7 +211,7 @@ public class MerchantDao {
 	}
 
 	public Branch getBranchByBid(int bid) {
-		String sql = "SELECT M.companyName,B.* FROM merchant M,branch B where M.mid=B.mid AND B.bid=?";
+		String sql = "SELECT M.companyName,M.pic,B.* FROM merchant M,branch B where M.mid=B.mid AND B.bid=?";
 		try {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
 			ps.setInt(1, bid);
@@ -224,6 +226,7 @@ public class MerchantDao {
 				b.setBranchPhone(rs.getString("branchPhone"));
 				b.setMid(rs.getInt("mid"));
 				b.setCompanyName(rs.getString("companyName"));
+				b.setCompanyPic(rs.getString("pic"));
 			}
 			rs.close();
 			ps.close();
@@ -251,6 +254,7 @@ public class MerchantDao {
 			b.setBranchPhone(rs.getString("branchPhone"));
 			b.setMid(rs.getInt("mid"));
 			b.setCompanyName(rs.getString("companyName"));
+			b.setCompanyPic(rs.getString("pic"));
 			branches.add(b);
 		}
 		rs.close();
