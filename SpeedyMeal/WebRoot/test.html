@@ -28,18 +28,63 @@
     <div id="sidebar">
       <div id="logo"></div>
       <div id="sidebar_body">
-        <div id="index" class="sidebar_block">
-          <div class="gTitle"> 网站介绍 </div>
-          <p> SpeedyMeal是一个基于地图的餐饮外卖系统，由商家视图、客户视图、以及配送员视图（Android应用）三部分构成，旨在以B2C的运营模式和B/S构架为商家提供订餐处理和配送指派业务，从而给客户创造出便捷、透明、可跟踪的一站式订餐消费体验。将地理信息和位置服务引入传统订餐和外卖配送系统是该应用的创新点。 </p>
+        <div id="order_info" class="sidebar_block">
+          <div class="gTitle"> 提交订单 </div>
+          <table id="orderInfo">
+            <tr>
+              <td colspan="4"><div class="tdHeadCnt"> 订单人信息 </div></td>
+            </tr>
+            <tr>
+              <td width="63"> 用户名 </td>
+              <td colspan="3"> yecol </td>
+            </tr>
+            <tr>
+              <td width="63"> 联系电话 </td>
+              <td colspan="3"> 15011019321 </td>
+            </tr>
+            <tr>
+              <td width="63"> 递送地址 </td>
+              <td colspan="3"> 北京市海淀区学院路37号航空航天大学 </td>
+            </tr>
+            <tr>
+              <td colspan="4"><div class="tdHeadCnt"> 餐饮提供方 </div></td>
+            </tr>
+            <tr>
+              <td width="63"> 名称 </td>
+              <td colspan="3"> 肯德基（KFC） 大运村店 </td>
+            </tr>
+            <tr>
+              <td width="63"> 电话 </td>
+              <td colspan="3"> 010-82357298 </td>
+            </tr>
+            <tr>
+              <td width="63"> 地址 </td>
+              <td colspan="3"> 海淀区知春路29号大运村学生公寓底层东侧商铺 </td>
+            </tr>
+            <tr>
+              <td colspan="4"><div class="tdHeadCnt"> 订单明细 </div></td>
+            </tr>
+            <tr>
+              <td colspan="2"> 美食名称 </td>
+              <td width="63"> 单价 </td>
+              <td width="63"> 份数 </td>
+            </tr>
+            <tr>
+              <td colspan="2"> 至珍全虾堡 </td>
+              <td width="63"> 15.0 </td>
+              <td width="63"> 2 </td>
+            </tr>
+            <tr>
+              <td width="63"> 总价 </td>
+              <td colspan="3"> 30.0 </td>
+            </tr>
+          </table>
+          <a id="orderButton" href="UserAction!cartToOrder.action"></a>
+          <a id="reorderlink" href="SearchAction!loginedList" class="n">重新订餐</a>
         </div>
-        <div id="opera" class="sidebar_block">
-          <div class="gTitle"> 如何操作 </div>
-          <p> 您可以等待浏览器检测您的位置，或者手动在右边地图上点选。
-          <div id="detectGeo">正在检测您的位置…</div>
-          <div id="searchBotton" class="hidden"><a href="SearchAction" id="indexSearchA"></a></div>
-          </p>
-          <p> 或者<a href="login.jsp" class="n">登录</a>您的帐号，使用您之前登记的位置信息。还没有帐号？ <a href="register.jsp" class="n">注册</a>一个吧。 </p>
-        </div>
+        
+        <!--order_info-->
+        
         <div id="footer"> 所有餐饮信息来自网络&nbsp;仅供参考 <br />
           Powered by Xujb & Zhouyi @BUAA </div>
       </div>
@@ -63,7 +108,9 @@
 <!--wrapper-->
 
 <div id="interactive" class="hidden">
-  <div id="page"></div>
+  <div id="user_location"> 39.98298469881166,116.34874578689083 </div>
+  <div id="b_location"> 39.97700807898349,116.34405878093806 </div>
+  <div id="b_dev_vertexs"> [39.97694,116.36569, 39.9874,116.36517, 39.98602,116.32706, 39.98102,116.32741, 39.98102,116.33359, 39.96793,116.33402, 39.96806,116.36534] </div>
 </div>
 </body>
 </html>

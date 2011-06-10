@@ -353,3 +353,14 @@ div#detectGeo{
 	margin-top: 15px;
 	margin-left: 80px;
 }
+#orderButton {
+	background-image: url(images/order.jpg);
+	height: 30px;
+	width: 100px;
+	margin-top: 20px;
+	margin-left: 150px;
+	display: block;
+}
+#reorderlink {
+	margin-left: 10px;
+}

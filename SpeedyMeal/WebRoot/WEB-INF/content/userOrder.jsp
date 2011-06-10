@@ -19,8 +19,10 @@
 						</div>
 						<%
 							HttpSession sc_session = request.getSession();
-							ShoppingCart cart = (ShoppingCart) sc_session.getAttribute("shoppingCart");
-							User user = (User) sc_session.getAttribute("SpeedyMeal_Session_User");
+							ShoppingCart cart = (ShoppingCart) sc_session
+									.getAttribute("shoppingCart");
+							User user = (User) sc_session
+									.getAttribute("SpeedyMeal_Session_User");
 							if (cart == null) {
 						%>
 
@@ -41,8 +43,8 @@
 
 
 						<table id="orderInfo">
-						
-						    <tr>
+
+							<tr>
 								<td colspan="4">
 									<div class="tdHeadCnt">
 										订单人信息
@@ -54,7 +56,7 @@
 									用户名
 								</td>
 								<td colspan="3">
-								<%= user.getUsername() %>
+									<%=user.getUsername()%>
 								</td>
 							</tr>
 							<tr>
@@ -62,7 +64,7 @@
 									联系电话
 								</td>
 								<td colspan="3">
-									<%= user.getPhone() %>
+									<%=user.getPhone()%>
 								</td>
 							</tr>
 							<tr>
@@ -70,11 +72,11 @@
 									递送地址
 								</td>
 								<td colspan="3">
-									<%= user.getAddress() %>
+									<%=user.getAddress()%>
 								</td>
 							</tr>
-						
-						
+
+
 							<tr>
 								<td colspan="4">
 									<div class="tdHeadCnt">
@@ -87,7 +89,8 @@
 									名称
 								</td>
 								<td colspan="3">
-									<%=cart.getBranch().getCompanyName()+" "+ cart.getBranch().getBranchName() %>
+									<%=cart.getBranch().getCompanyName() + " "
+							+ cart.getBranch().getBranchName()%>
 								</td>
 							</tr>
 							<tr>
@@ -103,7 +106,7 @@
 									地址
 								</td>
 								<td colspan="3">
-									<%=cart.getBranch().getBranchAddress() %>
+									<%=cart.getBranch().getBranchAddress()%>
 								</td>
 							</tr>
 							<tr>
@@ -152,7 +155,8 @@
 									总价
 								</td>
 								<td colspan="3">
-									<%=sc_session.getAttribute("shoppingCart_totalPrice")%>
+									<%=sc_session
+							.getAttribute("shoppingCart_totalPrice")%>
 								</td>
 							</tr>
 						</table>
@@ -162,7 +166,8 @@
 							}
 						%>
 
-                    <p class="navP"><a href="SearchAction!loginedList" class="n">重新订餐</a><a href="UserAction!cartToOrder.action">提交订单</a></p>
+						<a id="orderButton" href="UserAction!cartToOrder.action"></a>
+						<a id="reorderlink" href="SearchAction!loginedList" class="n">重新订餐</a>
 					</div>
 					<!--order_info-->
 					<jsp:include page="../include/SideFooter.jsp" />
