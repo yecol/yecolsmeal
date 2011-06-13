@@ -28,14 +28,13 @@ public class MerchantService {
 
 	// 商户注册
 	public Merchant registerMerchant(Merchant merchant) {
-		Merchant registeredMerchant = merchantDao.insertMerchant(merchant);
-		if (registeredMerchant != null) {
-			registeredMerchant.setPwd(null);
-			return registeredMerchant;
+		if (merchantDao.insertMerchant(merchant)) {
 			// 当注册成功，设空密码并返回对象
-		} else
+			merchant.setPwd(null);
+			return merchant;
+		} else {
 			return null;
-		// 注册失败，返回空对象
+		}
 	}
 
 	// 得到商户的完整信息
@@ -63,12 +62,11 @@ public class MerchantService {
 		return merchantDao.delBranch(bid);
 	}
 
-	//获得菜单
+	// 获得菜单
 	public ArrayList<Menu> getMenus(int mid) {
 		ArrayList<Menu> menus = menuDao.getMenusByMid(mid);
 		return menus;
 	}
-	
 
 	public boolean addNewMenu(Menu menu) {
 		return menuDao.insertMenu(menu);
