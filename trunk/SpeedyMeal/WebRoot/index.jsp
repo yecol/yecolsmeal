@@ -2,9 +2,9 @@
 	pageEncoding="utf-8"%>
 <jsp:include page="WEB-INF/include/HTMLHead.jsp" />
 
-<script src="js/ditu.js"></script>
+<script src="js/index.js"></script>
 
-<body onload="init()">
+<body>
 	<div id="wrapper">
 		<jsp:include page="WEB-INF/include/Head.jsp" />
 		<!--head-->
@@ -25,9 +25,9 @@
 							如何操作
 						</div>
 						<p>
-							您可以等待浏览器检测您的位置，或者手动在右边地图上点选。
+							您可以手动在右边地图上调整位置，确定位置后点击立即搜索按钮进行商户搜索。
 							<div id="detectGeo">正在检测您的位置…</div>
-							<div id="searchBotton" class="hidden"><a href="SearchAction" id="indexSearchA"></a></div>
+							<div id="searchBotton"><a href="SearchAction" onclick="setHref()" id="indexSearchA"></a></div>
 						</p>
 						<p>
 							或者<a href="login.jsp" class="n">登录</a>您的帐号，使用您之前登记的位置信息。还没有帐号？
@@ -47,7 +47,9 @@
 	</div>
 	<!--wrapper-->
 	<div id="interactive" class="hidden">
-		<div id="page"></div>
+	    <input type="text" id="test" value="sss" />
+		<div id="l_lat"></div>
+		<div id="l_lng"></div>
 	</div>
 </body>
 </html>
