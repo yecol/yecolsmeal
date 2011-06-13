@@ -53,8 +53,18 @@ var init = function(lat, lng) {
 }
 
 var setHref = function() {
+	if(locMark.getPosition().getLat()>39.81395&&locMark.getPosition().getLat()<40.00777
+			&& locMark.getPosition().getLng()>116.28255&&locMark.getPosition().getLng()<116.47344)
+	{
 	document.getElementById("indexSearchA").href = 'SearchAction!unLoginList.action?l_lat='
 		+locMark.getPosition().getLat()+'&l_lng='+locMark.getPosition().getLng();
+	}
+	else
+	{
+		document.getElementById("indexSearchA").href='#';
+		alert("由于数据未完全添加，目前只演示北京四环内的外卖信息，敬请谅解！");
+		return false;
+	}
 }
 
 String.prototype.trim = function() {
