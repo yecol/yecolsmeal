@@ -11,7 +11,6 @@ import com.qq.cstar.speedymeal.entity.Menu;
 import com.qq.cstar.speedymeal.entity.Merchant;
 import com.qq.cstar.speedymeal.util.MD5;
 import com.qq.cstar.speedymeal.util.Serialize;
-import com.sun.org.apache.regexp.internal.RE;
 
 public class MerchantDao {
 
@@ -21,30 +20,37 @@ public class MerchantDao {
 		dbc = new DbConnection();
 	}
 
+	private Merchant generateMerchantByRS(ResultSet rs) {
+		Merchant merchant = new Merchant();
+		try {
+			merchant.setMid(rs.getInt("mid"));
+			merchant.setUsername(rs.getString("username"));
+			merchant.setPwd(rs.getString("pwd"));
+			merchant.setEmail(rs.getString("email"));
+			merchant.setPhone(rs.getString("phone"));
+			merchant.setAddress(rs.getString("address"));
+			merchant.setCompanyName(rs.getString("companyName"));
+			merchant.setStatus(rs.getInt("status"));
+			merchant.setCredits(rs.getInt("credits"));
+			merchant.setPic(rs.getString("pic"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return merchant;
+
+	}
+
 	public Merchant getUniqueUserByName(String username) {
 
 		String sql = "SELECT * FROM merchant WHERE username=?";
+		Merchant merchant = null;
 		try {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql);
 			ps.setString(1, username);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				Merchant m = new Merchant();
-				m.setMid(rs.getInt("mid"));
-				m.setUsername(rs.getString("username"));
-				m.setPwd(rs.getString("pwd"));
-				m.setEmail(rs.getString("email"));
-				m.setPhone(rs.getString("phone"));
-				m.setAddress(rs.getString("address"));
-				m.setCompanyName(rs.getString("companyName"));
-				m.setStatus(rs.getInt("status"));
-				m.setCredits(rs.getInt("credits"));
-				m.setPic(rs.getString("pic"));
-				rs.close();
-				ps.close();
-				return m;
+				merchant = generateMerchantByRS(rs);
 			}
-			rs.close();
 			ps.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -53,10 +59,10 @@ public class MerchantDao {
 		} finally {
 			dbc.freeConn();
 		}
-		return null;
+		return merchant;
 	}
 
-	public Merchant insertMerchant(Merchant merchant) {
+	public boolean insertMerchant(Merchant merchant) {
 
 		String sql = "INSERT INTO merchant (username,pwd,email,phone,address,companyName,status,credits) VALUES (?,?,?,?,?,?,?,?)";
 		try {
@@ -73,7 +79,7 @@ public class MerchantDao {
 			int affectedItem = ps.executeUpdate();
 			ps.close();
 			if (affectedItem == 1) {
-				return merchant;
+				return true;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -82,32 +88,24 @@ public class MerchantDao {
 		} finally {
 			dbc.freeConn();
 		}
-		return null;
+		return false;
 	}
 
 	public Merchant getMerchantByMid(int mid) {
 
 		String sql4Merchant = "SELECT * FROM merchant WHERE mid=?";
 		String sql4Branch = "SELECT * FROM branch WHERE mid=?";
+		Merchant m = null;
 		try {
 			PreparedStatement ps = dbc.getConn().prepareStatement(sql4Merchant);
 			ps.setInt(1, mid);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				Merchant m = new Merchant();
-				m.setMid(rs.getInt("mid"));
-				m.setUsername(rs.getString("username"));
-				m.setPwd(rs.getString("pwd"));
-				m.setEmail(rs.getString("email"));
-				m.setPhone(rs.getString("phone"));
-				m.setAddress(rs.getString("address"));
-				m.setCompanyName(rs.getString("companyName"));
-				m.setStatus(rs.getInt("status"));
-				m.setCredits(rs.getInt("credits"));
-				m.setPic(rs.getString("pic"));
+				m = generateMerchantByRS(rs);
 
 				ArrayList<Branch> branches = new ArrayList<Branch>();
-				PreparedStatement ps4Branch = dbc.getConn().prepareStatement(sql4Branch);
+				PreparedStatement ps4Branch = dbc.getConn().prepareStatement(
+						sql4Branch);
 				ps4Branch.setInt(1, mid);
 				ResultSet rs4Branch = ps4Branch.executeQuery();
 
@@ -118,8 +116,13 @@ public class MerchantDao {
 					b.setBranchName(rs4Branch.getString("branchName"));
 					b.setBranchAddress(rs4Branch.getString("branchAddress"));
 					b.setBranchPhone(rs4Branch.getString("branchPhone"));
-					b.setBranchLocation((Location) Serialize.readObject((rs4Branch.getString("branchLocation"))));
-					b.setBranchDeliveryArea((ArrayList<Location>) Serialize.readObject((rs4Branch.getString("branchDeliveryArea"))));
+					b
+							.setBranchLocation((Location) Serialize
+									.readObject((rs4Branch
+											.getString("branchLocation"))));
+					b.setBranchDeliveryArea((ArrayList<Location>) Serialize
+							.readObject((rs4Branch
+									.getString("branchDeliveryArea"))));
 					branches.add(b);
 				}
 				rs4Branch.close();
@@ -151,7 +154,8 @@ public class MerchantDao {
 			ps.setString(3, branch.getBranchAddress());
 			ps.setString(4, branch.getBranchPhone());
 			ps.setString(5, Serialize.writeObject(branch.getBranchLocation()));
-			ps.setString(6, Serialize.writeObject(branch.getBranchDeliveryArea()));
+			ps.setString(6, Serialize.writeObject(branch
+					.getBranchDeliveryArea()));
 			ps.setInt(7, branch.getAreaType());
 
 			int affectedItem = ps.executeUpdate();
@@ -220,8 +224,10 @@ public class MerchantDao {
 			while (rs.next()) {
 				b.setBid(rs.getInt("bid"));
 				b.setBranchAddress(rs.getString("branchAddress"));
-				b.setBranchDeliveryArea((ArrayList<Location>) Serialize.readObject(rs.getString("branchDeliveryArea")));
-				b.setBranchLocation((Location) Serialize.readObject(rs.getString("branchLocation")));
+				b.setBranchDeliveryArea((ArrayList<Location>) Serialize
+						.readObject(rs.getString("branchDeliveryArea")));
+				b.setBranchLocation((Location) Serialize.readObject(rs
+						.getString("branchLocation")));
 				b.setBranchName(rs.getString("branchName"));
 				b.setBranchPhone(rs.getString("branchPhone"));
 				b.setMid(rs.getInt("mid"));
@@ -242,14 +248,17 @@ public class MerchantDao {
 
 	}
 
-	private ArrayList<Branch> FilledFromResultset(ResultSet rs) throws SQLException, Exception {
+	private ArrayList<Branch> FilledFromResultset(ResultSet rs)
+			throws SQLException, Exception {
 		ArrayList<Branch> branches = new ArrayList<Branch>();
 		while (rs.next()) {
 			Branch b = new Branch();
 			b.setBid(rs.getInt("bid"));
 			b.setBranchAddress(rs.getString("branchAddress"));
-			b.setBranchDeliveryArea((ArrayList<Location>) Serialize.readObject(rs.getString("branchDeliveryArea")));
-			b.setBranchLocation((Location) Serialize.readObject(rs.getString("branchLocation")));
+			b.setBranchDeliveryArea((ArrayList<Location>) Serialize
+					.readObject(rs.getString("branchDeliveryArea")));
+			b.setBranchLocation((Location) Serialize.readObject(rs
+					.getString("branchLocation")));
 			b.setBranchName(rs.getString("branchName"));
 			b.setBranchPhone(rs.getString("branchPhone"));
 			b.setMid(rs.getInt("mid"));
