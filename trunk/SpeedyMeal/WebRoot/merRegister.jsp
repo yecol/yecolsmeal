@@ -3,7 +3,7 @@
 <%@taglib uri="/struts-tags" prefix="s"%>
 <jsp:include page="WEB-INF/include/HTMLHead.jsp" />
 
-<script src="js/ditu.js"></script>
+<script src="js/merRegister.js"></script>
 
 <body onload="init()">
 	<div id="wrapper">
@@ -18,7 +18,7 @@
 					</div>
 					<div id="register_form" class="sidebar_block">
 						<s:actionerror />
-						<s:form action="MerchantAction!register">
+						<s:form action="MerchantAction!register" onsubmit = "return isValid(this);">
 							<s:textfield name="merchant.username" label="用户名" cssStyle="ib" />
 							<s:password name="merchant.pwd" label="密码" cssStyle="ib" />
 							<s:textfield name="merchant.email" label="Email" cssStyle="ib" />
