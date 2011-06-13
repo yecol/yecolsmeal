@@ -42,9 +42,9 @@ public class SearchActions extends ActionSupport {
 		double longitude = Double.parseDouble(request.getParameter("l_lng")
 				.trim());
 
-		availableBranches = processService.getAvailableBranches(new Location(
-				latitude, longitude));
 		location = new Location(latitude, longitude);
+		availableBranches = processService.getAvailableBranches(location);
+		
 		return SUCCESS;
 	}
 
