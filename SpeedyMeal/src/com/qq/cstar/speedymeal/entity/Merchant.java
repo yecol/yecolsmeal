@@ -17,13 +17,11 @@ public class Merchant {
 	private String pic;
 
 	public Merchant() {
-		super();
 	}
 
 	public Merchant(int mid, String username, String pwd, String email,
 			String phone, String address, String companyName, int status,
 			int credits, ArrayList<Branch> branches, String pic) {
-		super();
 		this.mid = mid;
 		this.username = username;
 		this.pwd = pwd;
