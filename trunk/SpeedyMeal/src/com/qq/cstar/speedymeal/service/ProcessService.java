@@ -2,7 +2,6 @@
 
 import java.util.ArrayList;
 
-import com.qq.cstar.speedymeal.entity.Merchant;
 import com.qq.cstar.speedymeal.dao.MerchantDao;
 import com.qq.cstar.speedymeal.entity.Branch;
 import com.qq.cstar.speedymeal.entity.Location;
@@ -32,13 +31,20 @@ public class ProcessService {
 					result.add(branch);
 				}
 			} else {
-				if (isPointInPolygon(location, vertexs))
+				if (isPointInPolygon(location, vertexs)){
 					result.add(branch);
+				}
+					
 			}
 
 		}
+//		System.out.println("Loc:" + location);
 		for (Branch b : result) {
 			// todo: b
+//			if(b.getBranchDeliveryArea().size()==1){
+//				System.out.println("center = "+b.getBranchLocation());
+//			}
+//			System.out.println(b.getBranchDeliveryArea());
 			b.getBranchLocation();
 			b.setDistance(0);
 			//
@@ -64,18 +70,19 @@ public class ProcessService {
 		int count = 0;
 		double linePoint1x;
 		double linePoint1y;
-		double linePoint2x = 180;
+		double linePoint2x = 1e10;
 		double linePoint2y;
 
 		linePoint1x = px;
 		linePoint1y = py;
 		linePoint2y = py;
 
-		for (int i = 0; i < vertexs.size() - 1; i++) {
+		int n = vertexs.size();
+		for (int i = 0; i < n; i++) {
 			double cx1 = vertexs.get(i).getLatitude();
 			double cy1 = vertexs.get(i).getLongitude();
-			double cx2 = vertexs.get(i + 1).getLatitude();
-			double cy2 = vertexs.get(i + 1).getLatitude();
+			double cx2 = vertexs.get((i + 1)%n).getLatitude();
+			double cy2 = vertexs.get((i + 1)%n).getLongitude();
 			if (isPointOnLine(px, py, cx1, cy1, cx2, cy2)) {
 				return true;
 			}
