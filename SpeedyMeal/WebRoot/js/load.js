@@ -1,6 +1,9 @@
 ﻿// JavaScript Document
 // AJAX loading controller
 $(document).ready(function() {
+	
+	
+	
 	$SitePrefix = "/SpeedyMeal";
 
 	// alert($(document).height());
@@ -37,24 +40,32 @@ $(document).ready(function() {
 			error('not supported');
 		}
 		function error(msg) {
-			$('#detectGeo').html("浏览器不支持位置检测，请手动点选位置。")
+			$('#detectGeo').html("浏览器不支持位置检测或检测不到您的位置！")
+			init("39.916527","116.397128");
 		}
 		function success(position) {
-			$('#detectGeo').html(
-					"检测到您的位置在： " + position.coords.latitude + "， "
-							+ position.coords.longitude);
+			$('#detectGeo').html("检测到您的位置！");
+			$('#l_lat').html(position.coords.latitude);
+			$('#l_lng').html(position.coords.longitude);
+	//		$('#test').attr('value','xxx');
+			
+			
 			if($('#searchBotton').hasClass('hidden')){
 			$('#searchBotton').removeClass('hidden');
 			}
-			$('#indexSearchA').attr('href','SearchAction!unLoginList.action?l_lat='+position.coords.latitude+'&l_lng='+position.coords.latitude);
+	//		$('#indexSearchA').attr('href','SearchAction!unLoginList.action?l_lat='+position.coords.latitude+'&l_lng='+position.coords.longitude);
+			
+			init(position.coords.latitude, position.coords.longitude);
 		}
-
+		
 		$('a.mag').imgPreview( {
 			containerID : 'imgPreviewWithStyles',
 			imgCSS : {
 			height : 200
 		}
 		});
+		
+		
 
 	});
 
