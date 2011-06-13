@@ -1,5 +1,4 @@
-﻿var locMark;
-var init = function() {
+﻿var init = function() {
 
 	var center = new QQMap.QLatLng(39.920, 116.405);
 
@@ -20,16 +19,6 @@ var init = function() {
 	   map: map
     });
 	
-	var icon = new QQMap.QMarkerImage('images/marker.png');
-	locMark = new QQMap.QMarker( {
-		icon: icon,
-		draggable : true,
-	});
-
-	QQMap.QEvent.addListener(map, 'click', function(event) {
-		locMark.setPosition(event.qLatLng);
-		locMark.setMap(map);		
-	});
 }
 
 eamilCheck = function (emailStr) {
@@ -53,28 +42,23 @@ telCheck = function isTel(telStr){
 
 isValid = function(myForm) {
 	
-	if(locMark.getPosition() == null) {
-		alert("请在地图上选定你的位置！");
-		return false;
-	}
-	
-	if(document.getElementById('UserAction_user_username').value.trim()==""){
+	if(document.getElementById('MerchantAction_merchant_username').value.trim()==""){
 		alert("用户名不能为空！");
 		return false;
 	}
 	
-	if(document.getElementById('UserAction_user_pwd').value.trim()==""){
+	if(document.getElementById('MerchantAction_merchant_pwd').value.trim()==""){
 		alert("密码不能为空！");
 		return false;
 	}
 	
-	if(eamilCheck(document.getElementById('UserAction_user_email').value) == false)
+	if(eamilCheck(document.getElementById('MerchantAction_merchant_email').value) == false)
 	{
 		alert("邮件地址格式不正确！");
 		return false;
 	}
 	
-	if(telCheck(document.getElementById('UserAction_user_phone').value) == false)
+	if(telCheck(document.getElementById('MerchantAction_merchant_phone').value) == false)
 	{
 		alert("电话号码格式不正确！");
 		return false;
@@ -85,8 +69,5 @@ isValid = function(myForm) {
 		return false;
 	}
 	
-	var latLng = locMark.getPosition();
-	document.getElementById('UserAction_r_lat').value = latLng.getLat();
-	document.getElementById('UserAction_r_lon').value = latLng.getLng();
 	return true;
 }

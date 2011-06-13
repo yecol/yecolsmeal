@@ -239,7 +239,39 @@
 	}
 }
 
+telCheck = function isTel(telStr){
+    var reg=/^([0-9]|[\-])+$/g ;
+    if(telStr.length<7 || telStr.length>18){
+    	return false;
+    }
+    else{
+      return reg.exec(str);
+    }
+}
+
 isValid = function(myForm) {
+	
+	if(document.getElementById('MerchantAction_branchName').value.trim() == ""){
+		alert("分店名称不能为空！");
+		return false;
+	}
+	
+	if(document.getElementById('MerchantAction_branchAddress').value.trim() == ""){
+		alert("分店地址不能为空！");
+		return false;
+	}
+	
+	if(telCheck(document.getElementById('MerchantAction_branchPhone').value) == false)
+	{
+		alert("电话号码格式不正确！");
+		return false;
+	}
+	
+	if(document.getElementById('dev_vertexs').value.trim() == ""){
+		alert("请圈定送货范围！");
+		return false;
+	}
+	
 	var inputs = myForm.getElementsByTagName("input");
 	for(var i=0; i<inputs.length; i = i + 1) {
 		input = inputs[i];
